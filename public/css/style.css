@@ -1,0 +1,115 @@
+.nav-item {
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.nav-link {
+    font-size: 17px;
+    font-weight: 640;
+}
+
+.navbar {
+    padding-top: 0%;
+    padding-bottom: 0%;
+}
+
+.navbar-brand {
+    padding-top: 0%;
+    padding-bottom: 0%;
+}
+
+.active{
+    color: #ffe57f;
+}
+
+nav {
+    background-color: #fffef7;
+}
+
+#navbar {
+    overflow: hidden;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    transition: 1s;
+}
+
+.main {
+    margin-top: 90px;
+}
+
+.footer .footer-bottom{
+    background: yellow;
+    color: black;
+    height: 50px;
+    text-align: center;
+    bottom: 0px;
+    left: 0px;
+    padding-top: 20px;
+    position: absolute;
+    width: 100%;
+}
+
+.card {
+    border: 0;
+}
+
+.btn-default {
+background-color: #FFDE59;
+}
+.btn-outline-default {
+background-color: white;
+color: #FFDE59;
+border-color: #FFDE59;
+}
+
+.btn {
+    border-radius: 9px;
+    color: #303030;
+}
+
+.width100{
+    width: 100px;
+}
+
+.bodoni {
+    font-family: Bodoni Bd BT;
+}
+
+.text-inter {
+    font-size: 'Inter', sans-serif;
+}
+
+.title{
+    margin-top: 100px;
+}
+
+.rounded-rectangle {
+    width: 460px;
+    height: 460px;
+    background: white;
+    border-radius: 70px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    padding-inline-start: 30px;
+}
+
+.rounded-rectangle-white {
+    width: 460px;
+    height: 460px;
+    background: #e5e5e5;
+    border-radius: 70px;
+    padding-top: 30px;
+    padding-bottom: 30px;
+    padding-inline-start: 30px;
+}
+
+.more-padding {
+    padding-left: 100px;
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
