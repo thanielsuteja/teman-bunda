@@ -18,8 +18,8 @@
     padding-bottom: 0%;
 }
 
-.active{
-    color: #ffe57f;
+.active a{
+    color: red !important;
 }
 
 #navbar {
@@ -76,8 +76,22 @@ border-color: #FFDE59;
     font-size: 'Inter', sans-serif;
 }
 
-.title{
-    margin-top: 100px;
+#register-card {
+    border-radius: 50px;
+}
+
+#login-card {
+    border-radius: 50px;
+    margin-bottom: 100px;
+}
+
+.rounded-input {
+    border-radius: 15px;
+    border: 0;
+}
+
+.bg-grey {
+    background: #F2F2F2;
 }
 
 .rounded-rectangle {

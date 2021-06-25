@@ -31,6 +31,9 @@ class User extends Authenticatable
     ];
 
     protected $attributes = [
+        // 'alamat' => null,
+        // 'provinsi' => null,
+        // 'kabupaten' => null,
         'peran_user' => "user",
         'virtual_account' => "999999999999",
     ];

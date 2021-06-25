@@ -2,7 +2,7 @@
 
 @section('content')
 
-<main class="container main col-xxl-12 px-0 py-5">
+<main class="container main col-xxl-12 px-0">
     <section class="row flex-lg-row-reverse align-items-center py-5 mb-5">
         <div class="col-10 col-sm-8 col-lg-6">
             <img src="/img/homepage_picture(copy).png" class="d-block mx-lg-auto img-fluid" alt="" width="600" loading="lazy">
@@ -117,8 +117,8 @@
                         <div class="card bg-light h-100">
                             <div class="card-body text-center">
                                 <img src="/img/icon/verify.png" class="py-5" alt="" width="80">
-                                <p class="card-title fw-bold">Mengisi formulir</p>
-                                <p>Mengisi hari, waktu, lokasi dan metode perawatan yang Anda inginkan dalam seminggu</p>
+                                <p class="card-title fw-bold">lorem lorem</p>
+                                <p>lorem lorem lorem loremlorem lorem lorem loremlorem lorem lorem loremlorem lorem lorem lorem</p>
                             </div>
                         </div>
                     </div>
@@ -126,8 +126,8 @@
                         <div class="card bg-light h-100">
                             <div class="card-body text-center">
                                 <img src="/img/icon/find.png" class="py-5" alt="" width="80">
-                                <p class="card-title fw-bold">Mencari Teman Bunda</p>
-                                <p>Carilah berdasarkan lokasi Anda, pilihlah Caretakers yang cocok dan kirimlah notifikasi!</p>
+                                <p class="card-title fw-bold">Tunggu penawaran kerja</p>
+                                <p>lorem lorem lorem loremlorem lorem lorem loremlorem lorem lorem loremlorem lorem lorem lorem</p>
                             </div>
                         </div>
                     </div>
@@ -135,8 +135,8 @@
                         <div class="card bg-light h-100">
                             <div class="card-body text-center">
                                 <img src="/img/icon/interview.png" class="py-5" alt="" width="80">
-                                <p class="card-title fw-bold">Wawancara dan Mempekerjakan</p>
-                                <p>Setelah Anda mengirim notifikasi, lakukanlah wawancara sebelum memperkerjakan Teman Bunda</p>
+                                <p class="card-title fw-bold">lorem lorem</p>
+                                <p>lorem lorem lorem loremlorem lorem lorem loremlorem lorem lorem loremlorem lorem lorem lorem</p>
                             </div>
                         </div>
                     </div>
@@ -144,8 +144,8 @@
                         <div class="card bg-light h-100">
                             <div class="card-body text-center">
                                 <img src="/img/icon/review.png" class="py-5" alt="" width="80">
-                                <p class="card-title fw-bold">Memberi Ulasan</p>
-                                <p>Berilah ulasan terhadap Caretakers yang sudah membantu Anda! Ulasan akan muncul di profil Bunda</p>
+                                <p class="card-title fw-bold">lorem lorem</p>
+                                <p>lorem lorem lorem loremlorem lorem lorem loremlorem lorem lorem loremlorem lorem lorem lorem</p>
                             </div>
                         </div>
                     </div>

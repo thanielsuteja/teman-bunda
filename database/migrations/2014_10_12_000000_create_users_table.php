@@ -20,9 +20,9 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('no_telepon')->unique();
             $table->string('email')->unique();
-            $table->text('alamat');
-            $table->string('provinsi');
-            $table->string('kabupaten');
+            $table->text('alamat')->nullable();
+            $table->string('provinsi')->nullable();
+            $table->string('kabupaten')->nullable();
             $table->timestamp('tanggal_lahir');
             $table->string('jenis_kelamin');
             $table->bigInteger('virtual_account');

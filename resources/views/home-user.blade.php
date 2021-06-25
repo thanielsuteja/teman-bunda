@@ -1,3 +1,16 @@
+@extends('sidebar.sidebar')
+
+@section('content')
+
+<!-- <div class="header">
+    <div class="header-menu">
+        <div class="title">Coding <span>Snow</span></div>
+        <div class="sidebar-btn">
+
+        </div>
+    </div>
+</div> -->
+
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -15,3 +28,5 @@
         </div>
     </div>
 </x-app-layout>
+
+@endsection
