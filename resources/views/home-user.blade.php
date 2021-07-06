@@ -1,17 +1,10 @@
-@extends('sidebar.sidebar')
+@extends('layout.master')
+@include('layout.navbar.navbar-user')
+@include('layout.sidebar.sidebar-user')
 
 @section('content')
 
-<!-- <div class="header">
-    <div class="header-menu">
-        <div class="title">Coding <span>Snow</span></div>
-        <div class="sidebar-btn">
-
-        </div>
-    </div>
-</div> -->
-
-<x-app-layout>
+<!-- <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             {{ __('Dashboard') }}
@@ -26,7 +19,11 @@
                 </div>
             </div>
         </div>
-    </div>
-</x-app-layout>
+    </div>  
+</x-app-layout> -->
+
+<p class="display-5">Lorem ipsum dolor sit amet consectetur adipisicing elit. Inventore maxime, fuga odit repellat suscipit provident ducimus reprehenderit ex nobis quo eum voluptate quis nostrum impedit deleniti? Fugit tenetur cumque laudantium.</p>
+
+
 
 @endsection

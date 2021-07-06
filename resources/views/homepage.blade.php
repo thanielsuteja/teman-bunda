@@ -1,4 +1,5 @@
-@extends('navbar.master')
+@extends('layout.master-footer')
+@include('layout.navbar.navbar')
 
 @section('content')
 
@@ -156,3 +157,5 @@
 </main>
 
 @endsection
+
+<!-- @include('layout.footer') -->

@@ -1,0 +1,89 @@
+@import url(https://fonts.googleapis.com/css?family=Titillium+Web:300);
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+}
+
+body{
+    min-height: 100vh;
+    background-color: #ffde59;
+
+}
+.navigation-bar{
+    position: fixed;
+    width: 70px;
+    height: 100%;
+    background-color: white;
+    transition: 0.3s;
+    overflow: hidden;
+}
+
+.navigation-bar:hover{
+    width: 270px;
+}
+
+.navigation-bar ul {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.navigation-bar ul li {
+    position: relative;
+    width: 100%;
+    list-style-type: none;
+}
+.navigation-bar ul li a {
+    position: relative;
+    display: block;
+    display: flex;
+    width: 100%;
+    text-decoration: none;
+    color: black;
+}
+
+.navigation-bar ul li a .nav-icon {
+    position: relative;
+    display: block;
+    min-width: 70px;
+    height: 58px;
+    line-height: 58px;
+    text-align: center;
+}
+
+.navigation-bar ul li a .nav-icon .bi {
+    font-size: 24px;
+}
+
+.navigation-bar ul li a .nav-title {
+    position: relative;
+    display: block;
+    padding: 0 10px;
+    height: 58px;
+    line-height: 58px;
+    text-align: start;
+    white-space: normal;
+    font-family: 'Titillium', sans-serif;
+    font-size: 14px;
+}
+
+.navigation-bar ul li a:hover{
+    color: #ffde59;
+}
+
+.active {
+    background-color: #ffde59;
+}
+.active .nav-icon {
+    color: white;
+}
+.active .nav-title {
+    color: white;
+}
+
+hr{
+    border-top: 1px #eef0f2;
+}

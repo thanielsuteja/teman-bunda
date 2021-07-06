@@ -1,6 +1,23 @@
-@extends ('navbar.navbar-top')
+@extends ('layout.master')
+@include ('layout.navbar.navbar')
 
 @section ('content')
+
+<script src="{{ asset('js/jquery.js') }}"></script>
+<script>
+    $(document).ready(function() {
+        $('#login-email,#login-password').on('keyup', function() {
+            var email_value = $("#login-email").val();
+            var password_value = $("#login-password").val();
+
+            if (email_value != '' && password_value != '') {
+                $('#btn_login').attr('disabled', false);
+            } else {
+                $('#btn_login').attr('disabled', true);
+            }
+        });
+    });
+</script>
 
 <div class="container main col-xxl-12 px-5">
     <section class="row pt-5 pb-3 text-center">
@@ -20,7 +37,7 @@
                             <input type="password" id="login-password" placeholder="Password" name="password" class="form-control rounded-input">
                             <label for="login-password">Password</label>
                         </div>
-                        <input type="submit" value="Log in" class="btn btn-default text-white mt-2 mb-4" style="width: 240px; height: 60px;">
+                        <input type="submit" value="Log in" id="btn_login" class="btn btn-default text-white mt-2 mb-4" style="width: 240px; height: 60px;" disabled>
                         <div class="row">
                             <div class="col-md text-start">
                                 <p>Belum punya akun? <a href="/register" class="text-decoration-none">Daftar</a></p>
@@ -32,7 +49,7 @@
                     </div>
                 </div>
             </form>
-        </div>  
+        </div>
     </section>
 </div>
 
