@@ -92,7 +92,7 @@ Route::get('/admin/regions', [RegionController::class, 'AllRegions'])->middlewar
 
 Route::get('/admin/regions/new', [RegionController::class, 'ViewAddPage'])->middleware(['auth'])->middleware(['admin']);
 
-Route::post('/admin/regions/add', [RegionController::class, 'AddNew'])->name('adm.regions.add')->middleware(['auth'])->middleware(['admin'])->name('adm.regions.add');
+Route::post('/admin/regions/add', [RegionController::class, 'AddNew'])->middleware(['auth'])->middleware(['admin'])->name('adm.regions.add');
 
 Route::get('/admin/regions/edit/{id}', [RegionController::class, 'Edit'])->middleware(['auth'])->middleware(['admin']);
 
