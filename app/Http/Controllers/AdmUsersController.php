@@ -15,13 +15,13 @@ class AdmUsersController extends Controller
     
     public function AllUsers(){
 
-        $users = User::latest()->paginate(5);
+        $users = User::oldest()->paginate(5);
         return view('admin.users.users', compact('users') );
     }
 
     public function Details($id){
-        $users= User::find($id);
-        return view('admin.users.user_details',compact('users'));
+        $user= User::find($id);
+        return view('admin.users.user_details',compact('user'));
     }
 
 }

@@ -3,7 +3,7 @@
 @section ('content')
 <div class="container rounded border border-dark bg-dark p-5" style="margin-left:20%; margin-top:5%; height:50%">
 
-    <div class="container rounded p-3 mb-2 bg-primary text-white">
+    <div class="container rounded p-3 mb-4 bg-primary text-white">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             User Data
         </h2>
@@ -19,7 +19,7 @@
                             <th scope="col">num</th>
                             <th scope="col">user_id</th>
                             <th scope="col">nama</th>
-                            <th scope="col">peran_user</th>
+                            <th scope="col">role</th>
                             <th scope="col">email</th>
                             <th scope="col">virtual_account</th>
                             <th scope="col">created_at</th>
@@ -32,8 +32,8 @@
                         <tr>
                         <th scope="row">{{$users->firstItem()+$loop->index}}</th>
                         <td>{{ $user->user_id }}</td>
-                        <td>{{ $user->nama }}</td>
-                        <td>{{ $user->peran_user }}</td>
+                        <td>{{ $user->nama_depan }} {{ $user->nama_belakang }}</td>
+                        <td>{{ $user->role }}</td>
                         <td>{{ $user->email }}</td>
                         <td>{{ $user->virtual_account }}</td>
                         <td>

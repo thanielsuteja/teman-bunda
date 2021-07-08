@@ -34,7 +34,7 @@
                         </div>
                     </div>
                     <a href="{{ url('admin/professions') }}" class="btn btn-danger">Cancel</a>
-                    <button type="submit" class="btn btn-primary">Add Profession</button>
+                    <button type="submit" class="btn btn-success">Add Profession</button>
                 </form>
             </div>
 

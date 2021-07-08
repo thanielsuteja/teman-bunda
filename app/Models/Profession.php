@@ -16,4 +16,10 @@ class profession extends Model
 
     protected $primaryKey = 'profession_id';
 
+    
+    public function ProfessionCaretakerRelation()
+    {
+        return $this->hasMany(RegionCaretakerRelation::class, 'profession_id', 'profession_id');
+    }
+
 }

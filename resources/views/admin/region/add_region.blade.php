@@ -26,7 +26,7 @@
                         </div>
                     </div>
                     <a href="{{ url('admin/regions') }}" class="btn btn-danger">Cancel</a>
-                    <button type="submit" class="btn btn-primary">Add Region</button>
+                    <button type="submit" class="btn btn-success">Add Region</button>
                 </form>
             </div>
 

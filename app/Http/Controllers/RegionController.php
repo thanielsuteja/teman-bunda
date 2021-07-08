@@ -11,7 +11,7 @@ class RegionController extends Controller
     //
     public function AllRegions(){
 
-        $regions = Region::latest()->paginate(5);
+        $regions = Region::oldest()->paginate(5);
         return view('admin.region.regions', compact('regions') );
     }
 

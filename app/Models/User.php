@@ -17,21 +17,26 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'nama',
-        'email',
+        'nama_depan',
+        'nama_belakang',
         'password',
-        'no_telepon',
+        'profile_img_path',
+        'tanggal_lahir',
+        'jenis_kelamin',
+        'nomor_telepon',
         'email',
         'alamat',
         'provinsi',
         'kabupaten',
-        'tanggal_lahir',
-        'jenis_kelamin',
+        'kecamatan',
+        'kelurahan',
+        'dokumen_ktp_path',
         'virtual_account',
+        'rating_user',
     ];
 
     protected $attributes = [
-        'peran_user' => "user",
+        'role' => "user",
         'virtual_account' => "999999999999",
     ];
 
@@ -40,4 +45,9 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
     ];
+
+    public function Caretaker()
+    {
+        return $this->hasOne(Transaction::class,'user_id','user_id');
+    }
 }

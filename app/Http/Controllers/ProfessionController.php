@@ -11,7 +11,7 @@ class ProfessionController extends Controller
     //
     public function AllProfessions(){
 
-        $professions = Profession::latest()->paginate(5);
+        $professions = Profession::oldest()->paginate(5);
         return view('admin.profession.professions', compact('professions') );
     }
 
