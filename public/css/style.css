@@ -101,7 +101,7 @@
 }
 
 #login-card {
-    border-radius: 50px;
+    border-radius: 40px;
     margin-bottom: 100px;
 }
 
@@ -153,6 +153,7 @@ input::-webkit-inner-spin-button {
 }
 
 .sidebar {
+    top: 68px;
     position: absolute;
     height: 100%;
     transition: ease-in;

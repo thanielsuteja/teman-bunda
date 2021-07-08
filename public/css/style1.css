@@ -12,6 +12,7 @@ body{
 
 }
 .navigation-bar{
+    top: 68px;
     position: fixed;
     width: 70px;
     height: 100%;
@@ -29,12 +30,14 @@ body{
     top: 0;
     left: 0;
     width: 100%;
+    padding: 0%;
 }
 
 .navigation-bar ul li {
     position: relative;
     width: 100%;
     list-style-type: none;
+    border-bottom: 2px solid #eef0f2;
 }
 .navigation-bar ul li a {
     position: relative;
@@ -52,6 +55,8 @@ body{
     height: 58px;
     line-height: 58px;
     text-align: center;
+    padding-left: 14px;
+    padding-top: 15px;
 }
 
 .navigation-bar ul li a .nav-icon .bi {
@@ -82,8 +87,4 @@ body{
 }
 .active .nav-title {
     color: white;
-}
-
-hr{
-    border-top: 1px #eef0f2;
 }

@@ -13,28 +13,29 @@ class CreateCaretakersTable extends Migration
      */
     public function up()
     {
-        Schema::create('caretakers', function (Blueprint $table) {
+        Schema::create('Caretakers', function (Blueprint $table) {
             $table->id('caretaker_id');
-            $table->foreignId('caretaker_user_id');
-            $table->bigInteger('NIK');
+            $table->boolean('caretaker_status'); //available unavailable
+            $table->boolean('approved');
+            $table->foreignId('user_id');
             $table->tinyInteger('kode_bank'); //baru
-            $table->bigInteger('no_rekening_bank');
-            // profesi
-            $table->string('daerah');
-            // cost per hour
+            $table->bigInteger('bank_account');
+            $table->integer('cost_per_hour');
             $table->tinyInteger('umur');
-            $table->string('pendidikan_terakhir');
-            $table->string('agama');
-            $table->smallInteger('tinggi_badan');
-            $table->smallInteger('berat_badan');
-            $table->string('status_kawin');
-            $table->text('deskripsi');
-            // prof image
-            // ktp
-            // dokumen vaksin 
-            // ijasah terakhir
-            // psiko test
-            // akta lahir
+            $table->string('edukasi');
+            $table->string('religi');
+            $table->smallInteger('tinggi');
+            $table->smallInteger('berat');
+            // $table->string('status_kawin'); //tidak perlu
+            $table->text('deskripsi_caretaker');
+            $table->boolean('pengawasan_kamera'); //setuju tidaksetuju
+            $table->boolean('takut_anjing'); //takut tidaktakut
+            $table->bigInteger('NIK');
+            $table->string('dokumen_vaksin')->nullable();
+            $table->string('ijazah')->nullable();
+            $table->string('dokumen_psikotes')->nullable();
+            $table->string('akte_lahir')->nullable();
+            $table->decimal('rating_caretaker', $precision = 2, $scale = 1)->nullable();
             $table->timestamps();
         });
     }
@@ -46,6 +47,6 @@ class CreateCaretakersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('caretakers');
+        Schema::dropIfExists('Caretakers');
     }
 }

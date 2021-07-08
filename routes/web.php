@@ -28,15 +28,15 @@ Route::get('/home', [HomeController::class, 'home'])->name('home');
 
 
 // User Controller
-Route::get('/user/home-page', [UserController::class, 'showPageHome'])->name('home-user');
-Route::get('/user/cari-caretaker', [UserController::class, 'showPageCariCaretaker'])->name('cari-caretaker');
+Route::get('/user/home-page', [UserController::class, 'showPageHome'])->middleware(['auth'])->name('user.home');
+Route::get('/user/cari-caretaker', [UserController::class, 'showPageCariCaretaker'])->middleware(['auth'])->name('user.cari-caretaker');
 
 
 require __DIR__.'/auth.php';
 
 //testing
 Route::get('/', function () {
-    return view('cari-caretaker');
+    return view('layout.sidebar.fail-sidebar');
 });
 // Route::get('/test', function () {
 //     return view('sidebar.sidebar');

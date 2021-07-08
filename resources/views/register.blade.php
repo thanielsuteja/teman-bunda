@@ -35,7 +35,9 @@
             $.ajax({
                 url: '{{ route("getKecamatan") }}',
                 method: 'POST',
-                data: {id: $(this).val()},
+                data: {
+                    id: $(this).val()
+                },
                 success: function(response) {
                     $('#kecamatan').empty();
                     $.each(response, function(id, name) {
@@ -49,7 +51,9 @@
             $.ajax({
                 url: '{{ route("getKelurahan") }}',
                 method: 'POST',
-                data: {id: $(this).val()},
+                data: {
+                    id: $(this).val()
+                },
                 success: function(response) {
                     $('#kelurahan').empty();
                     $.each(response, function(id, name) {
@@ -74,12 +78,12 @@
 </script>
 <!-- <script>
     $(document).ready(function() {
-        $('#email,#nama_depan,#nama_belakang,#password,#no_telepon,#tanggal_lahir').on('keyup', function() {
+        $('#email,#nama_depan,#nama_belakang,#password,#nomor_telepon,#tanggal_lahir').on('keyup', function() {
             var namadpn_value = $(" #nama_depan").val();
             var namablkng_value = $("#nama_belakang").val();
             var email_value = $("#email").val();
             var password_value = $("#password").val();
-            var telepon_value = $("#no_telepon").val();
+            var telepon_value = $("#nomor_telepon").val();
             var tanggal_lahir_value = $("#tanggal_lahir").val();
             var jenis_kelamin_value = $("#jenis_kelamin").val();
             var syarat_value = $("#check_syarat");
@@ -94,7 +98,7 @@
             var namablkng_value = $("#nama_belakang").val();
             var email_value = $("#email").val();
             var password_value = $("#password").val();
-            var telepon_value = $("#no_telepon").val();
+            var telepon_value = $("#nomor_telepon").val();
             var tanggal_lahir_value = $("#tanggal_lahir").val();
             var jenis_kelamin_value = $("#jenis_kelamin").val();
             var syarat_value = $("#check_syarat");
@@ -118,7 +122,7 @@
             <p class="display-5 pt-1 fw-normal pb-2 title text-center"> Daftar di Teman Bunda </h2>
             <div class="card bg-ffeea8" id="register-card">
                 <div class="card-body mx-4 mt-4">
-                    <form action="/register/store" method="post" id="msform">
+                    <form action="/register/store" method="post" id="msform" enctype="multipart/form-data">
                         {{ csrf_field() }}
                         <ul id="progressbar" class="text-center">
                             <li class="active" id="isi_formulir">
@@ -155,8 +159,8 @@
                                 <label for="password"> Kata sandi </label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input type="number" id="no_telepon" name="no_telepon" placeholder="012-3456-7890" class="form-control rounded-input">
-                                <label for="no_telepon"> Nomor Telepon </label>
+                                <input type="number" id="nomor_telepon" name="nomor_telepon" placeholder="012-3456-7890" class="form-control rounded-input">
+                                <label for="nomor_telepon"> Nomor Telepon </label>
                             </div>
                             <div class="row">
                                 <div class="col">
@@ -180,8 +184,8 @@
                         </fieldset>
                         <fieldset>
                             <div class="form-floating mb-3">
-                                <input name="alamat_rumah" id="alamat_rumah" placeholder="Alamat rumah" class="form-control rounded-input" style="height: 60px">
-                                <label for="alamat_rumah"> Alamat </label>
+                                <input name="alamat" id="alamat" placeholder="Alamat rumah" class="form-control rounded-input" style="height: 60px">
+                                <label for="alamat"> Alamat </label>
                             </div>
                             <div class="form-floating mb-3">
                                 <select name="provinsi" id="provinsi" class="form-select rounded-input" aria - label="Floating label select">
@@ -194,19 +198,19 @@
                             </div>
                             <div class="form-floating mb-3">
                                 <select name="kabupaten" id="kabupaten" class="form-select rounded-input" aria - label="Floating label select">
-                                    <option value=""> aww </option>
+                                    <option value="">Pilih Kabupaten</option>
                                 </select>
                                 <label for="kabupaten"> Kabupaten </label>
                             </div>
                             <div class="form-floating mb-3">
                                 <select name="kecamatan" id="kecamatan" class="form-select rounded-input" aria - label="Floating label select">
-                                    <option value=""> aww </option>
+                                    <option value="">Pilih Kecamatan</option>
                                 </select>
                                 <label for="kecamatan"> Kecamatan </label>
                             </div>
                             <div class="form-floating mb-3">
                                 <select name="kelurahan" id="kelurahan" class="form-select rounded-input" aria - label="Floating label select">
-                                    <option value=""> aww </option>
+                                    <option value="">Pilih Kelurahan/Desa</option>
                                 </select>
                                 <label for="kelurahan"> Kelurahan / Desa </label>
                             </div>
@@ -214,13 +218,13 @@
                             <input type="button" name="next" class="next btn btn-default text-white mt-4" id="btn_next2" value="Selanjutnya" style="width: 170px; height: 60px;">
                         </fieldset>
                         <fieldset>
-                            <div class="form-floating mb-3">
-                                <input type="file" class="form-control rounded-input" id="inputGroupFile01">
-                                <label for="inputGroupFile01">
-                                </label>
+                            <div class="form-group mb-3">
+                                <label for="inputGroupFile01">Upload foto profil</label>
+                                <input type="file" class="form-control" id="inputGroupFile01" name="foto_profil">
                             </div>
-                            <div class="mb-3">
-                                <input type="file" class="form-control rounded-input" id="inputGroupFile02">
+                            <div class="form-group mb-3">
+                                <label for="inputGroupFile02">Upload foto KTP</label>
+                                <input type="file" class="form-control" id="inputGroupFile02" name="ktp">
                             </div>
                             <div class="form-check ms-4">
                                 <input type="checkbox" name="setuju" id="check_syarat" class="form-check-input">

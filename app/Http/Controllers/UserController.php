@@ -8,10 +8,10 @@ use App\Models\User;
 class UserController extends Controller
 {
     public function showPageHome() {
-        return view('home-user');
+        return view('user.home');
     }
 
     public function showPageCariCaretaker() {
-        return view('cari-caretaker');
+        return view('user.cari-caretaker');
     }
 }

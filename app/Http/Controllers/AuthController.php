@@ -55,7 +55,7 @@ class AuthController extends Controller
 
         if (Auth::check()) { // true sekalian session field di users nanti bisa dipanggil via Auth
             //Login Success
-            return redirect()->route('dashboard');
+            return redirect()->route('user.home');
         } else { // false
 
             //Login Fail
@@ -99,59 +99,67 @@ class AuthController extends Controller
     {
         $faker = Faker::create();
 
-        $rules = [
-            'nama_depan'            =>  'required|string|max:255',
-            'nama_belakang'         =>  'required|string|max:255',
-            'email'                 =>  'required|email|unique:users,email',
-            'password'              =>  'required|alpha_num|min:8',
-            'no_telepon'            =>  'required|numeric',
-            'tanggal_lahir'         =>  'required|date',
-            'jenis_kelamin'         =>  'required|string'
-        ];
+        // $rules = [
+        //     'nama_depan'            =>  'required|string|max:255',
+        //     'nama_belakang'         =>  'required|string|max:255',
+        //     'email'                 =>  'required|email|unique:users,email',
+        //     'password'              =>  'required|alpha_num|min:8',
+        //     'nomor_telepon'         =>  'required|numeric',
+        //     'tanggal_lahir'         =>  'required|date',
+        //     'jenis_kelamin'         =>  'required|string',
+        //     'dokumen_ktp_path'      =>  'mimes:jpeg,png',
+        //     'profile_img_path'      =>  'mimes:jpeg,png',
+        // ];
 
-        $messages = [
-            'nama_belakang.required'=>  'Nama Lengkap wajib diisi',
-            'name_belakang.max'     =>  'Nama lengkap maksimal 255 karakter',
-            'nama_depan.required'   =>  'Nama Lengkap wajib diisi',
-            'name_depan.max'        =>  'Nama lengkap maksimal 255 karakter',
-            'email.required'        =>  'Email wajib diisi',
-            'email.email'           =>  'Email tidak valid',
-            'email.unique'          =>  'Email sudah terdaftar',
-            'password.required'     =>  'Password wajib diisi',
-            'no_telepon.required'   =>  'Nomor telepon wajib diisi',
-            'tanggal_lahir.required'   =>  'Tanggal lahir wajib diisi',
-            'jenis_kelamin.required'   =>  'Jenis kelamin wajib diisi',
-        ];
+        // $messages = [
+        //     'nama_belakang.required' =>  'Nama Lengkap wajib diisi',
+        //     'name_belakang.max'     =>  'Nama lengkap maksimal 255 karakter',
+        //     'nama_depan.required'   =>  'Nama Lengkap wajib diisi',
+        //     'name_depan.max'        =>  'Nama lengkap maksimal 255 karakter',
+        //     'email.required'        =>  'Email wajib diisi',
+        //     'email.email'           =>  'Email tidak valid',
+        //     'email.unique'          =>  'Email sudah terdaftar',
+        //     'password.required'     =>  'Password wajib diisi',
+        //     'nomor_telepon.required'   =>  'Nomor telepon wajib diisi',
+        //     'tanggal_lahir.required'   =>  'Tanggal lahir wajib diisi',
+        //     'jenis_kelamin.required'   =>  'Jenis kelamin wajib diisi',
+        // ];
 
-        $validator = Validator::make($request->all(), $rules, $messages);
+        // $validator = Validator::make($request->all(), $rules, $messages);
 
-        if ($validator->fails()) {
-            return redirect()->back()->withErrors($validator)->withInput($request->all);
+        // if ($validator->fails()) {
+        //     return redirect()->back()->withErrors($validator)->withInput($request->all);
+        // }
+
+        if ($request->hasFile('ktp')) {
+            if ($request->hasFile('foto_profil')) {
+                
+                // Save the file locally in the storage/public/ folder under a new folder named /product
+                $request->ktp->store('ktp', 'public');
+                $request->foto_profil->store('foto_profil', 'public');
+
+                // Store the record, using the new file hashname which will be it's new filename identity.
+                $user = User::create([
+                    'nama_depan'            =>  ucwords(strtolower($request->nama_depan)),
+                    'nama_belakang'         =>  ucwords(strtolower($request->nama_belakang)),
+                    'email'                 =>  strtolower($request->email),
+                    'password'              =>  Hash::make($request->password),
+                    'nomor_telepon'         =>  $request->nomor_telepon,
+                    'tanggal_lahir'         =>  $request->tanggal_lahir,
+                    'jenis_kelamin'         =>  $request->jenis_kelamin,
+                    'alamat'                =>  $request->alamat,
+                    'provinsi'              =>  Province::find($request->provinsi)->name,
+                    'kabupaten'             =>  City::find($request->kabupaten)->name,
+                    'kecamatan'             =>  District::find($request->kecamatan)->name,
+                    'kelurahan'             =>  Village::find($request->kelurahan)->name,
+                    'profile_img_path'      =>  $request->foto_profil->hashName(),
+                    'dokumen_ktp_path'      =>  $request->ktp->hashName(),
+                    'virtual_account'       =>  $faker->numberBetween(100000000000000, 999999999999999)
+                ]);
+            }
         }
 
-        $user = User::create([
-            'nama_depan'            =>  ucwords(strtolower($request->nama_depan)),
-            'nama_belakang'         =>  ucwords(strtolower($request->nama_belakang)),
-            'email'                 =>  strtolower($request->email),
-            'password'              =>  Hash::make($request->password),
-            'no_telepon'            =>  $request->no_telepon,
-            'tanggal_lahir'         =>  $request->tanggal_lahir,
-            'jenis_kelamin'         =>  $request->jenis_kelamin,
-            'alamat'                =>  $request->alamat,
-            'provinsi'              =>  $request->provinsi,
-            'kabupaten'             =>  $request->kabupaten,
-            'kecamatan'             =>  $request->kecamatan,
-            'kelurahan'             =>  $request->kelurahan,
-            'profile_photo_path'    =>  $request->profile_photo_path,
-            'ktp_path'              =>  $request->ktp_path,
-            'virtual_account'       =>  $faker->numberBetween(100000000000000, 999999999999999)
-        ]);
-
-        $simpan = $user->save();
-
-        // return redirect('/home-user');
-
-        if ($simpan) {
+        if ($user) {
             Session::flash('success', 'Register berhasil! Silahkan login untuk mengakses data');
             return redirect()->route('login');
         } else {

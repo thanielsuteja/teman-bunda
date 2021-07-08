@@ -1,33 +1,29 @@
 <div class="navigation-bar">
     <ul class="to-active">
-        <li class="active">
-            <a href="{{ route('home-user') }}">
+        <li class="{{ request()->is('user/home-page*') ? 'active' : '' }}">
+            <a href="{{ route('user.home') }}">
                 <span class="nav-icon"><i class="bi bi-house-door"></i></span>
                 <span class="nav-title">Beranda</span>
             </a>
         </li>
-        <hr>
-        <li>
-            <a href="{{ route('cari-caretaker') }}">
+        <li class="{{ request()->is('user/cari-caretaker*') ? 'active' : '' }}">
+            <a href="{{ route('user.cari-caretaker') }}">
                 <span class="nav-icon"><i class="bi bi-people-fill"></i></span>
                 <span class="nav-title">Cari Caretaker</span>
             </a>
         </li>
-        <hr>
-        <li>
+        <li class="{{ request()->is('user/cari-caretaker*') ? 'active' : '' }}">
             <a href="#">
                 <span class="nav-icon"><i class="bi bi-table"></i></span>
                 <span class="nav-title">Penawaran Kerjaku</span>
             </a>
         </li>
-        <hr>
-        <li>
+        <li class="{{ request()->is('user/cari-caretaker*') ? 'active' : '' }}">
             <a href="#">
                 <span class="nav-icon"><i class="bi bi-file-text"></i></span>
                 <span class="nav-title">Riwayat Transaksi</span>
             </a>
         </li>
-        <hr>
     </ul>
 </div>
 

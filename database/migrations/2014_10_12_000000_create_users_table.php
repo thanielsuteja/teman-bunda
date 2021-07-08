@@ -13,24 +13,25 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('Users', function (Blueprint $table) {
             $table->id('user_id');
-            $table->string('peran_user');
-            $table->string('nama_depan');
-            $table->string('nama_belakang');
-            $table->string('email')->unique();
-            $table->string('no_telepon')->unique();
+            $table->string('nama_depan'); //bukan user_name
+            $table->string('nama_belakang'); //
+            $table->string('password');
+            $table->string('role');
             $table->timestamp('tanggal_lahir');
             $table->string('jenis_kelamin');
+            $table->string('nomor_telepon')->unique();
+            $table->string('email')->unique();
             $table->text('alamat');
             $table->string('provinsi');
-            $table->string('kabupaten');
-            $table->string('kecamatan');
+            $table->string('kabupaten'); //
+            $table->string('kecamatan'); //
             $table->string('kelurahan');
-            $table->string('ktp_path');
-            $table->string('profile_photo_path')->nullable();
+            $table->string('profile_img_path')->nullable();
+            $table->string('dokumen_ktp_path');
             $table->bigInteger('virtual_account');
-            $table->string('password');
+            $table->decimal('rating_user', $precision = 2, $scale = 1)->nullable();
             $table->timestamps();
         });
     }
@@ -42,6 +43,6 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('users');
+        Schema::dropIfExists('Users');
     }
 }
