@@ -26,7 +26,6 @@ class CreateCaretakersTable extends Migration
             $table->string('religi');
             $table->smallInteger('tinggi');
             $table->smallInteger('berat');
-            // $table->string('status_kawin'); //tidak perlu
             $table->text('deskripsi_caretaker');
             $table->boolean('pengawasan_kamera'); //setuju tidaksetuju
             $table->boolean('takut_anjing'); //takut tidaktakut
