@@ -2,10 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\RegisterController;
-use App\Http\Controllers\LoginController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\DependentDropdownController;
+use App\Http\Controllers\CariCaretakerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,7 +28,7 @@ Route::get('/home', [HomeController::class, 'home'])->name('home');
 
 // User Controller
 Route::get('/user/home-page', [UserController::class, 'showPageHome'])->middleware(['auth'])->name('user.home');
-Route::get('/user/cari-caretaker', [UserController::class, 'showPageCariCaretaker'])->middleware(['auth'])->name('user.cari-caretaker');
+Route::get('/user/cari-caretaker', [CariCaretakerController::class, 'showPageCariCaretaker'])->middleware(['auth'])->name('user.cari-caretaker');
 
 
 require __DIR__.'/auth.php';

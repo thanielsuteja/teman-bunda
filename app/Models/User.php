@@ -36,10 +36,10 @@ class User extends Authenticatable
         return $this->hasMany(Job_offers::class);
     }
     
-    public function reviewRelations()
-    {
-        return $this->hasManyThrough(Review::class, Review_relation::class);
-    }
+    // public function reviewRelations()
+    // {
+    //     return $this->hasManyThrough(Review::class, Review_relation::class);
+    // }
     
     protected $table = "Users";
     
@@ -66,7 +66,6 @@ class User extends Authenticatable
         // 'provinsi' => null,
         'rating_user' => 0.0,
         'role' => "user",
-        // 'virtual_account' => "999999999999",
     ];
 
     protected $primaryKey = 'user_id';

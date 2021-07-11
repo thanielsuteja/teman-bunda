@@ -1,8 +1,8 @@
-@extends('layout.master')
-@include('layout.navbar.navbar-user')
-@include('layout.sidebar.sidebar-user')
+@extends ('layout.master')
+@include ('layout.navbar.navbar-user')
+@include ('layout.sidebar.sidebar-user')
 
-@section('content')
+@section ('content')
 
 <style>
     .content {

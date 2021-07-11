@@ -18,7 +18,7 @@ class CreateCaretakersTable extends Migration
             $table->boolean('caretaker_status'); //available unavailable
             $table->boolean('approved');
             $table->foreignId('user_id');
-            $table->tinyInteger('kode_bank'); //baru
+            $table->string('kode_bank', 3);
             $table->bigInteger('bank_account');
             $table->integer('cost_per_hour');
             $table->tinyInteger('umur');

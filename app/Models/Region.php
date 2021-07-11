@@ -13,4 +13,6 @@ class Region extends Model
     public function relation() {
         return $this->hasMany(Region_caretaker_relation::class);
     }
+
+    protected $primaryKey = 'region_id';
 }

@@ -1,3 +1,7 @@
+* {
+    font-size: 'Inter', sans-serif;
+}
+
 .extra-margin {
     margin-left: 5px;
     margin-right: 5px;
@@ -60,13 +64,13 @@
     border: 0;
 }
 
-.btn-default {
+.bg-temanbunda {
     background-color: #ffde59;
 }
 
-.btn-default:hover{
+/* .bg-temanbunda:hover{
     background-color: #ffcc00;
-}
+} */
 
 .btn-outline-default {
     background-color: white;
@@ -88,8 +92,8 @@
     width: 100px;
 }
 
-.bodoni {
-    font-family: Bodoni Bd BT;
+.cambria {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
 .text-inter {
@@ -237,4 +241,14 @@ input::-webkit-inner-spin-button {
 
 .next {
     float: right;
+}
+
+.zoom {
+    transition: transform .2s;
+}
+  
+.zoom:hover {
+    -ms-transform: scale(1.2); /* IE 9 */
+    -webkit-transform: scale(1.2); /* Safari 3-8 */
+    transform: scale(1.2); 
 }

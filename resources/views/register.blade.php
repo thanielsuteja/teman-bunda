@@ -1,4 +1,5 @@
 @extends ('layout.master')
+@section ('title','Daftar Teman Bunda')
 @include ('layout.navbar.navbar')
 
 @section('content')
@@ -180,7 +181,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <input type="button" name="next" class="next btn btn-default text-white mt-4" id="btn_next1" value="Selanjutnya" style="width: 170px; height: 60px;">
+                            <input type="button" name="next" class="next btn bg-temanbunda text-white mt-4" id="btn_next1" value="Selanjutnya" style="width: 170px; height: 60px;">
                         </fieldset>
                         <fieldset>
                             <div class="form-floating mb-3">
@@ -215,7 +216,7 @@
                                 <label for="kelurahan"> Kelurahan / Desa </label>
                             </div>
                             <input type="button" name="previous" class="previous btn btn-secondary text-white mt-4" id="btn_prev" value="Sebelumnya" style="width: 170px; height: 60px;">
-                            <input type="button" name="next" class="next btn btn-default text-white mt-4" id="btn_next2" value="Selanjutnya" style="width: 170px; height: 60px;">
+                            <input type="button" name="next" class="next btn bg-temanbunda text-white mt-4" id="btn_next2" value="Selanjutnya" style="width: 170px; height: 60px;">
                         </fieldset>
                         <fieldset>
                             <div class="form-group mb-3">
@@ -230,7 +231,7 @@
                                 <input type="checkbox" name="setuju" id="check_syarat" class="form-check-input">
                                 <label for="setuju" class="form-check-label ms-2"> Dengan mencentang ini, kamu menyetujui <a href="/syaratdanketentuan" class="text-decoration-none"> Syarat & Ketentuan </a> kami</label>
                             </div>
-                            <input type="submit" class="btn btn-default text-white mt-4" id="btn_daftar" value="Daftar" style="width: 240px; height: 60px;" disabled>
+                            <input type="submit" class="btn bg-temanbunda text-white mt-4" id="btn_daftar" value="Daftar" style="width: 240px; height: 60px;" disabled>
                         </fieldset>
                     </form>
                 </div>

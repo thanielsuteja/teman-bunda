@@ -16,10 +16,23 @@
                         <a class="nav-link btn btn-outline-default width100" href="/register">Daftar</a>
                     </li>
                     <li class="nav-item extra-margin">
-                        <a class="nav-link btn btn-default width100 text-dark" href="/login">Masuk</a>
+                        <a class="nav-link btn bg-temanbunda width100 text-dark" href="/login">Masuk</a>
                     </li>
                 </ul>
             </div>
         </div>
     </nav>
 </header>
+
+<script>
+    var prevScrollpos = window.pageYOffset;
+    window.onscroll = function() {
+        var currentScrollPos = window.pageYOffset;
+        if (prevScrollpos > currentScrollPos) {
+            document.getElementById("navbar").style.top = "0";
+        } else {
+            document.getElementById("navbar").style.top = "-100px";
+        }
+        prevScrollpos = currentScrollPos;
+    }
+</script>

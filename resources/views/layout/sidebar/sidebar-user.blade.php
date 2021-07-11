@@ -29,11 +29,3 @@
 
 <link rel="stylesheet" href="{{ asset('css/style1.css') }}">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
-<script>
-    $(document).ready(function() {
-        $("ul.to-active > li").click(function(e) {
-            $("ul.to-active > li").removeClass("active");
-            $(this).addClass("active");
-        });
-    });
-</script>

@@ -8,22 +8,22 @@
 
     <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
     <!-- <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous"> -->
-    <link href="//db.onlinewebfonts.com/c/d2775f4d5ec8551ff80fbfd822f1efc0?family=Bodoni+Bd+BT" rel="stylesheet" type="text/css" />
-    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="/css/style.css">
-    <title>Document</title>
+    <title>@yield('title','Teman Bunda')</title>
 </head>
 
 <body class="home">
-    
+
 
     @yield('content')
 
     @include('layout.footer')
 
     <script src="{{ asset('js/popper.min.js') }}"></script>
-    <script src="{{ asset('js/bootstrap.min.js') }}" ></script>
+    <script src="{{ asset('js/bootstrap.min.js') }}"></script>
     <script>
         var prevScrollpos = window.pageYOffset;
         window.onscroll = function() {
@@ -33,7 +33,7 @@
             } else {
                 document.getElementById("navbar").style.top = "-100px";
             }
-        prevScrollpos = currentScrollPos;
+            prevScrollpos = currentScrollPos;
         }
     </script>
 </body>

@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
 use App\Models\Transaction;
 use App\Models\Caretaker;
+use App\Models\Review_caretaker;
+use App\Models\Review_user;
 
 class Job_offers extends Model
 {
@@ -20,6 +22,12 @@ class Job_offers extends Model
     }
     public function transaction(){
         return $this->hasOne(Transaction::class);
+    }
+    public function reviewUser(){
+        return $this->hasOne(Review_user::class);
+    }
+    public function reviewCaretaker(){
+        return $this->hasOne(Review_caretaker::class);
     }
 
     protected $table = "Job_offers";

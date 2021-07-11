@@ -13,4 +13,6 @@ class Profession extends Model
     public function relation() {
         return $this->hasMany(Profession_caretaker_relation::class);
     }
+
+    protected $primaryKey = 'profession_id';
 }

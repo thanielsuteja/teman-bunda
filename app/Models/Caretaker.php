@@ -18,25 +18,31 @@ class Caretaker extends Model
 {
     use HasFactory;
 
-    public function user() {
-        return $this->belongsTo(User::class);
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+    public function getAgeAttribute()
+    {
+        return \Carbon\Carbon::parse($this->user->tanggal_lahir)->age;
     }
 
-    public function jobOffers() {
+    public function jobOffers()
+    {
         return $this->hasMany(Job_offers::class);
     }
-    public function notifications() {
+    public function notifications()
+    {
         return $this->hasMany(Notification::class);
     }
-    
-    public function reviewRelations() {
-        return $this->hasManyThrough(Review::class, Review_relation::class);
+
+    public function professionCaretakerRelation()
+    {
+        return $this->hasMany(Profession_caretaker_relation::class, 'caretaker_id', 'caretaker_id');
     }
-    public function professionCaretakerRelation() {
-        return $this->hasManyThrough(Profession::class, Profession_caretaker_relation::class);
-    }
-    public function regionCaretakerRelation() {
-        return $this->hasManyThrough(Region::class, Region_caretaker_relation::class);
+    public function regionCaretakerRelation()
+    {
+        return $this->hasMany(Region_caretaker_relation::class, 'caretaker_id', 'caretaker_id');
     }
 
     protected $table = "Caretakers";
@@ -63,6 +69,7 @@ class Caretaker extends Model
 
     protected $attributes = [
         'rating_caretaker' => 0.0,
+        // 'umur' => ,
     ];
 
     protected $primaryKey = 'caretaker_id';

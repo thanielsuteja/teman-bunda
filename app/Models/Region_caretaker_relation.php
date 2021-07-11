@@ -15,6 +15,6 @@ class Region_caretaker_relation extends Model
         return $this->belongsTo(Caretaker::class);
     }
     public function region() {
-        return $this->belongsTo(Region::class);
+        return $this->belongsTo(Region::class, 'region_id');
     }
 }

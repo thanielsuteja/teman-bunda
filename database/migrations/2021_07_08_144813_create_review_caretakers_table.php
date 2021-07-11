@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateProvincesTable extends Migration
+class CreateReviewCaretakersTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,11 @@ class CreateProvincesTable extends Migration
      */
     public function up()
     {
-        Schema::create(config('laravolt.indonesia.table_prefix').'provinces', function (Blueprint $table) {
-            $table->char('id', 2);
-            $table->string('name', 255);
-            $table->text('meta')->nullable();
-            $table->primary('id');
+        Schema::create('review_caretakers', function (Blueprint $table) {
+            $table->id('caretaker_review_id');
+            $table->foreignId('job_id');
+            $table->string('review_rating');
+            $table->string('review_content');
             $table->timestamps();
         });
     }
@@ -29,6 +29,6 @@ class CreateProvincesTable extends Migration
      */
     public function down()
     {
-        Schema::drop(config('laravolt.indonesia.table_prefix').'provinces');
+        Schema::dropIfExists('review_caretakers');
     }
 }
