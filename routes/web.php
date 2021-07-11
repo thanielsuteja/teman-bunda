@@ -29,6 +29,7 @@ Route::get('/home', [HomeController::class, 'home'])->name('home');
 // User Controller
 Route::get('/user/home-page', [UserController::class, 'showPageHome'])->middleware(['auth'])->name('user.home');
 Route::get('/user/cari-caretaker', [CariCaretakerController::class, 'showPageCariCaretaker'])->middleware(['auth'])->name('user.cari-caretaker');
+Route::get('/user/cari-caretaker/{id}', [CariCaretakerController::class, 'showCaretakerInfo'])->middleware(['auth'])->name('user.caretaker-info');
 
 
 require __DIR__.'/auth.php';

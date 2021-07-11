@@ -17,7 +17,9 @@ class CariCaretakerController extends Controller
         return view('user.cari-caretaker', ['profesi' => $profesi, 'area' => $area, 'caretaker' => $caretaker]);
     }
 
-    // public function filterProfesi() {
+    public function showCaretakerInfo($id) {
+        $caretaker = Caretaker::where('caretaker_id',$id)->get();
 
-    // }
+        return view('user.caretaker-info', ['caretaker' => $caretaker]);
+    }
 }

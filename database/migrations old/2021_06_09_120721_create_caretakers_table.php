@@ -16,7 +16,7 @@ class CreateCaretakersTable extends Migration
         Schema::create('Caretakers', function (Blueprint $table) {
             $table->id('caretaker_id');
             $table->boolean('caretaker_status'); //available unavailable
-            $table->boolean('approved');
+            $table->string('approved');
             $table->foreignId('user_id');
             $table->string('kode_bank', 3);
             $table->bigInteger('bank_account');
@@ -30,10 +30,10 @@ class CreateCaretakersTable extends Migration
             $table->boolean('pengawasan_kamera'); //setuju tidaksetuju
             $table->boolean('takut_anjing'); //takut tidaktakut
             $table->bigInteger('NIK');
-            $table->string('dokumen_vaksin')->nullable();
-            $table->string('ijazah')->nullable();
-            $table->string('dokumen_psikotes')->nullable();
-            $table->string('akte_lahir')->nullable();
+            $table->string('dokumen_vaksin_path')->nullable();
+            $table->string('dokumen_ijazah_path')->nullable();
+            $table->string('dokumen_psikotes_path')->nullable();
+            $table->string('dokumen_akta_kelahiran_path')->nullable();
             $table->decimal('rating_caretaker', $precision = 2, $scale = 1)->nullable();
             $table->timestamps();
         });

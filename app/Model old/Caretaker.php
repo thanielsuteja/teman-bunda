@@ -5,7 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\User;
-use App\Models\Job_offers;
+use App\Models\Job_offer;
 use App\Models\Review_relation;
 use App\Models\Review;
 use App\Models\Notification;
@@ -29,7 +29,7 @@ class Caretaker extends Model
 
     public function jobOffers()
     {
-        return $this->hasMany(Job_offers::class);
+        return $this->hasMany(Job_offer::class);
     }
     public function notifications()
     {
@@ -48,6 +48,7 @@ class Caretaker extends Model
     protected $table = "Caretakers";
 
     protected $fillable = [
+        'approved',
         'caretaker_status',
         'kode_bank',
         'bank_account',

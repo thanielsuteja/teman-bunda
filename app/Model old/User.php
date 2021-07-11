@@ -8,7 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Models\Caretaker;
 use App\Models\Notification;
-use App\Models\Job_offers;
+use App\Models\Job_offer;
 use App\Models\Review_relation;
 use App\Models\Review;
 
@@ -33,7 +33,7 @@ class User extends Authenticatable
     }
     public function jobOffers()
     {
-        return $this->hasMany(Job_offers::class);
+        return $this->hasMany(Job_offer::class);
     }
     
     // public function reviewRelations()

@@ -50,80 +50,82 @@
                 </div>
                 <div class="card-body">
                     @foreach ($caretaker as $care)
-                    <div class="card border-2 mx-4 my-2" style="background-color: #f3f3f3; border-radius: 10px; overflow: hidden;">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-md-3 px-2 text-center">
-                                    @if ($care->profile_img_path != null)
-                                    <img src="{{ $care->profile_img_path }}" style="border-radius: 50%; object-fit: cover; width: 110px; height: 110px;">
-                                    @else
-                                    <img src="{{ asset('img/no-profile.png') }}" style="border-radius: 50%; object-fit: cover; width: 110px; height: 110px;">
-                                    @endif
-                                    <div class="justify-content-center d-flex pt-3">
-                                        <i class="bi-star-fill"></i>
-                                        <i class="bi-star-fill"></i>
-                                        <i class="bi-star-half"></i>
-                                        <i class="bi-star"></i>
-                                        <i class="bi-star"></i>
-                                    </div>
-                                    <div class="row text-center">
-                                        <p>50 Rating</p>
-                                    </div>
-                                </div>
-                                <div class="col-md-9">
-                                    <div class="row">
-                                        <div class="col-8">
-                                            <h3 class="card-title pt-2 fw-bold">{{ $care->user->nama_depan }} {{ $care->user->nama_belakang }}, {{ $care->age }}</h5>
+                    <a href="/user/cari-caretaker/{{$care->caretaker_id}}">
+                        <div class="card border-2 mx-4 my-2" style="background-color: #f3f3f3; border-radius: 10px; overflow: hidden;">
+                            <div class="card-body">
+                                <div class="row">
+                                    <div class="col-md-3 px-2 text-center">
+                                        @if ($care->profile_img_path != null)
+                                        <img src="{{ $care->profile_img_path }}" style="border-radius: 50%; object-fit: cover; width: 110px; height: 110px;">
+                                        @else
+                                        <img src="{{ asset('img/no-profile.png') }}" style="border-radius: 50%; object-fit: cover; width: 110px; height: 110px;">
+                                        @endif
+                                        <div class="justify-content-center d-flex pt-3">
+                                            <i class="bi-star-fill"></i>
+                                            <i class="bi-star-fill"></i>
+                                            <i class="bi-star-half"></i>
+                                            <i class="bi-star"></i>
+                                            <i class="bi-star"></i>
                                         </div>
-                                        <div class="col-2 text-end">
-                                            <p style="font-size: 24; display: inline;">{{ ($care->dokumen_vaksin == null ? 0 : 1 ) + ($care->ijazah == null ? 0 : 1 ) + ($care->dokumen_psikotes == null ? 0 : 1 ) + ($care->akte_lahir == null ? 0 : 1 ) }}</p>
-                                            <button type="button" class="zoom" data-bs-toggle="popover" title="Dokumen pribadi" data-bs-content="{{ $care->dokumen_vaksin != null ? 'dokumen_vaksin' : 'Tidak ada bukti vaksin' }}, {{ $care->ijazah != null ? 'ijazah' : 'Tidak ada ijazah' }},
+                                        <div class="row text-center">
+                                            <p>50 Rating</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-9">
+                                        <div class="row">
+                                            <div class="col-8">
+                                                <h3 class="card-title pt-2 fw-bold">{{ $care->user->nama_depan }} {{ $care->user->nama_belakang }}, {{ $care->age }}</h5>
+                                            </div>
+                                            <div class="col-2 text-end">
+                                                <p style="font-size: 24; display: inline;">{{ ($care->dokumen_vaksin == null ? 0 : 1 ) + ($care->ijazah == null ? 0 : 1 ) + ($care->dokumen_psikotes == null ? 0 : 1 ) + ($care->akte_lahir == null ? 0 : 1 ) }}</p>
+                                                <button type="button" class="zoom" data-bs-toggle="popover" title="Dokumen pribadi" data-bs-content="{{ $care->dokumen_vaksin != null ? 'dokumen_vaksin' : 'Tidak ada bukti vaksin' }}, {{ $care->ijazah != null ? 'ijazah' : 'Tidak ada ijazah' }},
                                                 {{ $care->dokumen_psikotes != null ? 'dokumen_psikotes' : 'Tidak ada dokumen psikotes' }},
                                                 {{ $care->akte_lahir != null ? 'akte_lahir' : 'Tidak ada akta kelahiran' }}" style="border: none; padding: 0; background: none;">
-                                                <i class="bi bi-file-earmark-check-fill m-0" style="font-size: 24;"></i>
-                                            </button>
+                                                    <i class="bi bi-file-earmark-check-fill m-0" style="font-size: 24;"></i>
+                                                </button>
+                                            </div>
+                                            <div class="col-1">
+                                                @if ($care->pengawasan_kamera == 1)
+                                                <button type="button" class="zoom" data-bs-toggle="tooltip" data-bs-placement="right" title="Bersedia bekerja di bawah pengawasan kamera" style="border: none; padding: 0; background: none; margin-top: 5px;">
+                                                    <i class="bi bi-camera-video-fill m-0" style="font-size: 24;"></i>
+                                                </button>
+                                                @else
+                                                <button type="button" class="zoom" data-bs-toggle="tooltip" data-bs-placement="right" title="Tidak dapat bekerja di bawah pengawasan kamera" style="border: none; padding: 0; background: none; margin-top: 5px;">
+                                                    <i class="bi bi-camera-video-off-fill m-0" style="font-size: 24;"></i>
+                                                </button>
+                                                @endif
+                                            </div>
                                         </div>
-                                        <div class="col-1">
-                                            @if ($care->pengawasan_kamera == 1)
-                                            <button type="button" class="zoom" data-bs-toggle="tooltip" data-bs-placement="right" title="Bersedia bekerja di bawah pengawasan kamera" style="border: none; padding: 0; background: none; margin-top: 5px;">
-                                                <i class="bi bi-camera-video-fill m-0" style="font-size: 24;"></i>
-                                            </button>
-                                            @else
-                                            <button type="button" class="zoom" data-bs-toggle="tooltip" data-bs-placement="right" title="Tidak dapat bekerja di bawah pengawasan kamera" style="border: none; padding: 0; background: none; margin-top: 5px;">
-                                                <i class="bi bi-camera-video-off-fill m-0" style="font-size: 24;"></i>
-                                            </button>
-                                            @endif
+                                        <div class="row" style="font-size: 18px;">
+                                            <div class="col">
+                                                <p class="m-0">Harapan Rp. {{ number_format($care->cost_per_hour, 0, "," ,".") }},00 per jam</p>
+                                                <p class="m-0">Mengasuh
+
+                                                    @foreach ( $care->professionCaretakerRelation as $mengasuh)
+                                                    {{ $mengasuh->profession->profession_name }},
+                                                    @endforeach
+                                                </p>
+                                            </div>
+                                            <div class="col">
+                                                <p class="m-0">
+                                                    {{ ucwords(strtolower($care->user->kabupaten)) }}
+                                                </p>
+                                                <p class="m-0">
+                                                    @foreach ($care->regionCaretakerRelation as $area)
+                                                    {{ ucwords(strtolower($area->region->region_name)) }},
+                                                    @endforeach
+                                                </p>
+                                            </div>
                                         </div>
-                                    </div>
-                                    <div class="row" style="font-size: 18px;">
-                                        <div class="col">
-                                            <p class="m-0">Harapan Rp. {{ number_format($care->cost_per_hour, 0, "," ,".") }},00 per jam</p>
-                                            <p class="m-0">Mengasuh 
-                                                
-                                                @foreach ( $care->professionCaretakerRelation as $mengasuh)
-                                                {{ $mengasuh->profession->profession_name }},
-                                                @endforeach
-                                            </p>
+                                        <div class="row pt-2" style="font-size: 18px; color: #808080;">
+                                            <p>{{ substr($care->deskripsi_caretaker, 0, 116) }}...</p>
                                         </div>
-                                        <div class="col">
-                                            <p class="m-0">
-                                                {{ ucwords(strtolower($care->user->kabupaten)) }}
-                                            </p>
-                                            <p class="m-0">
-                                                @foreach ($care->regionCaretakerRelation as $area)
-                                                {{ ucwords(strtolower($area->region->region_name)) }},
-                                                @endforeach
-                                            </p>
-                                        </div>
-                                    </div>
-                                    <div class="row pt-2" style="font-size: 18px; color: #808080;">
-                                        <p>{{ substr($care->deskripsi_caretaker, 0, 116) }}...</p>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    @endforeach
+                        @endforeach
+                    </a>
                 </div>
             </div>
         </div>

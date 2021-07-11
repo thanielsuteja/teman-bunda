@@ -10,7 +10,7 @@ use App\Models\Caretaker;
 use App\Models\Review_caretaker;
 use App\Models\Review_user;
 
-class Job_offers extends Model
+class Job_offer extends Model
 {
     use HasFactory;
 

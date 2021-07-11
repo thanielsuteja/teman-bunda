@@ -15,7 +15,7 @@ class CreateJobOffersTable extends Migration
     {
         Schema::create('Job_offers', function (Blueprint $table) {
             $table->id('job_id');
-            $table->string('job_status');
+            $table->string('job_status'); // menunggu ditolak ubahgaji berlangsung selesai
             $table->foreignId('user_id');
             $table->foreignId('caretaker_id');
             $table->string('judul_pekerjaan');
