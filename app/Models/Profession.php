@@ -4,8 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Profession_caretaker_relation;
 
-class profession extends Model
+class Profession extends Model
 {
     use HasFactory;
 
@@ -14,12 +15,9 @@ class profession extends Model
         'profession_desc',
     ];
 
-    protected $primaryKey = 'profession_id';
-
-    
-    public function ProfessionCaretakerRelation()
-    {
-        return $this->hasMany(RegionCaretakerRelation::class, 'profession_id', 'profession_id');
+    public function relation() {
+        return $this->hasMany(Profession_caretaker_relation::class, 'profession_id', 'profession_id');
     }
 
+    protected $primaryKey = 'profession_id';
 }

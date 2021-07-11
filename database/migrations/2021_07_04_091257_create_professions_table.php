@@ -13,7 +13,7 @@ class CreateProfessionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('professions', function (Blueprint $table) {
+        Schema::create('Professions', function (Blueprint $table) {
             $table->id('profession_id');
             $table->string('profession_name');
             $table->string('profession_desc');

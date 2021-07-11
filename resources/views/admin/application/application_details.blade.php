@@ -155,6 +155,7 @@
                     </form>
                     <form action="{{ url('/admin/applications/accept/'.$caretaker->caretaker_id) }}" method="POST">
                         @csrf
+                        <input type="text" name="user_id" class="form-control invisible" style="height:0px; width:0px;" value="{{ $caretaker->user_id }}">
                         <input type="text" name="approved" class="form-control invisible" style="height:0px; width:0px;" value="accepted">
                         <button type="submit" class="btn btn-success" onclick="return confirm('Accept apllication request ?')">Accept</button>
                         </form>

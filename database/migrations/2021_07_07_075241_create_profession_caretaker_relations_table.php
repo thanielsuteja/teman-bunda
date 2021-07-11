@@ -14,8 +14,8 @@ class CreateProfessionCaretakerRelationsTable extends Migration
     public function up()
     {
         Schema::create('profession_caretaker_relations', function (Blueprint $table) {
-            $table->foreignId('profession_id')->constrained('professions')->onDelete('cascade');
-            $table->foreignId('caretaker_id')->constrained('caretakers')->onDelete('cascade');
+            $table->foreignId('profession_id')->references('profession_id')->on('professions')->onDelete('cascade');
+            $table->foreignId('caretaker_id')->references('caretaker_id')->on('caretakers')->onDelete('cascade');
         });
     }
 

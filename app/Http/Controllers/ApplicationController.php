@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Caretaker;
+use App\Models\User;
 use Illuminate\Support\Carbon;
 
 class ApplicationController extends Controller
@@ -28,7 +29,12 @@ class ApplicationController extends Controller
             'updated_at' => Carbon::now()
         ]);
 
-        return Redirect()->route('adm.applications')->with('success','Caretaker application accepted');
+        $update2 = User::where('user_id',$request->user_id)->update([
+            'role' => "caretaker",
+            'updated_at' => Carbon::now()
+        ]);
+
+        return Redirect()->route('adm.applications')->with('success','Caretaker application accepted, role of apllying user has been updated to "caretaker"');
     }
 
     public function DenyApplication(Request $request,$id){

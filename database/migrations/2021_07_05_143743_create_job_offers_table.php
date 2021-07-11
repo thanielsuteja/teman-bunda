@@ -13,17 +13,17 @@ class CreateJobOffersTable extends Migration
      */
     public function up()
     {
-        Schema::create('job_offers', function (Blueprint $table) {
+        Schema::create('Job_offers', function (Blueprint $table) {
             $table->id('job_id');
             $table->string('job_status');
             $table->foreignId('user_id');
             $table->foreignId('caretaker_id');
             $table->string('judul_pekerjaan');
-            $table->text('deskripsi_pekerjaan');
+            $table->string('deskripsi_pekerjaan');
             $table->date('tanggal_masuk');
             $table->date('tanggal_berakhir');
-            $table->time('jam_masuk');
-            $table->time('jam_berakhir');
+            $table->time('jam_masuk', 0);
+            $table->time('jam_berakhir', 0);
             $table->boolean('wd_1');
             $table->boolean('wd_2');
             $table->boolean('wd_3');
@@ -31,7 +31,7 @@ class CreateJobOffersTable extends Migration
             $table->boolean('wd_5');
             $table->boolean('wd_6');
             $table->boolean('wd_7');
-            $table->decimal('estimasi_biaya',38,2);
+            $table->integer('estimasi_biaya');
             $table->timestamps();
         });
     }

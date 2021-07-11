@@ -4,7 +4,6 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Job_offers;
 
 class Transaction extends Model
 {
@@ -20,11 +19,11 @@ class Transaction extends Model
         'virtual_account',
     ];
 
+
     protected $primaryKey = 'transaction_id';
 
-    public function jobOffer() {
-        return $this->belongsTo(Job_offers::class,'job_id','job_id');
+    public function JobOffer()
+    {
+        return $this->belongsTo(JobOffer::class,'job_id','job_id');
     }
-
-    protected $table = "Transactions";
 }

@@ -13,25 +13,25 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('users', function (Blueprint $table) {
+        Schema::create('Users', function (Blueprint $table) {
             $table->id('user_id');
             $table->string('nama_depan');
             $table->string('nama_belakang');
             $table->string('password');
             $table->string('role');
-            $table->string('profile_img_path');
             $table->timestamp('tanggal_lahir');
             $table->string('jenis_kelamin');
-            $table->string('no_telepon')->unique();
+            $table->string('nomor_telepon')->unique();
             $table->string('email')->unique();
             $table->string('alamat');
             $table->string('provinsi');
             $table->string('kabupaten');
             $table->string('kecamatan');
             $table->string('kelurahan');
+            $table->string('profile_img_path')->nullable();
             $table->string('dokumen_ktp_path');
             $table->bigInteger('virtual_account');
-            $table->decimal('rating_user',38,1)->nullable();
+            $table->decimal('rating_user', $precision = 2, $scale = 1)->nullable();
             $table->timestamps();
         });
     }
