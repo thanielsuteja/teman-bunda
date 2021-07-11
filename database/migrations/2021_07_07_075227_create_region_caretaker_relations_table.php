@@ -14,8 +14,8 @@ class CreateRegionCaretakerRelationsTable extends Migration
     public function up()
     {
         Schema::create('region_caretaker_relations', function (Blueprint $table) {
-            $table->foreignId('region_id');
-            $table->foreignId('caretaker_id');
+            $table->foreignId('region_id')->constrained('regions')->onDelete('cascade');
+            $table->foreignId('caretaker_id')->constrained('caretakers')->onDelete('cascade');
         });
     }
 
