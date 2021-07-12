@@ -13,7 +13,7 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('Users', function (Blueprint $table) {
+        Schema::create('users', function (Blueprint $table) {
             $table->id('user_id');
             $table->string('nama_depan');
             $table->string('nama_belakang');
@@ -31,7 +31,7 @@ class CreateUsersTable extends Migration
             $table->string('profile_img_path')->nullable();
             $table->string('dokumen_ktp_path');
             $table->bigInteger('virtual_account');
-            $table->decimal('rating_user', $precision = 2, $scale = 1)->nullable();
+            $table->decimal('rating_user', 2, 1);
             $table->timestamps();
         });
     }

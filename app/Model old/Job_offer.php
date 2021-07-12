@@ -10,7 +10,7 @@ use App\Models\Caretaker;
 use App\Models\Review_caretaker;
 use App\Models\Review_user;
 
-class Job_offers extends Model
+class Job_offer extends Model
 {
     use HasFactory;
 
@@ -21,7 +21,7 @@ class Job_offers extends Model
         return $this->belongsTo(Caretaker::class);
     }
     public function transaction(){
-        return $this->hasOne(Transaction::class,'job_id','job_id');
+        return $this->hasOne(Transaction::class);
     }
     public function reviewUser(){
         return $this->hasOne(Review_user::class);
@@ -33,8 +33,6 @@ class Job_offers extends Model
     protected $table = "Job_offers";
 
     protected $fillable = [
-        'user_id',
-        'caretaker_id',
         'judul_pekerjaan',
         'deskripsi_pekerjaan',
         'tanggal_masuk',
@@ -50,7 +48,6 @@ class Job_offers extends Model
         'wd_7',
         'estimasi_biaya',
     ];
-
 
     protected $primaryKey = 'job_id';
 }

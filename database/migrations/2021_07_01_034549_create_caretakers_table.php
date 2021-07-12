@@ -21,7 +21,6 @@ class CreateCaretakersTable extends Migration
             $table->string('kode_bank', 3);
             $table->bigInteger('bank_account');
             $table->integer('cost_per_hour');
-            $table->tinyInteger('umur'); 
             $table->string('edukasi');
             $table->string('religi');
             $table->smallInteger('tinggi');
@@ -34,7 +33,7 @@ class CreateCaretakersTable extends Migration
             $table->string('dokumen_ijazah_path')->nullable();
             $table->string('dokumen_psikotes_path')->nullable();
             $table->string('dokumen_akta_kelahiran_path')->nullable();
-            $table->decimal('rating_caretaker', $precision = 2, $scale = 1)->nullable();
+            $table->decimal('rating_caretaker', 2, 1);
             $table->timestamps();
         });
     }

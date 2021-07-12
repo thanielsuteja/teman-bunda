@@ -76,7 +76,7 @@
                         @if($transaction->transaction_status=="pending")
                             <form action="{{ url('/admin/transactions/verify/'.$transaction->transaction_id) }}" method="POST">
                             @csrf
-                            <input type="text" name="transaction_status" class="form-control invisible" style="height:1px; width:1px;" value="payed">
+                            <input type="text" name="transaction_status" class="form-control invisible" style="height:1px; width:1px;" value="paid">
                             <button type="submit" class="btn btn-primary" onclick="return confirm('Verify Payment ?')">Verify Payment</button>
                             </form>
                         @else

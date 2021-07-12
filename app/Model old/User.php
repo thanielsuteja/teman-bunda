@@ -6,6 +6,11 @@ use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use App\Models\Caretaker;
+use App\Models\Notification;
+use App\Models\Job_offer;
+use App\Models\Review_relation;
+use App\Models\Review;
 
 class User extends Authenticatable
 {
@@ -16,28 +21,51 @@ class User extends Authenticatable
      *
      * @var array
      */
+    
+    public function caretaker()
+    {
+        return $this->hasOne(Caretaker::class);
+    }
+
+    public function notifications()
+    {
+        return $this->hasMany(Notification::class);
+    }
+    public function jobOffers()
+    {
+        return $this->hasMany(Job_offer::class);
+    }
+    
+    // public function reviewRelations()
+    // {
+    //     return $this->hasManyThrough(Review::class, Review_relation::class);
+    // }
+    
+    protected $table = "Users";
+    
     protected $fillable = [
         'nama_depan',
         'nama_belakang',
+        'email',
         'password',
-        'profile_img_path',
+        'nomor_telepon',
         'tanggal_lahir',
         'jenis_kelamin',
-        'nomor_telepon',
-        'email',
         'alamat',
         'provinsi',
         'kabupaten',
         'kecamatan',
         'kelurahan',
+        'profile_img_path',
         'dokumen_ktp_path',
         'virtual_account',
-        'rating_user',
     ];
 
     protected $attributes = [
+        // 'alamat' => null,
+        // 'provinsi' => null,
+        'rating_user' => 0.0,
         'role' => "user",
-        'virtual_account' => "999999999999",
     ];
 
     protected $primaryKey = 'user_id';
@@ -45,9 +73,4 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
     ];
-
-    public function Caretaker()
-    {
-        return $this->hasOne(Transaction::class,'user_id','user_id');
-    }
 }

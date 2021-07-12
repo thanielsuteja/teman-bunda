@@ -14,13 +14,12 @@ class Profession_caretaker_relation extends Model
     protected $fillable = [
         'profession_id',
         'caretaker_id',
-
     ];
 
-    public function caretaker() {
-        return $this->belongsTo(Caretaker::class, 'caretaker_id', 'caretaker_id');
-    }
-    public function profession() {
+    public function Profession() {
         return $this->belongsTo(Profession::class, 'profession_id', 'profession_id');
+    }
+    public function Caretaker() {
+        return $this->belongsTo(Caretaker::class, 'caretaker_id', 'caretaker_id');
     }
 }

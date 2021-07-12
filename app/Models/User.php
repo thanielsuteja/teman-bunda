@@ -8,9 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use App\Models\Caretaker;
 use App\Models\Notification;
-use App\Models\Job_offers;
-use App\Models\Review_relation;
-use App\Models\Review;
+use App\Models\Job_offer;
 
 class User extends Authenticatable
 {
@@ -22,24 +20,19 @@ class User extends Authenticatable
      * @var array
      */
     
-    public function caretaker()
+    public function Caretaker()
     {
         return $this->hasOne(Caretaker::class,'user_id','user_id');
     }
 
-    public function notifications()
+    public function Notifications()
     {
         return $this->hasMany(Notification::class);
     }
-    public function jobOffers()
+    public function JobOffers()
     {
-        return $this->hasMany(Job_offers::class);
+        return $this->hasMany(Job_offer::class);
     }
-    
-    // public function reviewRelations()
-    // {
-    //     return $this->hasManyThrough(Review::class, Review_relation::class);
-    // }
     
     protected $table = "Users";
     

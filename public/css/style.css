@@ -1,16 +1,30 @@
-.nav-item {
-    margin-left: 10px;
-    margin-right: 10px;
+* {
+    font-size: 'Inter', sans-serif;
+}
+
+.extra-margin {
+    margin-left: 5px;
+    margin-right: 5px;
 }
 
 .nav-link {
     font-size: 17px;
     font-weight: 640;
+    color: black;
+}
+
+.nav-link:hover{
+    color: #FFDE59;
+}
+
+.bi {
+    height: 24px;
+    width: 24px;
 }
 
 .navbar {
-    padding-top: 0%;
-    padding-bottom: 0%;
+    padding-top: 0px;
+    padding-bottom: 0px;
 }
 
 .navbar-brand {
@@ -18,12 +32,8 @@
     padding-bottom: 0%;
 }
 
-.active{
-    color: #ffe57f;
-}
-
-nav {
-    background-color: #fffef7;
+.nav-item > .active {
+    background-color: #FFDE59 !important;
 }
 
 #navbar {
@@ -54,13 +64,23 @@ nav {
     border: 0;
 }
 
-.btn-default {
-background-color: #FFDE59;
+.bg-temanbunda {
+    background-color: #ffde59;
 }
+
+/* .bg-temanbunda:hover{
+    background-color: #ffcc00;
+} */
+
 .btn-outline-default {
-background-color: white;
-color: #FFDE59;
-border-color: #FFDE59;
+    background-color: white;
+    color: #FFDE59 !important;
+    border-color: #FFDE59;
+}
+
+.btn-outline-default:hover {
+    background-color: #FFDE59;
+    color: white !important;
 }
 
 .btn {
@@ -72,16 +92,38 @@ border-color: #FFDE59;
     width: 100px;
 }
 
-.bodoni {
-    font-family: Bodoni Bd BT;
+.cambria {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
 .text-inter {
     font-size: 'Inter', sans-serif;
 }
 
-.title{
-    margin-top: 100px;
+#register-card {
+    border-radius: 50px;
+}
+
+#login-card {
+    border-radius: 40px;
+    margin-bottom: 100px;
+}
+
+.rounded-input {
+    border-radius: 15px;
+    border: 0;
+}
+
+.bg-grey {
+    background: #F2F2F2;
+}
+
+.bg-whitesmote {
+    background: #f0f0f0;
+}
+
+.bg-ffeea8 {
+    background: #ffeea8;
 }
 
 .rounded-rectangle {
@@ -112,4 +154,107 @@ input::-webkit-outer-spin-button,
 input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
+}
+
+.sidebar {
+    top: 68px;
+    position: absolute;
+    height: 100%;
+    transition: ease-in;
+    overflow: hidden;
+}
+
+.sidebar:hover {
+    width: 300px;
+}
+
+.bi {
+    position: relative;
+    display: block;
+    margin-left: 8px;
+}
+.fas {
+    position: relative;
+    display: block;
+    margin-left: 8px;
+}
+
+#progressbar {
+    margin-bottom: 30px;
+    overflow: hidden;
+    color: lightgrey;
+}
+
+#progressbar .active {
+    color: #FFDE59;
+}
+
+#progressbar li {
+    list-style-type: none;
+    font-size: 18px;
+    width: 30%;
+    float: left;
+    position: relative;
+}
+
+#progressbar #isi_formulir:before {
+    content: "1";
+    position: relative;
+}
+#progressbar #isi_alamat:before {
+    content: "2";
+    position: relative;
+}
+#progressbar #upload_dokumen:before {
+    content: "3";
+    position: relative;
+}
+
+#progressbar li:before {
+    width: 50px;
+    height: 50px;
+    line-height: 45px;
+    display: block;
+    font-size: 20px;
+    color: #ffffff;
+    background: lightgray;
+    border-radius: 50%;
+    margin: 0 auto 10px auto;
+    padding: 2px;
+    z-index: 5;
+}
+
+#progressbar li:after {
+    content: '';
+    width: 100%;
+    height: 2px;
+    background: lightgray;
+    position: absolute;
+    left: 0;
+    top: 25px;
+    z-index: 1;
+}
+
+#progressbar li.active:before,
+#progressbar li.active:after {
+    background: #ffde59
+}
+
+#msform fieldset:not(:first-of-type) {
+    display: none
+}
+
+.next {
+    float: right;
+}
+
+.zoom {
+    transition: transform .2s;
+}
+  
+.zoom:hover {
+    -ms-transform: scale(1.02); /* IE 9 */
+    -webkit-transform: scale(1.02); /* Safari 3-8 */
+    transform: scale(1.02); 
+    background-color: #d6d6d6 !important;
 }

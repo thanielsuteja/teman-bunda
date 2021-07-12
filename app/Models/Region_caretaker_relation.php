@@ -14,13 +14,12 @@ class Region_caretaker_relation extends Model
     protected $fillable = [
         'region_id',
         'caretaker_id',
-
     ];
 
-    public function caretaker() {
+    public function Caretaker() {
         return $this->belongsTo(Caretaker::class,'caretaker_id','caretaker_id');
     }
-    public function region() {
+    public function Region() {
         return $this->belongsTo(Region::class,'region_id','region_id');
     }
 }

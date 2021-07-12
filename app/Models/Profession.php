@@ -15,7 +15,7 @@ class Profession extends Model
         'profession_desc',
     ];
 
-    public function relation() {
+    public function ProfessionCaretakerRelation() {
         return $this->hasMany(Profession_caretaker_relation::class, 'profession_id', 'profession_id');
     }
 

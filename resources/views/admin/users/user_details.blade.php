@@ -74,11 +74,11 @@
                 </tr>
                 <tr>
                     <td>kecamatan</td>
-                    <td>{{ $user->kabupaten }}</td>
+                    <td>{{ $user->kecamatan }}</td>
                 </tr>
                 <tr>
                     <td>kelurahan</td>
-                    <td>{{ $user->kabupaten }}</td>
+                    <td>{{ $user->kelurahan }}</td>
                 </tr>
                 <tr>
                     <td>dokumen_ktp</td>
