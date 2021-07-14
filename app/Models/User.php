@@ -19,7 +19,7 @@ class User extends Authenticatable
      *
      * @var array
      */
-    
+
     public function Caretaker()
     {
         return $this->hasOne(Caretaker::class,'user_id','user_id');
@@ -31,11 +31,30 @@ class User extends Authenticatable
     }
     public function JobOffers()
     {
-        return $this->hasMany(Job_offer::class);
+        return $this->hasMany(Job_offer::class,'user_id','user_id');
     }
-    
+    public function getCountReviewCaretakerAttribute()
+    {
+        return $this->jobOffers->reduce(function ($total, $jobOffer) {
+            return $total + empty($jobOffer->ReviewCaretaker) ? 0 : 1;
+        }, 0);
+    }
+    public function getMeanRatingAttribute()
+    {
+        $count = $this->jobOffers->reduce(function ($total, $jobOffer) {
+            return $total + empty($jobOffer->ReviewCaretaker) ? 0 : 1;
+        }, 0);
+        $total = $this->jobOffers->reduce(function ($total, $jobOffer) {
+            return $total + empty($jobOffer->ReviewCaretaker) ? 0 : $jobOffer->ReviewCaretaker->review_rating ?? 0;
+        }, 0);
+
+        if ($count == 0) return 0;
+
+        return doubleval($total / $count);
+    }
+
     protected $table = "Users";
-    
+
     protected $fillable = [
         'nama_depan',
         'nama_belakang',

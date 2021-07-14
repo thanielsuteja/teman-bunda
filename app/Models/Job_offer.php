@@ -15,7 +15,7 @@ class Job_offer extends Model
     use HasFactory;
 
     public function User(){
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class,'user_id','user_id');
     }
     public function Caretaker(){
         return $this->belongsTo(Caretaker::class);
@@ -27,7 +27,30 @@ class Job_offer extends Model
         return $this->hasOne(Review_user::class,'job_id','job_id');
     }
     public function ReviewCaretaker(){
-        return $this->hasOne(Review_caretaker::class);
+        return $this->hasOne(Review_caretaker::class,'job_id','job_id');
+    }
+    public function getJobStatusColorAttribute()
+    {
+        $colors = [
+            'menunggu' => 'text-secondary',
+            'ditolak' => 'text-danger',
+            'ubah gaji' => 'text-primary',
+            'berlangsung' => 'text-primary',
+            'selesai' => 'text-success'
+        ];
+        return $colors[$this->job_status] ?? 'text-secondary';
+    }
+    public function getDaysAttribute()
+    {
+        $days = [];
+        if ($this->wd_1) array_push($days, 'Senin');
+        if ($this->wd_2) array_push($days, 'Selasa');
+        if ($this->wd_3) array_push($days, 'Rabu');
+        if ($this->wd_4) array_push($days, 'Kamis');
+        if ($this->wd_5) array_push($days, 'Jumat');
+        if ($this->wd_6) array_push($days, 'Sabtu');
+        if ($this->wd_7) array_push($days, 'Minggu');
+        return $days;
     }
 
     protected $table = "Job_offers";
@@ -59,13 +82,13 @@ class Job_offer extends Model
         'wd_4'=>'boolean',
         'wd_5'=>'boolean',
         'wd_6'=>'boolean',
-        'wd_7'=>'boolean',  
+        'wd_7'=>'boolean',
     ];
 
     protected $primaryKey = 'job_id';
 
     protected $attributes = [
         'job_status' => "pending",
-        
+
     ];
 }
