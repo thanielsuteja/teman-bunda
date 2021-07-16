@@ -47,6 +47,14 @@ class Caretaker extends Model
     {
         return $this->hasMany(Profession_caretaker_relation::class, 'caretaker_id', 'caretaker_id');
     }
+    public function getProfessionNamesAttribute()
+    {
+        $names = [];
+        foreach ($this->ProfessionCaretakerRelation as $profession) {
+            array_push($names, $profession->Profession->profession_name);
+        }
+        return implode(', ', $names);
+    }
     public function RegionCaretakerRelation()
     {
         return $this->hasMany(Region_caretaker_relation::class, 'caretaker_id', 'caretaker_id');

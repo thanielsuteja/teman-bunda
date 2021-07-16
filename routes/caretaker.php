@@ -5,6 +5,7 @@ use App\Http\Controllers\CaretakerController;
 Route::get('/caretaker/home', [CaretakerController::class, 'showPageHome'])->middleware('auth')->name('caretaker.home');
 
 Route::get('/caretaker/profile', [CaretakerController::class, 'showPageProfile'])->middleware('auth')->name('caretaker.profile');
+Route::post('/caretaker/profile', [CaretakerController::class, 'updateProfile'])->middleware('auth')->name('caretaker.profile');
 
 Route::get('/caretaker/ulasan-saya', [CaretakerController::class, 'showPageUlasanSaya'])->middleware('auth')->name('caretaker.ulasan-saya');
 

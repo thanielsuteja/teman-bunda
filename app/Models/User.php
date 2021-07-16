@@ -36,16 +36,16 @@ class User extends Authenticatable
     public function getCountReviewCaretakerAttribute()
     {
         return $this->jobOffers->reduce(function ($total, $jobOffer) {
-            return $total + empty($jobOffer->ReviewCaretaker) ? 0 : 1;
+            return $total + ($jobOffer->ReviewCaretaker == null ? 0 : 1);
         }, 0);
     }
     public function getMeanRatingAttribute()
     {
         $count = $this->jobOffers->reduce(function ($total, $jobOffer) {
-            return $total + empty($jobOffer->ReviewCaretaker) ? 0 : 1;
+            return $total + ($jobOffer->ReviewCaretaker == null ? 0 : 1);
         }, 0);
         $total = $this->jobOffers->reduce(function ($total, $jobOffer) {
-            return $total + empty($jobOffer->ReviewCaretaker) ? 0 : $jobOffer->ReviewCaretaker->review_rating ?? 0;
+            return $total + ($jobOffer->ReviewCaretaker == null ? 0 : $jobOffer->ReviewCaretaker->review_rating);
         }, 0);
 
         if ($count == 0) return 0;

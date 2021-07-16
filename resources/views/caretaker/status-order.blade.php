@@ -8,6 +8,13 @@
         body {
             background-color: #efefef;
         }
+
+        .line-clamp {
+            display: -webkit-box;
+            -webkit-line-clamp: 2;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
     </style>
 
     <div class="container main col-xxl-12 px-5">
@@ -60,11 +67,8 @@
                                                         <p class="m-0">Rp. {{ number_format($jobOffer->estimasi_biaya, 0, ',', '.') }}</p>
                                                     </div>
                                                 </div>
-                                                <p class="m-0 text-secondary">
-                                                    {{ substr($jobOffer->deskripsi_pekerjaan, 116) }}
-                                                    @if (strlen($jobOffer->deskripsi_pekerjaan) > 116)
-                                                        ...
-                                                    @endif
+                                                <p class="m-0 text-secondary line-clamp">
+                                                    {{ $jobOffer->deskripsi_pekerjaan }}
                                                 </p>
                                             </div>
                                         </div>

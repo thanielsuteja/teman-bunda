@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\Job_offer;
 use App\Models\Transaction;
+use App\Models\Profession;
 
 class CaretakerController extends Controller
 {
@@ -16,7 +17,15 @@ class CaretakerController extends Controller
 
     public function showPageProfile()
     {
-        return view('caretaker.profile');
+        $user = Auth::user();
+        $professions = Profession::get();
+
+        return view('caretaker.profile', ['user' => $user, 'professions' => $professions]);
+    }
+
+    public function updateProfile(Request $request)
+    {
+        $user = Auth::user();
     }
 
     public function showPageUlasanSaya()
