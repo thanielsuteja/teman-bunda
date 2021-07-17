@@ -16,7 +16,7 @@ class CreateReviewCaretakersTable extends Migration
         Schema::create('review_caretakers', function (Blueprint $table) {
             $table->id('caretaker_review_id');
             $table->foreignId('job_id');
-            $table->string('review_rating');
+            $table->integer('review_rating');
             $table->string('review_content');
             $table->timestamps();
         });

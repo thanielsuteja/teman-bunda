@@ -19,7 +19,7 @@ class CreateJobOffersTable extends Migration
             $table->foreignId('user_id');
             $table->foreignId('caretaker_id');
             $table->string('judul_pekerjaan');
-            $table->string('deskripsi_pekerjaan');
+            $table->text('deskripsi_pekerjaan');
             $table->date('tanggal_masuk');
             $table->date('tanggal_berakhir');
             $table->time('jam_masuk', 0);
@@ -32,6 +32,7 @@ class CreateJobOffersTable extends Migration
             $table->boolean('wd_6');
             $table->boolean('wd_7');
             $table->integer('estimasi_biaya');
+            // $table->integer('permintaan_gaji_baru')->nullable();
             $table->timestamps();
         });
     }

@@ -10,11 +10,24 @@
         background-color: #efefef;
     }
 </style>
+<script>
+    $(document).ready(function() {
+        $('#filter_area').on('change', function() {
+            var area = $("#filter_area").val();
+            console.log(area);
+            if (area != '') {
+                
+            } else {
+                
+            }
+        });
+    });
+</script>
 
-<div class="container main col-xxl-12 px-5">
+<div class="container main col-xxl-12 px-5 mt-0">
     <div class="row">
         <div class="col-md-8 offset-md-2">
-            <div class="card mb-5" style="border-radius: 20px; overflow: hidden;">
+            <div class="card shadow" style="border-radius: 20px; overflow: hidden; margin-top: 90px;">
                 <div class="card-header bg-temanbunda d-flex justify-content-between align-items-center py-4">
                     <label class="ps-3 fw-bold">Cari berdasarkan</label>
                     <div class="form-floating d-inline-block" style="width: 200px;">
@@ -48,32 +61,32 @@
                         </ul>
                     </div>
                 </div>
-                <div class="card-body">
+                <div class="card-body" style="min-height: 532px;">
                     @foreach ($caretaker as $care)
-                    <a href="/user/cari-caretaker/{{$care->caretaker_id}}" class="text-decoration-none" style="color: black;">
-                        <div class="card border-2 mx-4 my-2 zoom" style="background-color: #f3f3f3; border-radius: 10px; overflow: hidden;">
+                    <a href="/user/info-caregiver/{{$care->caretaker_id}}" class="text-decoration-none" style="color: black;">
+                        <div class="card border-2 mx-4 my-4 zoom" style="background-color: #f3f3f3; border-radius: 10px; overflow: hidden;">
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-3 px-2 text-center">
-                                        @if ($care->profile_img_path != null)
-                                        <img src="{{ asset('$care->profile_img_path') }}" style="border-radius: 50%; object-fit: cover; width: 110px; height: 110px;">
+                                        @if ($care->User->profile_img_path != null)
+                                        <img src="{{ asset('storage/foto_profil/'.$care->User->profile_img_path) }}" class="profile-pic border border-5">
                                         @else
-                                        <img src="{{ asset('img/no-profile.png') }}" style="border-radius: 50%; object-fit: cover; width: 110px; height: 110px;">
+                                        <img src="{{ asset('img/no-profile.png') }}" class="profile-pic border border-5">
                                         @endif
                                         <div class="justify-content-center d-flex pt-3">
                                             @for ($i = 1; $i < 6; $i++) @if ($care->meanRating >= $i)
-                                                <i class="bi-star-fill" style="color: #FF7A00;"></i>
+                                                <i class="bi-star-fill" style="color: #FFDE59;"></i>
                                                 @elseif (($i - $care->meanRating) >= 1)
-                                                <i class="bi-star" style="color: #FF7A00;"></i>
+                                                <i class="bi-star" style="color: #FFDE59;"></i>
                                                 @elseif (fmod($care->meanRating, 1) != 0)
-                                                <i class="bi-star-half" style="color: #FF7A00;"></i>
+                                                <i class="bi-star-half" style="color: #FFDE59;"></i>
                                                 @endif
                                                 @endfor
                                         </div>
                                         <div class="row text-center">
-                                            <p>{{ $care->JobOffers->reduce(function($total, $joboffer) {
-                                                return $total + $joboffer -> ReviewUser->count();    
-                                            }, 0) }} Rating</p>
+                                            <p>{{ $care->JobOffers->reduce(function ($total, $jobOffer) {
+                                                return $total + ($jobOffer->ReviewUser == null ? 0 : 1);
+                                            }) }} Rating</p>
                                         </div>
                                     </div>
                                     <div class="col-md-9">
@@ -103,9 +116,8 @@
                                         </div>
                                         <div class="row" style="font-size: 18px;">
                                             <div class="col">
-                                                <p class="m-0">Harapan Rp. {{ number_format($care->cost_per_hour, 0, "," ,".") }},00 per jam</p>
+                                                <p class="m-0">Harapan Rp{{ number_format($care->cost_per_hour, 0, "," ,".") }},00 per jam</p>
                                                 <p class="m-0">Mengasuh
-
                                                     @foreach ( $care->ProfessionCaretakerRelation as $mengasuh)
                                                     {{ $mengasuh->Profession->profession_name }},
                                                     @endforeach
@@ -123,7 +135,7 @@
                                             </div>
                                         </div>
                                         <div class="row pt-2" style="font-size: 18px; color: #808080;">
-                                            <p>{{ substr($care->deskripsi_caretaker, 0, 116) }}...</p>
+                                            <p class="line-clamp">{{ $care->deskripsi_caretaker }}...</p>
                                         </div>
                                     </div>
                                 </div>

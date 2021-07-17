@@ -5,7 +5,6 @@
 @section('content')
 
 <meta name="csrf-token" content="{{ csrf_token() }}">
-<script src="{{ asset('js/jquery.js') }}"></script>
 <script src="{{ asset('js/multi-step.js') }}"></script>
 <script>
     $(function() {
