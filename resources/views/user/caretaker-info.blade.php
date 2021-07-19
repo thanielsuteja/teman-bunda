@@ -28,13 +28,9 @@
                         <p style="font-size: 36px; padding-top: 12px;">Informasi</p>
                     </div>
                     <div class="col text-end">
-                        @if($care->takut_anjing == 1)
-                        <button type="button" data-bs-toggle="tooltip" data-bs-placement="right" title="Tidak dapat bekerja dengan keberadaan anjing" style="border: none; padding: 0; background: none; margin-top: 5px;">
-                            <i class="fas fa-dog text-muted m-0" style="font-size: 24;"></i>
-                        </button>
-                        @else
-                        <button type="button" data-bs-toggle="tooltip" data-bs-placement="right" title="Dapat bekerja dengan keberadaan anjing" style="border: none; padding: 0; background: none; margin-top: 5px;">
-                            <i class="fas fa-dog m-0" style="font-size: 24;"></i>
+                        @if($care->takut_anjing == 0)
+                        <button type="button" data-bs-toggle="tooltip" data-bs-placement="right" title="Dapat bekerja dengan keberadaan hewan peliharaan" style="border: none; padding: 0; background: none; margin-top: 5px;">
+                            <i class="fas fa-paw m-0" style="font-size: 24;"></i>
                         </button>
                         @endif
 

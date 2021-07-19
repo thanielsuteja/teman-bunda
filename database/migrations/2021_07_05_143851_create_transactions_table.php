@@ -20,8 +20,8 @@ class CreateTransactionsTable extends Migration
             $table->integer('transaction_ammount');
             $table->date('transaction_due');
             $table->date('payment_date')->nullable();
-            $table->integer('bank_account');
-            $table->integer('virtual_account');
+            $table->bigInteger('bank_account');
+            $table->bigInteger('virtual_account');
             $table->timestamps();
         });
     }

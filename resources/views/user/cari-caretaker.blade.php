@@ -29,7 +29,7 @@
         <div class="col-md-8 offset-md-2">
             <div class="card shadow" style="border-radius: 20px; overflow: hidden; margin-top: 90px;">
                 <div class="card-header bg-temanbunda d-flex justify-content-between align-items-center py-4">
-                    <label class="ps-3 fw-bold">Cari berdasarkan</label>
+                    <label class="h5 px-3 fw-bold">Cari berdasarkan</label>
                     <div class="form-floating d-inline-block" style="width: 200px;">
                         <select name="filter_mengasuh" id="filter_mengasuh" class="form-select rounded-input">
                             <!-- <option value="">Profesi</option> -->
@@ -46,7 +46,7 @@
                             <option value="{{ $id }}">{{ $name }}</option>
                             @endforeach
                         </select>
-                        <label for="filter_area">Area</label>
+                        <label for="filter_area">Area (Kecamatan)</label>
                     </div>
                     <div class="dropdown d-inline-block pe-4">
                         <button type="button" class="nav-link link-dark text-decoration-none border border-2 border-secondary p-2 bg-white" id="dropdown_filter" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true" data-bs-toggle="tooltip" data-placement="bottom" title="Urutkan berdasarkan" style="border-radius: 10px;">
@@ -64,7 +64,7 @@
                 <div class="card-body" style="min-height: 532px;">
                     @foreach ($caretaker as $care)
                     <a href="/user/info-caregiver/{{$care->caretaker_id}}" class="text-decoration-none" style="color: black;">
-                        <div class="card border-2 mx-4 my-4 zoom" style="background-color: #f3f3f3; border-radius: 10px; overflow: hidden;">
+                        <div class="card border-2 mx-5 my-3 zoom" style="background-color: #f3f3f3; border-radius: 10px; overflow: hidden;">
                             <div class="card-body">
                                 <div class="row">
                                     <div class="col-md-3 px-2 text-center">
@@ -91,25 +91,36 @@
                                     </div>
                                     <div class="col-md-9">
                                         <div class="row">
-                                            <div class="col-8">
+                                            <div class="col">
                                                 <h3 class="card-title pt-2 fw-bold">{{ $care->User->nama_depan }} {{ $care->User->nama_belakang }}, {{ $care->age }}</h5>
                                             </div>
-                                            <div class="col-2 text-end">
-                                                <p style="font-size: 24; display: inline;">{{ ($care->dokumen_vaksin == null ? 0 : 1 ) + ($care->ijazah == null ? 0 : 1 ) + ($care->dokumen_psikotes == null ? 0 : 1 ) + ($care->akte_lahir == null ? 0 : 1 ) }}</p>
-                                                <button type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="{{ $care->dokumen_vaksin != null ? 'dokumen_vaksin' : 'Tidak ada bukti vaksin' }}, {{ $care->ijazah != null ? 'ijazah' : 'Tidak ada ijazah' }},
-                                                {{ $care->dokumen_psikotes != null ? 'dokumen_psikotes' : 'Tidak ada dokumen psikotes' }},
-                                                {{ $care->akte_lahir != null ? 'akte_lahir' : 'Tidak ada akta kelahiran' }}" style="border: none; padding: 0; background: none;">
-                                                    <i class="bi bi-file-earmark-check-fill m-0" style="font-size: 24;"></i>
+                                            @if ($care->takut_anjing == 0)
+                                            <div class="col-1">
+                                                <button type="button" data-bs-toggle="tooltip" data-bs-placement="right" title="Dapat bekerja dengan kehadiran binatang peliharaan" style="border: none; padding: 0; background: none; margin-top: 5px;">
+                                                    <i class="fas fa-paw m-0" style="font-size: 24;"></i>
                                                 </button>
                                             </div>
+                                            @endif
                                             <div class="col-1">
                                                 @if ($care->pengawasan_kamera == 1)
-                                                <button type="button" data-bs-toggle="tooltip" data-bs-placement="right" title="Bersedia bekerja di bawah pengawasan kamera" style="border: none; padding: 0; background: none; margin-top: 5px;">
+                                                <button type="button" data-bs-toggle="tooltip" data-bs-placement="right" title="Dapat bekerja di bawah pengawasan kamera" style="border: none; padding: 0; background: none; margin-top: 5px;">
                                                     <i class="bi bi-camera-video-fill m-0" style="font-size: 24;"></i>
                                                 </button>
                                                 @else
                                                 <button type="button" data-bs-toggle="tooltip" data-bs-placement="right" title="Tidak dapat bekerja di bawah pengawasan kamera" style="border: none; padding: 0; background: none; margin-top: 5px;">
                                                     <i class="bi bi-camera-video-off-fill m-0" style="font-size: 24;"></i>
+                                                </button>
+                                                @endif
+                                            </div>
+                                            <div class="col-1">
+                                                @if ($care->dokumen_vaksin_path == null && $care->dokumen_ijazah_path == null && $care->dokumen_psikotes_path == null && $care->dokumen_akta_kelahiran_path == null)
+                                                <button type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Belum memasukkan dokumen pribadi" style="border: none; padding: 0; background: none; margin-top: 5px;">
+                                                    <i class="bi bi-file-earmark-x-fill m-0" style="font-size: 24px;"></i>
+                                                </button>
+                                                @else
+                                                <!-- <p style="font-size: 24; display: inline;">{{ ($care->dokumen_vaksin == null ? 0 : 1 ) + ($care->ijazah == null ? 0 : 1 ) + ($care->dokumen_psikotes == null ? 0 : 1 ) + ($care->akte_lahir == null ? 0 : 1 ) }}</p> -->
+                                                <button type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="{{ $care->dokumen_vaksin_path != null ? 'Sertifikat Vaksinasi' : '' }} {{ $care->dokumen_ijazah_path != null ? 'Ijazah' : '' }} {{ $care->dokumen_psikotes_path != null ? 'Psikotes' : '' }} {{ $care->dokumen_akta_kelahiran_path != null ? 'Akta Kelahiran' : '' }}" style="border: none; padding: 0; background: none; margin-top: 5px;">
+                                                    <i class="bi bi-file-earmark-check-fill m-0" style="font-size: 24;"></i>
                                                 </button>
                                                 @endif
                                             </div>

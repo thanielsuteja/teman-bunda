@@ -32,7 +32,7 @@ class CreateJobOffersTable extends Migration
             $table->boolean('wd_6');
             $table->boolean('wd_7');
             $table->integer('estimasi_biaya');
-            // $table->integer('permintaan_gaji_baru')->nullable();
+            $table->integer('permintaan_gaji_baru')->nullable();
             $table->timestamps();
         });
     }

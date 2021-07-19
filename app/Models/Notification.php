@@ -12,10 +12,10 @@ class Notification extends Model
     use HasFactory;
 
     public function Caretaker() {
-        return $this->belongsTo(Caretaker::class);
+        return $this->belongsTo(Caretaker::class, 'caretaker_id', 'caretaker_id');
     }
     public function User() {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(User::class, 'user_id', 'user_id');
     }
 
     protected $table = "Notifications";

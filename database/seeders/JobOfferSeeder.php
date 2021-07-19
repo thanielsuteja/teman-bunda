@@ -33,5 +33,25 @@ class JobOfferSeeder extends Seeder
             'wd_7' => '0',
             'estimasi_biaya' => '500000',
         ]);
+
+        Job_offer::create([
+            'job_status' => 'selesai',
+            'user_id' => '1',
+            'caretaker_id' => '2',
+            'judul_pekerjaan' => 'Menemani Anak Belajar Mat',
+            'deskripsi_pekerjaan' => 'Dibutuhkan seorang terpelajar yang menguasai matematika dasar untuk membantu anak mengerjakan pekerjaan rumah. Sang anak merupakan siswa Sekolah Dasar IPEKA.',
+            'tanggal_masuk' => '2021-05-01',
+            'tanggal_berakhir' => '2021-05-29',
+            'jam_masuk' => '17:30:00',
+            'jam_berakhir' => '19:00:00',
+            'wd_1' => '1',
+            'wd_2' => '1',
+            'wd_3' => '1',
+            'wd_4' => '1',
+            'wd_5' => '1',
+            'wd_6' => '0',
+            'wd_7' => '0',
+            'estimasi_biaya' => '1200000',
+        ]);
     }
 }

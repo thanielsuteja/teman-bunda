@@ -21,7 +21,7 @@
 </script>
 <style>
     body {
-        background-image: url('img/Login.png');
+        background-image: url('img/login_bg.png');
         background-size: cover;
     }
 </style>
@@ -34,7 +34,7 @@
         <div class="col-md-6 offset-md-3 text-center">
             <form action="/login/store" method="post">
                 {{ csrf_field() }}
-                <div class="card bg-grey mx-5 mb-3" id="login-card">
+                <div class="card bg-ffeea8 mx-5 mb-3" id="login-card">
                     <div class="card-body mx-4 mt-4">
                         <div class="form-floating mb-3">
                             <input type="text" id="login-email" placeholder="Email" name="email" class="form-control rounded-input">

@@ -27,11 +27,11 @@ class User extends Authenticatable
 
     public function Notifications()
     {
-        return $this->hasMany(Notification::class);
+        return $this->hasMany(Notification::class, 'user_id', 'user_id');
     }
     public function JobOffers()
     {
-        return $this->hasMany(Job_offer::class);
+        return $this->hasMany(Job_offer::class, 'user_id', 'user_id');
     }
     
     protected $table = "Users";

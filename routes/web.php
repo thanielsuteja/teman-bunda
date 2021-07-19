@@ -6,9 +6,12 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\CariCaretakerController;
 use App\Http\Controllers\CaretakerInfoController;
 use App\Http\Controllers\BuatPenawaranController;
+use App\Http\Controllers\DaftarCaretakerController;
+use App\Http\Controllers\InfoOrderController;
 use App\Http\Controllers\StatusOrderController;
 use App\Http\Controllers\RiwayatTransaksiController;
 use App\Http\Controllers\InfoTransaksiController;
+use App\Http\Controllers\ReviewUserController;
 
 //ApplicationController
 
@@ -17,13 +20,12 @@ Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth'])->name('dashboard');
 
-Route::get('/home', [HomeController::class, 'home']);
 
 Route::get('/dashboard', function () {
     return view('home-user');
 })->middleware(['auth'])->name('dashboard');
 
-Route::get('/home', [HomeController::class, 'home'])->name('home');
+Route::get('/home', [HomeController::class, 'showHome'])->name('home');
 
 
 // User Controller
@@ -33,17 +35,22 @@ Route::get('/user/info-caregiver/{id}', [CaretakerInfoController::class, 'showCa
 Route::get('/user/buat-penawaran/{id}', [BuatPenawaranController::class, 'showPenawaranForm'])->middleware(['auth']);
 Route::post('/user/buat-penawaran/simpan', [BuatPenawaranController::class, 'buatPenawaran'])->middleware(['auth']);
 Route::get('/user/order', [StatusOrderController::class, 'showOrder'])->middleware(['auth'])->name('order');
-Route::get('/user/order-info/{id}', [StatusOrderController::class, 'showOrderInfo'])->middleware(['auth'])->name('order-info');
+Route::get('/user/order-info/{id}', [InfoOrderController::class, 'showOrderInfo'])->middleware(['auth'])->name('order-info');
 
-Route::post('/user/update-gaji/{id}', [StatusOrderController::class, 'updateGaji'])->middleware(['auth']);
-Route::post('/user/batalkan/{{ $job->job_id }}', [StatusOrderController::class, 'batalkanOrder'])->middleware(['auth']);
-Route::post('/user/selesai/{{ $job->job_id }}', [StatusOrderController::class, 'selesaikanOrder'])->middleware(['auth']);
+Route::post('/user/update-gaji/{id}', [InfoOrderController::class, 'updateGaji'])->middleware(['auth']);
+Route::post('/user/batalkan/{{ $job->job_id }}', [InfoOrderController::class, 'batalkanOrder'])->middleware(['auth']);
+Route::post('/user/selesai/{{ $job->job_id }}', [InfoOrderController::class, 'selesaikanOrder'])->middleware(['auth']);
 
 Route::get('/user/transaksi', [RiwayatTransaksiController::class, 'showTransaksi'])->middleware('auth')->name('transaksi');
 Route::get('/user/info-transaksi/{id}', [InfoTransaksiController::class, 'showInfoTransaksi'])->middleware('auth');
 
+Route::get('/user/review/{id}', [ReviewUserController::class, 'showUserReviewForm'])->middleware('auth');
+Route::get('/user/simpan-review', [ReviewUserController::class, 'reviewCaretaker'])->middleware('auth');
+
+Route::get('/daftar-caretaker', [DaftarCaretakerController::class, 'showCaretakerRegisterForm'])->middleware('auth')->name('daftar-caretaker');
+
 Route::get('/test', function () {
-    return view('user.buat-penawaran');
+    return view('user.review');
 });
 // Route::get('/dropdown', [DependentDropdownController::class, 'index']);
 
