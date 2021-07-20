@@ -72,7 +72,7 @@
                                         </div>
                                         <div class="row text-center">
                                             <p>{{ $care->JobOffers->reduce(function($total, $joboffer) {
-                                                return $total + $joboffer -> ReviewUser->count();    
+                                                return $total + $joboffer -> ReviewUser->count();
                                             }, 0) }} Rating</p>
                                         </div>
                                     </div>
@@ -136,5 +136,15 @@
         </div>
     </div>
 </div>
-
+<script>
+    $(document).ready(function () {
+        $('#filter_mengasuh').on('change', function () {
+            var mengasuh = $(this).val();
+            var url = window.location.protocol + '//' + window.location.host + window.location.pathname;
+            var query = new URLSearchParams(window.location.search);
+            query.set('mengasuh', mengasuh);
+            window.location.href = url + '?' + query.toString();
+        });
+    });
+</script>
 @endsection

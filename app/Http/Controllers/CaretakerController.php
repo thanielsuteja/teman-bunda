@@ -82,7 +82,7 @@ class CaretakerController extends Controller
 
     public function showPageRiwayatTransaksi()
     {
-        $transactions = Auth::user()->Caretaker->JobOffers()->with('Transaction', 'User')->has('Transaction')->get();
+        $transactions = Auth::user()->Caretaker->JobOffers()->with('Transaction', 'User')->has('Transaction')->where('job_status', 'diterima')->get();
 
         return view('caretaker.riwayat-transaksi', ['transactions' => $transactions]);
     }
@@ -119,6 +119,19 @@ class CaretakerController extends Controller
 
     public function calculateEstimation(Request $request)
     {
-        //
+        $days = [1, 2];
+        $cost = 50000;
+        $total = 0;
+
+        $startDate = date_create('2021-07-14');
+        $endDate = date_create('2021-07-15');
+
+        for ($date = $startDate; $date <= $endDate; $date->modify('+1 day')) {
+            if (in_array($date->format('N'), $days)) {
+                $total += $cost;
+            }
+        }
+
+        return $total;
     }
 }

@@ -36,6 +36,7 @@ class Job_offer extends Model
             'ditolak' => 'text-danger',
             'ubah gaji' => 'text-primary',
             'berlangsung' => 'text-primary',
+            'diterima' => 'text-primary',
             'selesai' => 'text-success'
         ];
         return $colors[$this->job_status] ?? 'text-secondary';
