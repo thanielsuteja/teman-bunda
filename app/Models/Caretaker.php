@@ -75,18 +75,18 @@ class Caretaker extends Model
         'tinggi',
         'berat',
         'deskripsi_caretaker',
-        // 'pengawasan_kamera',
-        // 'takut_anjing',
+        'pengawasan_kamera',
+        'takut_anjing',
         'NIK',
         'dokumen_vaksin_path',
         'dokumen_ijazah_path',
         'dokumen_psikotes_path',
-        'dokumen_akta_kelahiran_path',
+        'dokumen_skck_path',
     ];
 
     protected $attributes = [
         'rating_caretaker'  => 0.0,
-        'caretaker_status'  => 1,
+        'caretaker_status'  => 0,
         'approved'          => "pending",
     ];
 
@@ -96,6 +96,5 @@ class Caretaker extends Model
     ];
 
     protected $primaryKey = 'caretaker_id';
-
     protected $appends = ['MeanRating', 'Age'];
 }

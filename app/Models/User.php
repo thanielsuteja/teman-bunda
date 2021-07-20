@@ -75,8 +75,6 @@ class User extends Authenticatable
     ];
 
     protected $attributes = [
-        // 'alamat' => null,
-        // 'provinsi' => null,
         'rating_user' => 0.0,
         'role' => "user",
     ];

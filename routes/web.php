@@ -38,8 +38,8 @@ Route::get('/user/order', [StatusOrderController::class, 'showOrder'])->middlewa
 Route::get('/user/order-info/{id}', [InfoOrderController::class, 'showOrderInfo'])->middleware(['auth'])->name('order-info');
 
 Route::post('/user/update-gaji/{id}', [InfoOrderController::class, 'updateGaji'])->middleware(['auth']);
-Route::post('/user/batalkan/{{ $job->job_id }}', [InfoOrderController::class, 'batalkanOrder'])->middleware(['auth']);
-Route::post('/user/selesai/{{ $job->job_id }}', [InfoOrderController::class, 'selesaikanOrder'])->middleware(['auth']);
+Route::get('/user/batalkan/{id}', [InfoOrderController::class, 'batalkanOrder'])->middleware(['auth']);
+Route::get('/user/selesai/{id}', [InfoOrderController::class, 'selesaikanOrder'])->middleware(['auth']);
 
 Route::get('/user/transaksi', [RiwayatTransaksiController::class, 'showTransaksi'])->middleware('auth')->name('transaksi');
 Route::get('/user/info-transaksi/{id}', [InfoTransaksiController::class, 'showInfoTransaksi'])->middleware('auth');
@@ -48,6 +48,7 @@ Route::get('/user/review/{id}', [ReviewUserController::class, 'showUserReviewFor
 Route::get('/user/simpan-review', [ReviewUserController::class, 'reviewCaretaker'])->middleware('auth');
 
 Route::get('/daftar-caretaker', [DaftarCaretakerController::class, 'showCaretakerRegisterForm'])->middleware('auth')->name('daftar-caretaker');
+Route::get('/menunggu-verifikasi', [DaftarCaretakerController::class, 'showTungguVerifikasi'])->middleware('auth')->name('menunggu-verifikasi');
 
 Route::get('/test', function () {
     return view('user.review');

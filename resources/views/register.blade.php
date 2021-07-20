@@ -114,12 +114,12 @@
 <main class="container main col-xxl-12 px-0 py-3">
     <div class="row">
         <div class="col-md-6 text-center">
-            <img src="/img/register_picture.png" class="d-block mx-lg-auto img-fluid mt-5 pt-5" loading="lazy">
+            <p class="display-5 pt-1 fw-normal pb-2 title text-center"> Daftar di Teman Bunda </p>
+            <img src="/img/register_page_picture.png" class="d-block mx-lg-auto img-fluid pt-5" loading="lazy">
             <p class="fw-normal"> Sudah punya akun ? <a href="/login" class="text-decoration-none"> Masuk </a>
             </p>
         </div>
         <div class="col-md-6">
-            <p class="display-5 pt-1 fw-normal pb-2 title text-center"> Daftar di Teman Bunda </h2>
             <div class="card bg-ffeea8" id="register-card">
                 <div class="card-body mx-4 mt-4">
                     <form action="/register/store" method="post" id="msform" enctype="multipart/form-data">

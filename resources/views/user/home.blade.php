@@ -8,7 +8,6 @@
 <style>
     .content {
         padding-left: 70px;
-        position: relative;
         z-index: -1;
     }
 </style>
