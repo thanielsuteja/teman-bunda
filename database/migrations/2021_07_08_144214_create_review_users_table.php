@@ -16,7 +16,7 @@ class CreateReviewUsersTable extends Migration
         Schema::create('review_users', function (Blueprint $table) {
             $table->id('user_review_id');
             $table->foreignId('job_id');
-            $table->string('review_rating');
+            $table->integer('review_rating');
             $table->string('review_content');
             $table->timestamps();
         });

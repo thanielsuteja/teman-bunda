@@ -34,6 +34,10 @@ class Transaction extends Model
         'virtual_account',
     ];
 
+    protected $attributes = [
+        'virtual_account' => "1234567899"
+    ];
+
     protected $primaryKey = 'transaction_id';
 
 }

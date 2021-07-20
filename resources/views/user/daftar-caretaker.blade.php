@@ -1,128 +1,20 @@
 @extends ('layout.master')
-@section ('title','Daftar Teman Bunda')
-@include ('layout.navbar.navbar')
+@section ('title', 'Daftar Menjadi Caregiver | Teman Bunda')
+@include ('layout.navbar.navbar-user')
 
-@section('content')
-
+@section ('content')
 <meta name="csrf-token" content="{{ csrf_token() }}">
 <script src="{{ asset('js/multi-step.js') }}"></script>
-<script>
-    $(function() {
-        $.ajaxSetup({
-            headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-            }
-        });
-
-        $('#provinsi').on('change', function() {
-            $.ajax({
-                url: '{{ route("getKabupaten") }}',
-                method: 'POST',
-                data: {
-                    id: $(this).val()
-                },
-                success: function(response) {
-                    $('#kabupaten').empty();
-
-                    $.each(response, function(id, name) {
-                        $('#kabupaten').append(new Option(name, id))
-                    })
-                }
-            })
-        });
-
-        $('#kabupaten').on('change', function() {
-            $.ajax({
-                url: '{{ route("getKecamatan") }}',
-                method: 'POST',
-                data: {
-                    id: $(this).val()
-                },
-                success: function(response) {
-                    $('#kecamatan').empty();
-                    $.each(response, function(id, name) {
-                        $('#kecamatan').append(new Option(name, id))
-                    })
-                }
-            })
-        });
-
-        $('#kecamatan').on('change', function() {
-            $.ajax({
-                url: '{{ route("getKelurahan") }}',
-                method: 'POST',
-                data: {
-                    id: $(this).val()
-                },
-                success: function(response) {
-                    $('#kelurahan').empty();
-                    $.each(response, function(id, name) {
-                        $('#kelurahan').append(new Option(name, id))
-                    })
-                }
-            })
-        });
-    });
-</script>
-<script>
-    $(document).ready(function() {
-        $('#check_syarat').on('change', function() {
-            var syarat_value = $("#check_syarat");
-            if ($("#check_syarat").is(":checked")) {
-                $('#btn_daftar').attr('disabled', false);
-            } else {
-                $('#btn_daftar').attr('disabled', true);
-            }
-        });
-    })
-</script>
-<!-- <script>
-    $(document).ready(function() {
-        $('#email,#nama_depan,#nama_belakang,#password,#nomor_telepon,#tanggal_lahir').on('keyup', function() {
-            var namadpn_value = $(" #nama_depan").val();
-            var namablkng_value = $("#nama_belakang").val();
-            var email_value = $("#email").val();
-            var password_value = $("#password").val();
-            var telepon_value = $("#nomor_telepon").val();
-            var tanggal_lahir_value = $("#tanggal_lahir").val();
-            var jenis_kelamin_value = $("#jenis_kelamin").val();
-            var syarat_value = $("#check_syarat");
-            if (namadpn_value != '' && namablkng_value != '' && email_value != '' && password_value != '' && telepon_value != '' && tanggal_lahir_value != '' && jenis_kelamin_value != '' && $("#check_syarat").is(":checked")) {
-                $('#btn_next1').attr('disabled', false);
-            } else {
-                $('#btn_next1').attr('disabled', true);
-            }
-        });
-        $('#check_syarat,#jenis_kelamin').on('change', function() {
-            var namadpn_value = $("#nama_depan").val();
-            var namablkng_value = $("#nama_belakang").val();
-            var email_value = $("#email").val();
-            var password_value = $("#password").val();
-            var telepon_value = $("#nomor_telepon").val();
-            var tanggal_lahir_value = $("#tanggal_lahir").val();
-            var jenis_kelamin_value = $("#jenis_kelamin").val();
-            var syarat_value = $("#check_syarat");
-            if (namadpn_value != '' && namablkng_value != '' && email_value != '' && password_value != '' && telepon_value != '' && tanggal_lahir_value != '' && jenis_kelamin_value != '' && $("#check_syarat").is(":checked")) {
-                $('#btn_next1').attr('disabled', false);
-            } else {
-                $('#btn_next1').attr('disabled', true);
-            }
-        });
-    });
-</script> -->
-
 <main class="container main col-xxl-12 px-0 py-3">
     <div class="row">
         <div class="col-md-6 text-center">
-            <img src="/img/register_picture.png" class="d-block mx-lg-auto img-fluid mt-5 pt-5" loading="lazy">
-            <p class="fw-normal"> Sudah punya akun ? <a href="/login" class="text-decoration-none"> Masuk </a>
-            </p>
+            <img src="/img/daftar-caretaker_1.png" class="d-block mx-lg-auto img-fluid mt-5 pt-5" loading="lazy">
         </div>
         <div class="col-md-6">
-            <p class="display-5 pt-1 fw-normal pb-2 title text-center"> Daftar di Teman Bunda </h2>
+            <p class="display-5 pt-1 fw-normal pb-2 title text-center"> Daftar Menjadi Caregiver </h2>
             <div class="card bg-ffeea8" id="register-card">
                 <div class="card-body mx-4 mt-4">
-                    <form action="/register/store" method="post" id="msform" enctype="multipart/form-data">
+                    <form action="#" method="post" id="msform" enctype="multipart/form-data">
                         {{ csrf_field() }}
                         <ul id="progressbar" class="text-center">
                             <li class="active" id="isi_formulir">
@@ -238,5 +130,4 @@
         </div>
     </div>
 </main>
-
 @endsection

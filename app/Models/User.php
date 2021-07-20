@@ -27,7 +27,7 @@ class User extends Authenticatable
 
     public function Notifications()
     {
-        return $this->hasMany(Notification::class);
+        return $this->hasMany(Notification::class, 'user_id', 'user_id');
     }
     public function JobOffers()
     {
@@ -38,6 +38,7 @@ class User extends Authenticatable
         return $this->jobOffers->reduce(function ($total, $jobOffer) {
             return $total + ($jobOffer->ReviewCaretaker == null ? 0 : 1);
         }, 0);
+        return $this->hasMany(Job_offer::class, 'user_id', 'user_id');
     }
     public function getMeanRatingAttribute()
     {

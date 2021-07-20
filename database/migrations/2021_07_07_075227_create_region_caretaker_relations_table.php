@@ -16,6 +16,7 @@ class CreateRegionCaretakerRelationsTable extends Migration
         Schema::create('region_caretaker_relations', function (Blueprint $table) {
             $table->foreignId('region_id')->references('region_id')->on('regions')->onDelete('cascade');
             $table->foreignId('caretaker_id')->references('caretaker_id')->on('caretakers')->onDelete('cascade');
+            $table->timestamps();
         });
     }
 

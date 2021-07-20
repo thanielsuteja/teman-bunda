@@ -25,7 +25,7 @@ class Caretaker extends Model
     public function getMeanRatingAttribute()
     {
         $count = $this->jobOffers->reduce(function ($total, $jobOffer) {
-            return $total + ($jobOffer->ReviewUser == null ? 0 : 1);
+            return $total + ($jobOffer->ReviewUser== null ? 0 : 1);
         }, 0);
         $total = $this->jobOffers->reduce(function ($total, $jobOffer) {
             return $total + ($jobOffer->ReviewUser == null ? 0 : $jobOffer->ReviewUser->review_rating);
@@ -42,7 +42,7 @@ class Caretaker extends Model
     }
     public function Notifications()
     {
-        return $this->hasMany(Notification::class);
+        return $this->hasMany(Notification::class, 'caretaker_id', 'caretaker_id');
     }
 
     public function ProfessionCaretakerRelation()

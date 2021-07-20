@@ -1,0 +1,7 @@
+Sebelum run, 
+
+php artisan migrate
+
+php artisan laravolt:indonesia:seed
+
+php artisan db:seed
