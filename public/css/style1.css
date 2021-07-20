@@ -1,5 +1,6 @@
 @import url(https://fonts.googleapis.com/css?family=Titillium+Web:300);
 *{
+
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -19,6 +20,7 @@ body{
     background-color: white;
     transition: 0.3s;
     overflow: hidden;
+    z-index: 10;
 }
 
 .navigation-bar:hover{

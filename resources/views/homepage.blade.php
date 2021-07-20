@@ -9,7 +9,7 @@
             <img src="/img/homepage_picture(copy).png" class="d-block mx-lg-auto img-fluid" alt="" width="600" loading="lazy">
         </div>
         <div class="col-lg-6">
-            <h1 class="display-5 lg-1 mb-3 cambria">Cara baru dan mudah mencari <i>caretgiver</i> dengan cepat</h1>
+            <h1 class="display-5 lg-1 mb-3">Cara baru dan mudah mencari <i>caregiver</i> dengan cepat</h1>
             <p class="lead">Teman Bunda membantu anda mencari Caregiver yang tepat dengan memanfaatkan para anak muda untuk merawat sang hati</p>
             <div class="d-grid d-md-flex justify-content-md-start">
                 <a href="#whyus" class="btn bg-temanbunda py-3 px-5 text-white">Lebih lanjut</a>
@@ -22,13 +22,13 @@
                 <img src="/img/" class="p-5" height="395" width="380">
             </div>
             <div class="col-md-6">
-                <h1 class="display-5 fw-bold cambria ">Untuk kamu, orang tua yang bekerja</h1>
+                <h1 class="display-5 ">Untuk kamu, orang tua yang bekerja</h1>
                 <p class="lead">Teman Bunda menyediakan jasa mengasuh anggota keluargamu agar kamu dapat fokus bekerja tanpa mengkhawatirkan keluargamu</p>
             </div>
         </div>
         <div class="row w-100 my-sm-3 bg-white align-items-center">
             <div class="col-md-6 text-end">
-                <h1 class="display-5 fw-bold cambria">Kredibilitas partner Teman Bunda tidak teragukan lagi</h1>
+                <h1 class="display-5">Kredibilitas partner Teman Bunda tidak teragukan lagi</h1>
                 <p class="lead">Untuk keamanan kamu, tim Manajemen Keselamatan Pengguna Teman Bunda dengan teliti memeriksa dokumen pribadi partner Teman Bunda </p>
             </div>
             <div class="col-sm-4 rounded-rectangle-white ms-5 my-5 ps-5">
@@ -40,7 +40,7 @@
                 <img src="/img/murah.png" class="p-5" height="395" width="380">
             </div>
             <div class="col-md-6">
-                <h1 class="display-5 fw-bold cambria ">Menghemat anggaran keluarga untuk perawatan anggota keluargamu</h1>
+                <h1 class="display-5 ">Menghemat anggaran keluarga untuk perawatan anggota keluargamu</h1>
                 <p class="lead">Kamu menghemat banyak dengan tidak mengeluarkan biaya makelar, akomodasi, dan konsumsi untuk menggunakan jasa Teman Bunda</p>
             </div>
         </div>
@@ -107,7 +107,7 @@
                                 <div class="mb-2" style="min-height: 50px;">
                                     <p class="card-title fw-bold">Beri Ulasan dan Penilaian</p>
                                 </div>
-                                <p>Beri ulasan dan penilaian pada Caregiver yang sudah membantumu! Caregiver dapat melihat ulasanmu</p>
+                                <p>Beri ulasan dan penilaian pada Caregiver yang sudah membantumu</p>
                             </div>
                         </div>
                     </div>
@@ -140,7 +140,7 @@
                     <div class="col-sm">
                         <div class="card bg-efefef h-100" style="border-radius: 15px;">
                             <div class="card-body text-center">
-                                <img src="/img/icon/find.png" class="py-5" alt="" width="80">
+                                <img src="/img/icon/find.png" class="py-5" alt="" width="80"> <!-- CARI ICON YANG BENAR !-->
                                 <div class="mb-2" style="min-height: 50px;">
                                     <p class="card-title fw-bold">Tunggu Penawaran Kerja</p>
                                 </div>

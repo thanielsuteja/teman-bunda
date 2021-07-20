@@ -9,6 +9,10 @@
     body {
         background-color: #efefef;
     }
+
+    p {
+        margin-bottom: 0.5rem;
+    }
 </style>
 <script>
     $(document).ready(function() {
@@ -28,124 +32,153 @@
     <div class="row">
         <div class="col-md-8 offset-md-2">
             <div class="card shadow" style="border-radius: 20px; overflow: hidden; margin-top: 90px;">
-                <div class="card-header bg-temanbunda d-flex justify-content-between align-items-center p-0" style="height: 107px;">
-                    <div class="col-1">
-                        <a href="{{ url()->previous() }}" class="text-decoration-none fw-bold" style="color: black;">
-                            <i class="bi bi-chevron-left ps-2" style="font-size: 36px; height: 36; width: 36;"></i>
-                        </a>
-                    </div>
-                    <div class="col">
-                        <p style="font-size: 36px; padding-top: 12px;">{{ $job->judul_pekerjaan }}</p>
+                <div class="card-header bg-temanbunda d-flex justify-content-between align-items-center p-0" style="height: 120px;">
+                    <div class="row">
+                        <div class="col-1 d-flex align-items-center">
+                            <a href="{{ url()->previous() }}" class="text-decoration-none fw-bold" style="color: black;">
+                                <i class="bi bi-chevron-left ps-3" style="font-size: 36px; height: 36; width: 36;"></i>
+                            </a>
+                        </div>
+                        <div class="col">
+                            <h2 class="m-0 ms-5">{{ $job->judul_pekerjaan }}</h2>
+                        </div>
                     </div>
                 </div>
                 <div class="card-body mx-5" style="min-height: 532px;">
-                    <div class="row" style="margin-top: -50px;">
-                        <div class="col-2">
-                            @if ($job->Caretaker->User->profile_img_path != null)
-                            <img src="{{ asset('storage/foto_profil/'.$job->Caretaker->User->profile_img_path) }}" class="profile-pic border border-5" style="width: 80px; height: 80px;">
-                            @else
-                            <img src="{{ asset('img/no-profile.png') }}" class="profile-pic border border-5">
-                            @endif
-                        </div>
-                        <div class="col-10">
+                    <div class="row px-4" style="margin-top: -50px;">
+                        <div class="col-9">
                             <div class="row">
-                                <h3>{{ $job->Caretaker->User->nama_depan }} {{ $job->Caretaker->User->nama_belakang }} <a href="/user/info-caregiver/{{ $job->Caretaker->caretaker_id }}" class="btn bg-white d-inline-block" style="color: #ffde59; border-color: #ffde59;">Lihat profil</a></h3>
+                                <h5>{{ $job->Caretaker->User->nama_depan }} {{ $job->Caretaker->User->nama_belakang }} <a href="/user/info-caregiver/{{ $job->Caretaker->caretaker_id }}" class="btn bg-white d-inline-block pt-1" style="color: #ffde59; border-color: #ffde59; height: 30px;">Lihat profil</a></h5>
                             </div>
                             <div class="row">
-                                <div class="col">
+                                <div class="col-3 text-center">
                                     @for ($i = 1; $i < 6; $i++) @if ($job->Caretaker->meanRating >= $i)
-                                        <i class="bi-star-fill" style="color: #FFDE59;"></i>
+                                        <i class="bi-star-fill" style="color: #FFDE59; font-size: 12px;"></i>
                                         @elseif (($i - $job->Caretaker->meanRating) >= 1)
-                                        <i class="bi-star" style="color: #FFDE59;"></i>
+                                        <i class="bi-star" style="color: #FFDE59; font-size: 12px;"></i>
                                         @elseif (fmod($job->Caretaker->meanRating, 1) != 0)
-                                        <i class="bi-star-half" style="color: #FFDE59;"></i>
+                                        <i class="bi-star-half" style="color: #FFDE59; font-size: 12px;"></i>
                                         @endif
                                         @endfor
-                                        <p>
+                                        <p style="font-size: 16px;">
                                             {{ $job->Caretaker->JobOffers->reduce(function ($total, $jobOffer) {
-                                                return $total + ($jobOffer->ReviewUser == null ? 0 : 1);
-                                            }) }} Rating
+                                            return $total + ($jobOffer->ReviewUser == null ? 0 : 1);
+                                        }) }} Rating
                                         </p>
                                 </div>
-                                <div class="col text-end">
-                                    <p class="text-808080">ID Caregiver <span class="text-dark">{{ $job->Caretaker->caretaker_id }}</span></p>
+                                <div class="row col-9 d-flex align-items-center">
+                                    <div class="col-auto pe-0">
+                                        <p class="text-808080">ID Caregiver</p>
+                                    </div>
+                                    <div class="col-auto">
+                                        <p class="text-dark">{{ $job->Caretaker->caretaker_id }}</p>
+                                    </div>
                                 </div>
                             </div>
+                        </div>
+                        <div class="col-3" style="margin-top: -40px;">
+                            @if ($job->Caretaker->User->profile_img_path != null)
+                            <img src="{{ asset('storage/foto_profil/'.$job->Caretaker->User->profile_img_path) }}" class="profile-pic-lg border">
+                            @else
+                            <img src="{{ asset('img/no-profile.png') }}" class="profile-pic-lg border">
+                            @endif
+                        </div>
+                    </div>
+                    <div class="row pt-3">
+                        <div class="col-md-3">
+                            <p class="text-808080 text-end">Status Order</p>
+                        </div>
+                        <div class="col-md-9">
+                            <p>{{ ucfirst($job->job_status) }}</p>
                         </div>
                     </div>
                     <div class="row">
-                        <table>
-                            <tr>
-                                <td class="text-808080 text-end" style="width: 20%;">Status Order</td>
-                                <td>{{ ucfirst($job->job_status) }}</td>
-                            </tr>
-                            <tr>
-                                <td class="text-808080 text-end">Lokasi</td>
-                                <td>{{ $job->User->alamat }}, {{ ucwords(strtolower($job->User->kelurahan)) }}, {{ ucwords(strtolower($job->User->kecamatan)) }}, {{ ucwords(strtolower($job->User->kabupaten)) }}</td>
-                            </tr>
-                            <tr>
-                                <td class="text-808080 text-end">Tanggal</td>
-                                <td>{{ $job->tanggal_masuk }} - {{ $job->tanggal_berakhir }}</td>
-                            </tr>
-                            <tr>
-                                <td class="text-808080 text-end">Jam</td>
-                                <td>
-                                    {{ $job->jam_masuk }} - {{ $job->jam_berakhir }}
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-808080 text-end">Hari masuk</td>
-                                <td>
-                                    @if ($job->wd_1 == 1)
-                                    Senin
-                                    @endif
-                                    @if ($job->wd_2 == 1)
-                                    Selasa
-                                    @endif
-                                    @if ($job->wd_3 == 1)
-                                    Rabu
-                                    @endif
-                                    @if ($job->wd_4 == 1)
-                                    Kamis
-                                    @endif
-                                    @if ($job->wd_5 == 1)
-                                    Jumat
-                                    @endif
-                                    @if ($job->wd_6 == 1)
-                                    Sabtu
-                                    @endif
-                                    @if ($job->wd_7 == 1)
-                                    Minggu
-                                    @endif
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="text-808080 text-end">Total upah</td>
-                                <td>Rp{{ number_format($job->estimasi_biaya, 0, ",", ".") }},00</td>
-                            </tr>
-                            <tr>
-                                <td class="text-808080 text-end" valign="top">Deskripsi</td>
-                                <td>{{ $job->deskripsi_pekerjaan }}</td>
-                            </tr>
-                        </table>
+                        <div class="col-md-3">
+                            <p class="text-808080 text-end">Lokasi</p>
+                        </div>
+                        <div class="col-md-9">
+                            <p>{{ $job->User->alamat }}, {{ ucwords(strtolower($job->User->kelurahan)) }}, {{ ucwords(strtolower($job->User->kecamatan)) }}, {{ ucwords(strtolower($job->User->kabupaten)) }}</p>
+                        </div>
                     </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <p class="text-808080 text-end">Tanggal</p>
+                        </div>
+                        <div class="col-md-9">
+                            <p>{{ $job->tanggal_masuk }} - {{ $job->tanggal_berakhir }}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <p class="text-808080 text-end">Hari masuk</p>
+                        </div>
+                        <div class="col-md-9">
+                            <p>
+                                @if ($job->wd_1 == 1)
+                                Senin
+                                @endif
+                                @if ($job->wd_2 == 1)
+                                Selasa
+                                @endif
+                                @if ($job->wd_3 == 1)
+                                Rabu
+                                @endif
+                                @if ($job->wd_4 == 1)
+                                Kamis
+                                @endif
+                                @if ($job->wd_5 == 1)
+                                Jumat
+                                @endif
+                                @if ($job->wd_6 == 1)
+                                Sabtu
+                                @endif
+                                @if ($job->wd_7 == 1)
+                                Minggu
+                                @endif
+                            </p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <p class="text-808080 text-end">Jam</p>
+                        </div>
+                        <div class="col-md-9">
+                            <p>{{ $job->jam_masuk }} - {{ $job->jam_berakhir }}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <p class="text-808080 text-end">Total upah</p>
+                        </div>
+                        <div class="col-md-9">
+                            <p>Rp{{ number_format($job->estimasi_biaya, 0, ",", ".") }},00</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-3">
+                            <p class="text-808080 text-end">Deskripsi</p>
+                        </div>
+                        <div class="col-md-9">
+                            <p>{{ $job->deskripsi_pekerjaan }}</p>
+                        </div>
+                    </div>
+
                     @if ($job->job_status != "selesai" || $job->job_status != "ditolak" || $job->job_status != "dibatalkan")
-                    @if ($job->job_status == "ubah gaji")
-                    <div class="row" style="position: absolute; bottom: 50px; right: 0;">
-                        <!-- Nanti tolong bottom dan right-nya disesuaikan dengan UI ya!-->
+                    <div class="row text-end pt-5">
+                        @if ($job->job_status == "ubah gaji")
                         <p style="font-size: 14px; color: red;">Caregiver meminta perubahan gaji menjadi Rp{{ number_format($job->permintaan_gaji_baru,0, ",", ".") }},00</p>
+                        @endif
                     </div>
-                    @endif
-                    <div class="row" style="position: absolute; bottom: 0; right: 0;">
+                    <div class="row justify-content-end">
                         @if ($job->job_status == "menunggu" || $job->job_status == "diterima")
                         <button type="button" class="btn fw-bold" data-bs-toggle="modal" data-bs-target="#batal" style="width: 180px; height: 58px; border: 1px solid #ffde59; color: #ffde59;">Batalkan Order</button>
                         @endif
                         @if ($job->job_status == "ubah gaji")
                         <button type="button" class="btn fw-bold" data-bs-toggle="modal" data-bs-target="#batal" style="width: 180px; height: 58px; border: 1px solid #ffde59; color: #ffde59;">Batalkan Order</button>
-                        <button type="button" class="btn bg-temanbunda" data-bs-toggle="modal" data-bs-target="#ganti_gaji_modal" style="width: 180px; height: 58px;">Izinkan</button>
+                        <button type="button" class="btn bg-temanbunda ms-3 fw-bold" data-bs-toggle="modal" data-bs-target="#ganti_gaji_modal" style="width: 180px; height: 58px;">Izinkan</button>
                         @endif
                         @if ($job->job_status == "berlangsung")
-                        <button type="button" class="btn bg-temanbunda" data-bs-toggle="modal" data-bs-target="#selesai" style="width: 180px; height: 58px;">Selesai</button>
+                        <button type="button" class="btn bg-temanbunda fw-bold" data-bs-toggle="modal" data-bs-target="#selesai" style="width: 180px; height: 58px;">Selesai</button>
                         @endif
                     </div>
                     @endif

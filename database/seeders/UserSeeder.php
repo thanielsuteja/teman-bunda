@@ -35,7 +35,7 @@ class UserSeeder extends Seeder
             'nama_depan' => 'Baharudin',
             'nama_belakang' => 'Ongkowidjaya',
             'password' => bcrypt('12345678'),
-            'tanggal_lahir' => '1995-02-02',
+            'tanggal_lahir' => '2001-07-20',
             'jenis_kelamin' => 'laki-laki',
             'nomor_telepon' => '081278461115',
             'email' => 'baharudin@mail.com',

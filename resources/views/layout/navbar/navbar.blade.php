@@ -10,9 +10,6 @@
             <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
                 <ul class="navbar-nav">
                     <li class="nav-item extra-margin">
-                        <a class="nav-link" aria-current="page" href="/find-caretaker">Find Caretakers | Bunda</a>
-                    </li>
-                    <li class="nav-item extra-margin">
                         <a class="nav-link btn btn-outline-default width100" href="/register">Daftar</a>
                     </li>
                     <li class="nav-item extra-margin">
