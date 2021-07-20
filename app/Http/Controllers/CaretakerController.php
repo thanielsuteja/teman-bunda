@@ -7,6 +7,9 @@ use Illuminate\Support\Facades\Auth;
 use App\Models\Job_offer;
 use App\Models\Transaction;
 use App\Models\Profession;
+use App\Models\Notification;
+use App\Models\Review_caretaker;
+use App\Models\Caretaker;
 
 class CaretakerController extends Controller
 {
@@ -54,7 +57,17 @@ class CaretakerController extends Controller
         $jobOffer = Job_offer::find($id);
         $jobOffer->update([
             'job_status' => 'ubah gaji',
-            'estimasi_biaya' => $request->price
+            'permintaan_gaji_baru' => $request->price
+        ]);
+
+        $user = Auth::user();
+
+        Notification::create([
+            'notification_type' => 'ubah-gaji',
+            'content' => 'Caregiver '.$user->nama_depan.' '.$user->nama_belakang.' meminta perubahan gaji baru',
+            'user_id' => $jobOffer->user_id,
+            'caretaker_id' => null,
+            'url' => route('order-info', $jobOffer->job_id)
         ]);
 
         return redirect()->route('caretaker.status-order');
@@ -74,7 +87,7 @@ class CaretakerController extends Controller
     {
         $jobOffer = Job_offer::find($id);
         $jobOffer->update([
-            'job_status' => 'berlangsung'
+            'job_status' => 'diterima'
         ]);
 
         return redirect()->route('caretaker.status-order');
@@ -82,7 +95,7 @@ class CaretakerController extends Controller
 
     public function showPageRiwayatTransaksi()
     {
-        $transactions = Auth::user()->Caretaker->JobOffers()->with('Transaction', 'User')->has('Transaction')->where('job_status', 'diterima')->get();
+        $transactions = Auth::user()->Caretaker->JobOffers()->with('Transaction', 'User')->has('Transaction')->whereIn('job_status', ['diterima', 'selesai', 'berlangsung'])->get();
 
         return view('caretaker.riwayat-transaksi', ['transactions' => $transactions]);
     }
@@ -92,6 +105,24 @@ class CaretakerController extends Controller
         $transaction = Transaction::with('JobOffer.User')->find($id);
 
         return view('caretaker.detail-riwayat-transaksi', ['transaction' => $transaction]);
+    }
+
+    public function showPageReview($id)
+    {
+        $job = Job_offer::where('job_id', $id)->first();
+
+        return view('caretaker.review', ['job' => $job]);
+    }
+
+    public function sendReview($id, Request $request)
+    {
+        Review_caretaker::create([
+            'job_id' => $id,
+            'review_rating' => $request->penilaian,
+            'review_content' => $request->ulasan,
+        ]);
+
+        return redirect()->route('caretaker.status-order');
     }
 
     public function getDaysFromBetweenDate(Request $request)
@@ -105,8 +136,8 @@ class CaretakerController extends Controller
             6 => 'Sabtu',
             7 => 'Minggu',
         ];
-        $startDate = date_create('2021-07-14');
-        $endDate = date_create('2021-07-15');
+        $startDate = date_create($request->tanggal_masuk);
+        $endDate = date_create($request->tanggal_berakhir);
 
         $days = [];
         for ($date = $startDate; $date <= $endDate; $date->modify('+1 day')) {
@@ -119,16 +150,18 @@ class CaretakerController extends Controller
 
     public function calculateEstimation(Request $request)
     {
-        $days = [1, 2];
-        $cost = 50000;
+        $caretaker = Caretaker::find($request->caretaker_id);
+        $days = $request->days ?? [];
+        $cost = $caretaker->cost_per_hour;
         $total = 0;
 
-        $startDate = date_create('2021-07-14');
-        $endDate = date_create('2021-07-15');
+        $startDate = date_create($request->tanggal_masuk);
+        $endDate = date_create($request->tanggal_berakhir);
+        $hour = abs(strtotime($request->jam_berakhir) - strtotime($request->jam_masuk)) / 3600;
 
         for ($date = $startDate; $date <= $endDate; $date->modify('+1 day')) {
             if (in_array($date->format('N'), $days)) {
-                $total += $cost;
+                $total += ($cost * $hour);
             }
         }
 

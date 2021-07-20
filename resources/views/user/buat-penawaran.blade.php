@@ -4,6 +4,8 @@
 @include ('layout.sidebar.sidebar-user')
 
 @section ('content')
+<meta name="csrf-token" content="{{ csrf_token() }}">
+
 <style>
     body {
         background-color: #efefef;
@@ -132,4 +134,73 @@
         </div>
     </div>
 </div>
+
+<script>
+    $(document).ready(function () {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        });
+
+        $('#tanggal_masuk, #tanggal_berakhir').on('change', function (e) {
+            var tanggal_masuk = $('#tanggal_masuk').val();
+            var tanggal_berakhir = $('#tanggal_berakhir').val();
+            if (tanggal_masuk !== '' && tanggal_berakhir !== '') {
+                $.ajax({
+                    url: '{{ route("caretaker.days") }}',
+                    method: 'post',
+                    data: {
+                        tanggal_masuk,
+                        tanggal_berakhir
+                    },
+                    success: function (data) {
+                        $('.btn-group-vertical').empty();
+                        $('#estimasi_biaya').val('');
+                        for (const [key, value] of Object.entries(data)) {
+                            // $('.btn-group-vertical').append(`
+                            //     <input type="checkbox" class="btn-check" value="${key}" name="days" id="wd_${key}">
+                            //     <label class="btn btn-outline-default text-start" for="wd_${key}">${value}</label>
+                            // `);
+                            $('.btn-group-vertical').append(`
+                                <label>
+                                    <input type="checkbox" value="${key}" name="days" id="wd_${key}"> ${value}
+                                </label>
+                            `);
+                        }
+                        $('#jam_masuk, #jam_berakhir, input[name="days"]').on('change', function (e) {
+                            var caretaker_id = "{{ $care->caretaker_id }}";
+                            var tanggal_masuk = $('#tanggal_masuk').val();
+                            var tanggal_berakhir = $('#tanggal_berakhir').val();
+                            var jam_masuk = $('#jam_masuk').val();
+                            var jam_berakhir = $('#jam_berakhir').val();
+                            var days = [];
+                            $('input[name="days"]:checked').each(function () {
+                                days.push(this.value);
+                            });
+                            if (tanggal_masuk !== '' && tanggal_berakhir !== '' && jam_masuk !== '' && jam_berakhir !== '') {
+                                $.ajax({
+                                    url: '{{ route("caretaker.estimation") }}',
+                                    method: 'post',
+                                    data: {
+                                        caretaker_id,
+                                        tanggal_masuk,
+                                        tanggal_berakhir,
+                                        jam_masuk,
+                                        jam_berakhir,
+                                        days
+                                    },
+                                    success: function (data) {
+                                        $('#estimasi_biaya').val('');
+                                        $('#estimasi_biaya').val(data);
+                                    }
+                                });
+                            }
+                        });
+                    },
+                });
+            }
+        });
+    });
+</script>
 @endsection

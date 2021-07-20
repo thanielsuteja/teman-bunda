@@ -157,7 +157,11 @@
                                     <input type="submit" value="Terima" class="btn btn-primary btn-lg" style="background: #FFDE59; width: 200px; border: 0; font-weight: bold">
                                 </form>
                             </div>
-                            @endif
+                        @elseif ($jobOffer->job_status == 'selesai' && $jobOffer->ReviewCaretaker == null)
+                            <div class="row mt-5 d-flex justify-content-end">
+                                <a href="{{ route('caretaker.review', $jobOffer->job_id) }}" class="btn btn-primary btn-lg" style="background: #FFDE59; width: 200px; border: 0; font-weight: bold">Beri Ulasan</a>
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>

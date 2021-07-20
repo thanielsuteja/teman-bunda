@@ -18,4 +18,8 @@ Route::post('/caretaker/status-order/{id}/approved', [CaretakerController::class
 Route::get('/caretaker/riwayat-transaksi', [CaretakerController::class, 'showPageRiwayatTransaksi'])->middleware('auth')->name('caretaker.riwayat-transaksi');
 Route::get('/caretaker/riwayat-transaksi/{id}', [CaretakerController::class, 'showPageDetailRiwayatTransaksi'])->middleware('auth')->name('caretaker.detail-riwayat-transaksi');
 
-Route::get('/caretaker/playground', [CaretakerController::class, 'getDaysFromBetweenDate'])->middleware('auth');
+Route::get('/caretaker/review/{id}', [CaretakerController::class, 'showPageReview'])->middleware('auth')->name('caretaker.review');
+Route::post('/caretaker/review/{id}', [CaretakerController::class, 'sendReview'])->middleware('auth')->name('caretaker.send-review');
+
+Route::post('/caretaker/days', [CaretakerController::class, 'getDaysFromBetweenDate'])->middleware('auth')->name('caretaker.days');
+Route::post('/caretaker/estimation', [CaretakerController::class, 'calculateEstimation'])->middleware('auth')->name('caretaker.estimation');
