@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Caretaker;
 use App\Models\Job_offer;
+use App\Models\Notification;
 
 class BuatPenawaranController extends Controller
 {
@@ -75,6 +76,14 @@ class BuatPenawaranController extends Controller
             'wd_6' => $request->wd_6 ?? 0,
             'wd_7' => $request->wd_7 ?? 0,
             'estimasi_biaya' => $request->estimasi_biaya,
+        ]);
+        
+        Notification::create([
+            'notification_type' => 'Kamu Dapat Penawaran Kerja Baru',
+            'content' => 'Yey! Kamu mendapatkan tawaran kerja baru. Buruan cek sekarang!',
+            'user_id' => null,
+            'caretaker_id' => $request->caretaker_id,
+            'url' => route('caretaker.detail-status-order', $job->job_id)
         ]);
 
         return redirect('/user/home-page');

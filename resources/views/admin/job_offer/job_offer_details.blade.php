@@ -50,11 +50,11 @@
                 </tr>
                 <tr>
                     <td>tanggal_masuk</td>
-                    <td>{{ $job_offers->tanggal_masuk }}</td>
+                    <td>{{ date('d-m-Y', strtotime($job_offers->tanggal_masuk)) }}</td>
                 </tr>
                 <tr>
                     <td>tanggal_berakhir</td>
-                    <td>{{ $job_offers->tanggal_berakhir }}</td>
+                    <td>{{ date('d-m-Y', strtotime($job_offers->tanggal_berakhir)) }}</td>
                 </tr>
                 <tr>
                     <td>jam_masuk</td>

@@ -38,6 +38,8 @@
                                     <p class="text-808080 fw-bold" style="font-size: 17px; margin: 0;">{{ ucfirst($job->job_status) }}</p>
                                     @elseif ($job->job_status == "ditolak")
                                     <p class="text-danger fw-bold" style="font-size: 17px; margin: 0;">{{ ucfirst($job->job_status) }}</p>
+                                    @elseif ($job->job_status == "diterima")
+                                    <p class="text-primary fw-bold" style="font-size: 17px; margin: 0;">{{ ucfirst($job->job_status) }}</p>
                                     @elseif ($job->job_status == "ubah gaji")
                                     <p class="text-dark fw-bold" style="font-size: 17px; margin: 0;">{{ ucfirst($job->job_status) }}</p>
                                     @elseif ($job->job_status == "berlangsung")

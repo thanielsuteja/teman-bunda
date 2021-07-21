@@ -42,9 +42,7 @@
 
         <section class="container py-5 my-5 bg-white">
             <h2 class="pt-5 text-center">Bagaimana cara penggunaannya?</h2>
-
             <div class="row gx-3 bg-white justify-content-center mx-5">
-
 
                 <div class="col-sm">
                     <div class="card bg-efefef h-100" style="border-radius: 15px;">

@@ -105,7 +105,7 @@
                             <p class="text-808080 text-end">Tanggal</p>
                         </div>
                         <div class="col-md-9">
-                            <p>{{ $job->tanggal_masuk }} - {{ $job->tanggal_berakhir }}</p>
+                            <p>{{ date('d-m-Y', strtotime($job->tanggal_masuk)) }} - {{ date('d-m-Y', strtotime($job->tanggal_berakhir)) }}</p>
                         </div>
                     </div>
                     <div class="row">

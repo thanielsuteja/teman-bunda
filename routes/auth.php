@@ -14,29 +14,6 @@ use App\Http\Controllers\Auth\VerifyEmailController;
 use App\Http\Controllers\LoginController;
 use Illuminate\Support\Facades\Route;
 
-// Route::get('/register', [RegisteredUserController::class, 'create'])
-//                 ->middleware('guest')
-//                 ->name('register');
-Route::get('/register', [AuthController::class, 'showRegisterForm'])
-    // ->middleware('guest')
-    ->name('register');
-
-Route::post('/getKabupaten', [AuthController::class, 'getKabupaten'])->name('getKabupaten');
-Route::post('/getKecamatan', [AuthController::class, 'getKecamatan'])->name('getKecamatan');
-Route::post('/getKelurahan', [AuthController::class, 'getKelurahan'])->name('getKelurahan');
-
-// Route::post('/register', [RegisteredUserController::class, 'store'])
-//                 ->middleware('guest');
-Route::post('/register/store', [AuthController::class, 'register'])
-    ->middleware('guest');
-
-Route::get('/login', [AuthController::class, 'showLoginForm'])
-    ->middleware('guest')
-    ->name('login');
-
-Route::post('/login/store', [AuthController::class, 'login'])
-    ->middleware('guest');
-
 Route::get('/forgot-password', [PasswordResetLinkController::class, 'create'])
     ->middleware('guest')
     ->name('password.request');
@@ -71,7 +48,3 @@ Route::get('/confirm-password', [ConfirmablePasswordController::class, 'show'])
 
 Route::post('/confirm-password', [ConfirmablePasswordController::class, 'store'])
     ->middleware('auth');
-
-Route::get('/logout', [AuthController::class, 'logout'])
-    ->middleware('auth')
-    ->name('logout');
