@@ -1,4 +1,4 @@
-<?php 
+<?php
 
 
 use Illuminate\Support\Facades\Route;
@@ -11,7 +11,7 @@ use App\Http\Controllers\JobOfferController;
 use App\Http\Controllers\ApplicationController;
 
 //admin auth
-Route::get('/admin/login', function () {
+Route::get('/admin', function () {
     return view('admlogin');
 })->name('adm.login');
 
@@ -32,7 +32,7 @@ Route::get('/admin/logout', function () {
     auth()->logout();
     Session()->flush();
 
-    return Redirect::to('/home');
+    return Redirect::to('/admin');
 })->name('adm.logout');
 
 Route::get('/admin/accessdenied', function () {
@@ -47,6 +47,12 @@ Route::get('/admin/accessdenied', function () {
 Route::get('/admin/users', [AdmUsersController::class, 'AllUsers'])->middleware(['auth'])->middleware(['admin'])->name('adm.users');
 
 Route::get('/admin/users/details/{id}', [AdmUsersController::class, 'Details'])->middleware(['auth'])->middleware(['admin']);
+
+Route::get('/admin/profile', [AdmUsersController::class, 'AdmDetails'])->middleware(['auth'])->middleware(['admin'])->name('adm.profile');
+
+Route::get('/admin/profile/edit-profile', [AdmUsersController::class, 'AdmEdit'])->middleware(['auth'])->middleware(['admin']);
+
+Route::post('/admin/profile/update-profile/{id}', [AdmUsersController::class, 'AdmUpdate'])->middleware(['auth'])->middleware(['admin']);
 
 //EndAdmUsersController
 
@@ -95,7 +101,9 @@ Route::get('/admin/job_offers/details/{id}', [JobOfferController::class, 'Detail
 //TransactionController
 Route::get('/admin/transactions', [TransactionController::class, 'AllTransactions'])->middleware(['auth'])->middleware(['admin'])->name('adm.transactions');
 
-Route::post('/admin/transactions/verify/{id}', [TransactionController::class, 'VerifyTransaction'])->middleware(['auth'])->middleware(['admin']);
+Route::get('/admin/transactions/finish/{id}', [TransactionController::class, 'FinishTransaction'])->middleware(['auth'])->middleware(['admin']);
+
+Route::get('/admin/transactions/verify/{id}', [TransactionController::class, 'VerifyTransaction'])->middleware(['auth'])->middleware(['admin']);
 //EndTransactionController
 
 //ApplicationController
@@ -103,6 +111,6 @@ Route::get('/admin/applications', [ApplicationController::class, 'AllApplication
 
 Route::get('/admin/applications/details/{id}', [ApplicationController::class, 'Details'])->middleware(['auth'])->middleware(['admin']);
 
-Route::post('/admin/applications/accept/{id}', [ApplicationController::class, 'AcceptApplication'])->middleware(['auth'])->middleware(['admin']);
+Route::get('/admin/applications/accept/{id}', [ApplicationController::class, 'AcceptApplication'])->middleware(['auth'])->middleware(['admin']);
 
-Route::post('/admin/applications/deny/{id}', [ApplicationController::class, 'DenyApplication'])->middleware(['auth'])->middleware(['admin']);
+Route::get('/admin/applications/deny/{id}', [ApplicationController::class, 'DenyApplication'])->middleware(['auth'])->middleware(['admin']);

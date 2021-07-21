@@ -16,7 +16,7 @@ class CaretakerSeeder extends Seeder
     {
         Caretaker::create([
             'caretaker_status' => 1,
-            'approved' => 'approved',
+            'approved' => 'accepted',
             'user_id' => '2',
             'kode_bank' => '130',
             'bank_account' => '6041067006',
@@ -31,7 +31,7 @@ class CaretakerSeeder extends Seeder
 
         Caretaker::create([
             'caretaker_status' => 1,
-            'approved' => 'approved',
+            'approved' => 'accepted',
             'user_id' => '3',
             'kode_bank' => '130',
             'bank_account' => '6041055002',

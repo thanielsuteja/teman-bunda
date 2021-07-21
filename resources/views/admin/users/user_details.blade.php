@@ -1,4 +1,4 @@
-@extends ('navbar.adminSB')
+@extends ('layout.navbar.adminSB')
 
 @section ('content')
 <div class="container rounded border border-dark bg-dark p-5" style="margin-left:20%; margin-top:5%; margin-bottom:5%; height:50%">
@@ -42,7 +42,7 @@
                 </tr>
                 <tr>
                     <td>profile_img</td>
-                    <td><img src="{{ asset($user->profile_img_path) }}" style="height:70px;width:70px"></td>
+                    <td><img src="{{ asset('storage/foto_profil/'.$user->profile_img_path) }}" style="height:70px;width:70px"></td>
                 </tr>
                 <tr>
                     <td>tanggal_lahir</td>
@@ -53,8 +53,8 @@
                     <td>{{ $user->jenis_kelamin }}</td>
                 </tr>
                 <tr>
-                    <td>nomor_telpon<</td>
-                    <td>{{ $user->nomor_telpon }}</td>
+                    <td>nomor_telepon</td>
+                    <td>{{ $user->nomor_telepon }}</td>
                 </tr>
                 <tr>
                     <td>email</td>
@@ -82,7 +82,7 @@
                 </tr>
                 <tr>
                     <td>dokumen_ktp</td>
-                    <td><img src="{{ asset($user->dokumen_ktp_path) }}" style="height:70px;width:70px"></td>
+                    <td><img src="{{ asset('storage/ktp/'.$user->dokumen_ktp_path) }}" style="height:70px;width:70px"></td>
                 </tr>
                 <tr>
                     <td>virtual_account</td>

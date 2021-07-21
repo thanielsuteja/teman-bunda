@@ -6,7 +6,6 @@
 <style>
     body {
         font-size: 15px;
-        overflow: hidden;
     }
 </style>
 <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -47,7 +46,7 @@
                     $('#kecamatan').empty();
                     $.each(response, function(id, name) {
                         $('#kecamatan').append(`<div class="btn-group-vertical" role="group" aria-label="Basic checkbox toggle button group">
-                                        <input type="checkbox" class="btn-check" value="${id}" name="kecamatan_id" id="kecamatan_${id}">
+                                        <input type="checkbox" class="btn-check" value="${id}" name="kecamatan_id[]" id="kecamatan_${id}">
                                         <label class="btn btn-outline-default text-start" for="kecamatan_${id}">${name}</label>
                                     </div>`)
                     })
@@ -55,6 +54,18 @@
             })
         });
     });
+</script>
+<script>
+    $(document).ready(function() {
+        $('#check_syarat').on('change', function() {
+            var syarat_value = $("#check_syarat");
+            if ($("#check_syarat").is(":checked")) {
+                $('#btn_daftar').attr('disabled', false);
+            } else {
+                $('#btn_daftar').attr('disabled', true);
+            }
+        });
+    })
 </script>
 
 <main class="container col-xxl-12 px-0 py-3">
@@ -66,7 +77,7 @@
         <div class="col-md-6">
             <div class="card bg-ffeea8" id="register-card" style="min-height: 640px;">
                 <div class="card-body mx-4 mt-4">
-                    <form action="#" method="post" id="msform" enctype="multipart/form-data">
+                    <form action="/simpan-caretaker" method="post" id="msform" enctype="multipart/form-data">
                         @csrf
                         <ul id="progressbar2" class="text-center m-0 ps-5">
                             <li class="active" id="pilih_profesi">
@@ -94,28 +105,28 @@
                             </div>
                             <div class="row ms-3 me-2">
                                 <div class="form-check">
-                                    <input class="form-check-input p-2" type="checkbox" value="1" id="bayi" name="profession_id">
+                                    <input class="form-check-input p-2" type="checkbox" value="1" id="bayi" name="profession_id[]">
                                     <label class="form-check-label fw-bold ms-2" for="bayi" style="font-size: 17px;">
                                         Bayi <span class="text-808080">0 - 36 bulan</span>
                                     </label>
                                     <p class="text-808080 ms-2">Untuk bayi, kegiatan utama mereka adalah memberi susu, mengganti popok, dan mandi.</p>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input p-2" type="checkbox" value="2" id="anak-anak" name="profession_id>
+                                    <input class="form-check-input p-2" type="checkbox" value="2" id="anak-anak" name="profession_id[]">
                                     <label class="form-check-label fw-bold ms-2" for="anak-anak" style="font-size: 17px;">
                                         Anak-anak <span class="text-808080">3 - 7 tahun</span>
                                     </label>
                                     <p class="text-808080 ms-2">Kegiatan utama mereka adalah memberi makan, mengganti popok, memandikan, dan menemani beraktivitas.</p>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input p-2" type="checkbox" value="3" id="anak_sd" name="profession_id">
+                                    <input class="form-check-input p-2" type="checkbox" value="3" id="anak_sd" name="profession_id[]">
                                     <label class="form-check-label fw-bold ms-2" for="anak_sd" style="font-size: 17px;">
                                         Anak SD <span class="text-808080">7 - 13 tahun</span>
                                     </label>
                                     <p class="text-808080 ms-2">Pada anak SD kelas 1 - 6, kegiatan utama mereka adalah mengantar dan menjemput, menemani, membantu mengerjakan pekerjaan rumah, serta menuntun keahlian tertentu. </p>
                                 </div>
                                 <div class="form-check">
-                                    <input class="form-check-input p-2" type="checkbox" value="4" id="lansia" name="profession_id">
+                                    <input class="form-check-input p-2" type="checkbox" value="4" id="lansia" name="profession_id[]">
                                     <label class="form-check-label fw-bold ms-2" for="lansia" style="font-size: 17px;">
                                         Lansia <span class="text-808080">60 tahun ke atas</span>
                                     </label>

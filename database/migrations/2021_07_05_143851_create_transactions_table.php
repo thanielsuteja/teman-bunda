@@ -17,9 +17,9 @@ class CreateTransactionsTable extends Migration
             $table->id('transaction_id');
             $table->string('transaction_status');
             $table->foreignId('job_id');
-            $table->integer('transaction_ammount');
-            $table->date('transaction_due');
-            $table->date('payment_date')->nullable();
+            $table->integer('transaction_amount');
+            $table->dateTime('transaction_due');
+            $table->dateTime('payment_date')->nullable();
             $table->bigInteger('bank_account');
             $table->bigInteger('virtual_account');
             $table->timestamps();

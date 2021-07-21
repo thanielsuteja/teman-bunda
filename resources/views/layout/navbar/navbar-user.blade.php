@@ -17,7 +17,7 @@
                             <span>Halo, {{ Auth::user()->nama_depan }}</span>
                         </a>
                         <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
-                            <li><a class="dropdown-item" href="#">Profil</a></li>
+                            <li><a class="dropdown-item" href="/user/profile/{{ Auth::user()->user_id }}">Profil</a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>

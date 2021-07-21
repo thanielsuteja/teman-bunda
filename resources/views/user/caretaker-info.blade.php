@@ -161,7 +161,7 @@
                                     <p class="text-808080 text-end">Dokumen</p>
                                 </div>
                                 <div class="col-md-7">
-                                    @if ($care->dokumen_vaksin_path == null && $care->dokumen_psikotes_path == null && $care->dokumen_ijazah_path == null && $care->dokumen_akta_kelahiran_path == null)
+                                    @if ($care->dokumen_vaksin_path == null && $care->dokumen_psikotes_path == null && $care->dokumen_ijazah_path == null && $care->dokumen_skck_path == null)
                                     <p>Tidak ada dokumen</p>
                                     @endif
                                     @if ($care->dokumen_vaksin_path != null)
@@ -176,7 +176,7 @@
                                     <p>Ijazah</p>
                                     <br>
                                     @endif
-                                    @if ($care->dokumen_akta_kelahiran_path != null)
+                                    @if ($care->dokumen_skck_path != null)
                                     <p>SKCK</p>
                                     <br>
                                     @endif

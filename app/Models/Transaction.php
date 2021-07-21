@@ -16,7 +16,7 @@ class Transaction extends Model
     protected $fillable = [
         'transaction_status',
         'job_id',
-        'transaction_ammount',
+        'transaction_amount',
         'transaction_due',
         'payment_date',
         'bank_account',

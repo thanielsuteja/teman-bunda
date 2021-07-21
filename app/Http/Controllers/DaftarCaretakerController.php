@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Caretaker;
 use App\Models\Region_caretaker_relation;
 use App\Models\Profession_caretaker_relation;
+use App\Models\Region;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Laravolt\Indonesia\Models\Province;
@@ -36,13 +37,15 @@ class DaftarCaretakerController extends Controller
         return view('user.daftar-caretaker', ['provinsi' => $provinsi]);
     }
 
-    public function registerCaretaker(Request $request) {
+    public function registerCaretaker(Request $request)
+    {
 
-        Auth::user()->update([
-            'role' => 'caretaker',
-        ]);
+        // Auth::user()->update([
+        //     'role' => 'caretaker',
+        // ]);
 
         $caretaker = Caretaker::create([
+            'user_id'                       => Auth::id(),
             'edukasi'                       => $request->pendidikan,
             'tipe_caretaker'                => $request->tipe,
             'NIK'                           => $request->NIK,
@@ -50,33 +53,60 @@ class DaftarCaretakerController extends Controller
             'kode_bank'                     => $request->kode_bank,
             'bank_account'                  => $request->rekening,
             'deskripsi_caretaker'           => $request->perkenalan_diri,
-            'pengawasan_kamera'             => $request->pengawasan_kamera,
-            'takut_anjing'                  => $request->takut_anjing,
-            'dokumen_vaksin_path'           => $request->vaksin,
-            'dokumen_psikotes_path'         => $request->psikotes,
-            'dokumen_ijazah_path'           => $request->ijazah,
-            'dokumen_skck_path'             => $request->skck,
+            'pengawasan_kamera'             => $request->pengawasan_kamera ?? 0,
+            'takut_anjing'                  => $request->takut_anjing ?? 1,
         ]);
-        
         foreach ($request->profession_id as $profession_id) {
             Profession_caretaker_relation::create([
                 'caretaker_id'                  => $caretaker->caretaker_id,
                 'profession_id'                 => $profession_id,
             ]);
         }
-
         foreach ($request->kecamatan_id as $kecamatan_id) {
+            $district = District::where('id', $kecamatan_id)->first();
+            $region = Region::where('region_name', $district->name)->first();
+
             Region_caretaker_relation::create([
                 'caretaker_id'                  => $caretaker->caretaker_id,
-                'region_id'                     => $kecamatan_id,
+                'region_id'                     => $region->region_id,
             ]);
         }
 
-        return redirect()->route('');
+        if ($request->hasFile('vaksin')) {
+            $request->vaksin->store('vaksin', 'public');
+            Caretaker::where('caretaker_id', $caretaker->caretaker_id)->update([
+                'dokumen_vaksin_path'           => $request->vaksin->hashName(),
+            ]);
+        }
+        if ($request->hasFile('psikotes')) {
+            $request->psikotes->store('psikotes', 'public');
+            Caretaker::where('caretaker_id', $caretaker->caretaker_id)->update([
+                'dokumen_psikotes_path'         => $request->psikotes->hashName(),
+            ]);
+        }
+        if ($request->hasFile('ijazah')) {
+            $request->ijazah->store('ijazah', 'public');
+            Caretaker::where('caretaker_id', $caretaker->caretaker_id)->update([
+                'dokumen_ijazah_path'           => $request->ijazah->hashName(),
+            ]);
+        }
+        if ($request->hasFile('skck')) {
+            $request->skck->store('skck', 'public');
+            Caretaker::where('caretaker_id', $caretaker->caretaker_id)->update([
+                'dokumen_skck_path'             => $request->skck->hashName(),
+            ]);
+        }
+
+        return redirect()->route('menunggu-verifikasi');
     }
 
     public function showTungguVerifikasi()
     {
         return view('user.menunggu-verifikasi');
+    }
+
+    public function showSelamat()
+    {
+        return view('user.selamat');
     }
 }

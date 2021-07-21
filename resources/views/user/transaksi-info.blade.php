@@ -93,7 +93,7 @@
                             <p class="text-808080 text-end">Jumlah dibayar</p>
                         </div>
                         <div class="col-md-9">
-                            <p>Rp{{ number_format($transaction->JobOffer->estimasi_biaya,0,",",".") }},00</p>
+                            <p>Rp{{ number_format($transaction->JobOffer->transaction_amount,0,",",".") }},00</p>
                         </div>
                     </div>
                     <div class="row">
