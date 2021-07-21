@@ -13,7 +13,7 @@ use App\Http\Controllers\InfoTransaksiController;
 use App\Http\Controllers\ProfilUserController;
 use App\Http\Controllers\ReviewUserController;
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'pending.caregiver'])->group(function () {
     // User Controller
     Route::get('/user/home-page', [UserController::class, 'showPageHome'])->name('user.home');
     // Cari Caregiver

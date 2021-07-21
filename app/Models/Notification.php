@@ -18,13 +18,6 @@ class Notification extends Model
         return $this->belongsTo(User::class, 'user_id', 'user_id');
     }
 
-    protected $fillable = [
-        'notification_type',
-        'content',
-        'user_id',
-        'caretaker_id',
-    ];
-
     protected $table = "Notifications";
 
     protected $primaryKey = 'notification_id';

@@ -16,7 +16,7 @@
                     </li>
                     <div class="dropdown text-end">
                         <a href="#" class="nav-link d-block link-dark text-decoration-none dropdown-toggle px-3 remove-caret" id="dropdownNotification" data-bs-toggle="dropdown" aria-expanded="false" style="border: 0; background-color: white; border-right: 2px solid #808080; border-left: 2px solid #808080;">
-                            <div class="d-flex"><i class="bi bi-bell-fill m-0" style="font-size: 22px;"></i> <span class="badge bg-secondary ms-2">{{ Auth::user()->Notifications->count() }}</span></div>
+                            <div class="d-flex position-relative"><i class="bi bi-bell-fill m-0" style="font-size: 22px;"></i> <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">{{ Auth::user()->Notifications->count() }}</span></div>
                         </a>
                         <ul class="dropdown-menu text-small dropdown-menu-end" aria-labelledby="dropdownNotification">
                             @foreach (Auth::user()->Notifications as $notification)

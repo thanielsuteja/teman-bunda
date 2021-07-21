@@ -55,7 +55,11 @@ class AuthController extends Controller
 
         if (Auth::check()) { // true sekalian session field di users nanti bisa dipanggil via Auth
             //Login Success
-            return redirect()->route('user.home');
+            if (Auth::user()->role == 'user') {
+                return redirect()->route('user.home');
+            } else {
+                return redirect()->route('caretaker.home');
+            }
         } else { // false
 
             //Login Fail
