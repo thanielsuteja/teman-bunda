@@ -36,6 +36,8 @@ Route::get('/user/cari-caregiver', [CariCaretakerController::class, 'showPageCar
 Route::get('/user/info-caregiver/{id}', [CaretakerInfoController::class, 'showCaretakerInfo'])->middleware(['auth']);
 Route::get('/user/buat-penawaran/{id}', [BuatPenawaranController::class, 'showPenawaranForm'])->middleware(['auth']);
 Route::post('/user/buat-penawaran/simpan', [BuatPenawaranController::class, 'buatPenawaran'])->middleware(['auth']);
+Route::post('/user/buat-penawaran/days', [BuatPenawaranController::class, 'getDaysFromBetweenDate'])->middleware('auth')->name('buat-penawaran-days');
+Route::post('/user/buat-penawaran/estimation', [BuatPenawaranController::class, 'calculateEstimation'])->middleware('auth')->name('buat-penawaran-estimation');
 // Orders
 Route::get('/user/order', [StatusOrderController::class, 'showOrder'])->middleware(['auth'])->name('order');
 Route::get('/user/order-info/{id}', [InfoOrderController::class, 'showOrderInfo'])->middleware(['auth'])->name('order-info');

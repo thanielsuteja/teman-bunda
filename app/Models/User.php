@@ -25,6 +25,11 @@ class User extends Authenticatable
         return $this->hasOne(Caretaker::class,'user_id','user_id');
     }
 
+    public function getAgeAttribute()
+    {
+        return \Carbon\Carbon::parse($this->tanggal_lahir)->age;
+    }
+
     public function Notifications()
     {
         return $this->hasMany(Notification::class, 'user_id', 'user_id');

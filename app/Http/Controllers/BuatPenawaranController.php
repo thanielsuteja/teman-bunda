@@ -8,6 +8,49 @@ use App\Models\Job_offer;
 
 class BuatPenawaranController extends Controller
 {
+    public function getDaysFromBetweenDate(Request $request)
+    {
+        $dayNames = [
+            1 => 'Senin',
+            2 => 'Selasa',
+            3 => 'Rabu',
+            4 => 'Kamis',
+            5 => 'Jumat',
+            6 => 'Sabtu',
+            7 => 'Minggu',
+        ];
+        $startDate = date_create($request->tanggal_masuk);
+        $endDate = date_create($request->tanggal_berakhir);
+
+        $days = [];
+        for ($date = $startDate; $date <= $endDate; $date->modify('+1 day')) {
+            $dayNumber = $date->format('N');
+            $days[$dayNumber] = $dayNames[$dayNumber] ?? '';
+        }
+
+        return $days;
+    }
+
+    public function calculateEstimation(Request $request)
+    {
+        $caretaker = Caretaker::find($request->caretaker_id);
+        $days = $request->days ?? [];
+        $cost = $caretaker->cost_per_hour;
+        $total = 0;
+
+        $startDate = date_create($request->tanggal_masuk);
+        $endDate = date_create($request->tanggal_berakhir);
+        $hour = abs(strtotime($request->jam_berakhir) - strtotime($request->jam_masuk)) / 3600;
+
+        for ($date = $startDate; $date <= $endDate; $date->modify('+1 day')) {
+            if (in_array($date->format('N'), $days)) {
+                $total += ($cost * $hour);
+            }
+        }
+
+        return $total;
+    }
+
     public function showPenawaranForm($id) {
         $caretaker = Caretaker::where('caretaker_id', $id)->first();
         return view('user.buat-penawaran', ['care' => $caretaker]);

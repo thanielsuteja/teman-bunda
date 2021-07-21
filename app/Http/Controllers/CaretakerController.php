@@ -10,6 +10,12 @@ use App\Models\Profession;
 use App\Models\Notification;
 use App\Models\Review_caretaker;
 use App\Models\Caretaker;
+use App\Models\User;
+use App\Models\Profession_caretaker_relation;
+use Laravolt\Indonesia\Models\Province;
+use Laravolt\Indonesia\Models\City;
+use Laravolt\Indonesia\Models\District;
+use Laravolt\Indonesia\Models\Village;
 
 class CaretakerController extends Controller
 {
@@ -22,13 +28,71 @@ class CaretakerController extends Controller
     {
         $user = Auth::user();
         $professions = Profession::get();
+        $provinces = Province::pluck('name', 'id');
 
-        return view('caretaker.profile', ['user' => $user, 'professions' => $professions]);
+        return view('caretaker.profile', ['user' => $user, 'professions' => $professions, 'provinces' => $provinces]);
     }
 
-    public function updateProfile(Request $request)
+    public function updateProfileArea(Request $request)
     {
         $user = Auth::user();
+
+        $user->update([
+            'alamat' => $request->alamat,
+            'provinsi' => Province::find($request->provinsi)->name,
+            'kabupaten' => City::find($request->kabupaten)->name,
+            'kecamatan' => District::find($request->kecamatan)->name,
+            'kelurahan' => Village::find($request->kelurahan)->name,
+        ]);
+
+        return redirect()->route('caretaker.profile');
+    }
+
+    public function updateProfileDetail(Request $request)
+    {
+        $user = Auth::user();
+        $caretaker = $user->Caretaker;
+
+        $caretaker->update([
+            'cost_per_hour' => $request->cost_per_hour,
+            'pengawasan_kamera' => $request->pengawasan_kamera,
+            'deskripsi_caretaker' => $request->deskripsi_caretaker,
+            'tinggi' => $request->tinggi,
+            'berat' => $request->berat,
+        ]);
+        $caretaker->ProfessionCaretakerRelation()->delete();
+        foreach ($request->profession_id as $profession_id) {
+            Profession_caretaker_relation::create([
+                'profession_id' => $profession_id,
+                'caretaker_id' => $caretaker->caretaker_id
+            ]);
+        }
+
+        return redirect()->route('caretaker.profile');
+    }
+
+    public function updateProfileFoto(Request $request)
+    {
+        $user = Auth::user();
+
+        $request->profile_img_path->store('foto_profile', 'public');
+
+        $user->update([
+            'profile_img_path' => $request->profile_img_path->hashName()
+        ]);
+
+        return redirect()->route('caretaker.profile');
+    }
+
+    public function updateProfileTerbuka(Request $request)
+    {
+        $user = Auth::user();
+
+        $user->Caretaker->update([
+            'caretaker_status' => $user->Caretaker->caretaker_status == 0 ? 1 : 0
+        ]);
+
+        return true;
     }
 
     public function showPageUlasanSaya()
@@ -36,6 +100,13 @@ class CaretakerController extends Controller
         $reviews = Auth::user()->Caretaker->JobOffers()->with('ReviewUser', 'User')->has('ReviewUser')->get();
 
         return view('caretaker.ulasan-saya', ['reviews' => $reviews]);
+    }
+
+    public function showPageReviewUser($id)
+    {
+        $user = User::find($id);
+
+        return view('caretaker.review-user', ['user' => $user]);
     }
 
     public function showPageStatusOrder()
@@ -63,7 +134,7 @@ class CaretakerController extends Controller
         $user = Auth::user();
 
         Notification::create([
-            'notification_type' => 'ubah-gaji',
+            'notification_type' => 'Permintaan Perubahan Gaji',
             'content' => 'Caregiver '.$user->nama_depan.' '.$user->nama_belakang.' meminta perubahan gaji baru',
             'user_id' => $jobOffer->user_id,
             'caretaker_id' => null,
@@ -80,6 +151,16 @@ class CaretakerController extends Controller
             'job_status' => 'ditolak'
         ]);
 
+        $user = Auth::user();
+
+        Notification::create([
+            'notification_type' => 'Penawaran Kerja Ditolak',
+            'content' => 'Penawaran kerja untuk '.$user->nama_depan.' '.$user->nama_belakang.' telah ditolak. Mungkin Caregiver belum cocok.',
+            'user_id' => $jobOffer->user_id,
+            'caretaker_id' => null,
+            'url' => route('order-info', $jobOffer->job_id)
+        ]);
+
         return redirect()->route('caretaker.status-order');
     }
 
@@ -91,13 +172,23 @@ class CaretakerController extends Controller
         ]);
         $caretaker = $jobOffer->Caretaker;
 
-        Transaction::create([
+        $transaction = Transaction::create([
             'transaction_status' => 'menunggu',
             'job_id' => $jobOffer->job_id,
             'transaction_ammount' => $job->estimasi_biaya,
             'transaction_due' => date('Y-m-d', strtotime('+1 days')),
             'bank_account' => $caretaker->bank_account,
             'virtual_account' => '1234567899'
+        ]);
+
+        $user = Auth::user();
+
+        Notification::create([
+            'notification_type' => 'Lakukan Pembayaran',
+            'content' => 'Penawaran kerja untuk '.$user->nama_depan.' '.$user->nama_belakang.' telah diterima. Segera lakukan pembayaran pada halaman Transaksi',
+            'user_id' => $jobOffer->user_id,
+            'caretaker_id' => null,
+            'url' => route('info-transaksi', $transaction->transaction_id),
         ]);
 
         return redirect()->route('caretaker.status-order');
@@ -133,48 +224,5 @@ class CaretakerController extends Controller
         ]);
 
         return redirect()->route('caretaker.status-order');
-    }
-
-    public function getDaysFromBetweenDate(Request $request)
-    {
-        $dayNames = [
-            1 => 'Senin',
-            2 => 'Selasa',
-            3 => 'Rabu',
-            4 => 'Kamis',
-            5 => 'Jumat',
-            6 => 'Sabtu',
-            7 => 'Minggu',
-        ];
-        $startDate = date_create($request->tanggal_masuk);
-        $endDate = date_create($request->tanggal_berakhir);
-
-        $days = [];
-        for ($date = $startDate; $date <= $endDate; $date->modify('+1 day')) {
-            $dayNumber = $date->format('N');
-            $days[$dayNumber] = $dayNames[$dayNumber] ?? '';
-        }
-
-        return $days;
-    }
-
-    public function calculateEstimation(Request $request)
-    {
-        $caretaker = Caretaker::find($request->caretaker_id);
-        $days = $request->days ?? [];
-        $cost = $caretaker->cost_per_hour;
-        $total = 0;
-
-        $startDate = date_create($request->tanggal_masuk);
-        $endDate = date_create($request->tanggal_berakhir);
-        $hour = abs(strtotime($request->jam_berakhir) - strtotime($request->jam_masuk)) / 3600;
-
-        for ($date = $startDate; $date <= $endDate; $date->modify('+1 day')) {
-            if (in_array($date->format('N'), $days)) {
-                $total += ($cost * $hour);
-            }
-        }
-
-        return $total;
     }
 }

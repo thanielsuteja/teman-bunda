@@ -77,6 +77,8 @@ class Caretaker extends Model
         'pengawasan_kamera',
         'takut_anjing',
         'NIK',
+        'tinggi',
+        'berat',
         'dokumen_vaksin_path',
         'dokumen_ijazah_path',
         'dokumen_psikotes_path',

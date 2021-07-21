@@ -20,7 +20,12 @@
                         </a>
                         <ul class="dropdown-menu text-small dropdown-menu-end" aria-labelledby="dropdownNotification">
                             @foreach (Auth::user()->Notifications as $notification)
-                                <li><a class="dropdown-item" href="{{ $notification->url }}">{{ $notification->content }}</a></li>
+                                <li>
+                                    <a class="dropdown-item" href="{{ $notification->url }}">
+                                        <strong class="d-block">{!! $notification->notification_type !!}</strong>
+                                        {!! $notification->content !!}
+                                    </a>
+                                </li>
                             @endforeach
                         </ul>
                     </div>

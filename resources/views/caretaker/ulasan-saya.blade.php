@@ -50,7 +50,7 @@
                                                 </div>
                                                 <p class="m-0">{{ $review->ReviewUser->review_content }}</p>
                                                 <p class="m-0 text-end">
-                                                    <a href="#" class="text-decoration-none" style="color: #FFDE59">Lihat Detail Order</a>
+                                                    <a href="{{ route('caretaker.detail-status-order', $review->job_id) }}" class="text-decoration-none" style="color: #FFDE59">Lihat Detail Order</a>
                                                 </p>
                                             </div>
                                         </div>

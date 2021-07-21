@@ -30,7 +30,7 @@
                                 <h3 class="fw-bold m-0 mb-2">{{ $jobOffer->judul_pekerjaan }}</h3>
                                 <div class="d-flex">
                                     <h5 class="fw-bold m-0 me-3">{{ $jobOffer->User->nama_depan }} {{ $jobOffer->User->nama_belakang }}</h5>
-                                    <a href="#" class="btn btn-light text-warning py-0 px-3">Lihat Profil</a>
+                                    <a href="{{ route('caretaker.review-user', $jobOffer->user_id) }}" class="btn btn-light text-warning py-0 px-3">Lihat Profil</a>
                                 </div>
                             </div>
                         </div>
@@ -111,7 +111,10 @@
                                 <p class="text-secondary text-end m-0 mb-2 me-5">Bersih</p>
                             </div>
                             <div class="col-md-9">
-                                <p class="m-0 mb-2">Rp. {{ number_format($jobOffer->estimasi_biaya, 0, ',', '.') }}</p>
+                                <p class="m-0 mb-2">
+                                    Rp. {{ number_format($jobOffer->estimasi_biaya * 0.95, 0, ',', '.') }}
+                                    <span data-bs-toggle="tooltip" data-bs-placement="right" title="Bersih = Estimasi Rupiah - 5%"><i class="bi bi-info-circle-fill d-inline"></i></span>
+                                </p>
                             </div>
                         </div>
                         <div class="row">
@@ -143,11 +146,15 @@
                                 <p class="m-0 mb-2">{{ $jobOffer->User->nomor_telepon }}</p>
                             </div>
                         </div>
-                        @if ($jobOffer->job_status == 'menunggu')
-                            <div class="row mt-5 d-flex justify-content-end">
+                        <div class="row mt-5 d-flex justify-content-end">
+                            @if ($jobOffer->job_status == 'menunggu')
                                 <button type="button" class="btn btn-outline-warning btn-lg" style="width: 200px; border: 1px solid #FFDE59; font-weight: bold" data-bs-toggle="modal" data-bs-target="#ubahGajiModal">
                                     Minta Ubah Gaji
                                 </button>
+                            @elseif ($jobOffer->job_status == 'selesai' && $jobOffer->ReviewCaretaker == null)
+                                <a href="{{ route('caretaker.review', $jobOffer->job_id) }}" class="btn btn-primary btn-lg" style="background: #FFDE59; width: 200px; border: 0; font-weight: bold">Beri Ulasan</a>
+                            @endif
+                            @if ($jobOffer->job_status != 'selesai')
                                 <form action="{{ route('caretaker.rejected-status-order', $jobOffer->job_id) }}" class="w-auto" method="post">
                                     @csrf
                                     <input type="submit" value="Tolak" class="btn btn-primary btn-lg" style="background: #FFDE59; width: 200px; border: 0; font-weight: bold">
@@ -156,12 +163,8 @@
                                     @csrf
                                     <input type="submit" value="Terima" class="btn btn-primary btn-lg" style="background: #FFDE59; width: 200px; border: 0; font-weight: bold">
                                 </form>
-                            </div>
-                        @elseif ($jobOffer->job_status == 'selesai' && $jobOffer->ReviewCaretaker == null)
-                            <div class="row mt-5 d-flex justify-content-end">
-                                <a href="{{ route('caretaker.review', $jobOffer->job_id) }}" class="btn btn-primary btn-lg" style="background: #FFDE59; width: 200px; border: 0; font-weight: bold">Beri Ulasan</a>
-                            </div>
-                        @endif
+                            @endif
+                        </div>
                     </div>
                 </div>
             </div>

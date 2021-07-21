@@ -17,7 +17,12 @@
                         </a>
                         <ul class="dropdown-menu text-small dropdown-menu-end" aria-labelledby="dropdownNotification">
                             @foreach (Auth::user()->Caretaker->Notifications as $notification)
-                                <li><a class="dropdown-item" href="{{ $notification->url }}">{{ $notification->content }}</a></li>
+                                <li>
+                                    <a class="dropdown-item" href="{{ $notification->url }}">
+                                        <strong class="d-block">{!! $notification->notification_type !!}</strong>
+                                        {!! $notification->content !!}
+                                    </a>
+                                </li>
                             @endforeach
                         </ul>
                     </div>
@@ -27,7 +32,6 @@
                         </a>
                         <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1">
                             <li><a class="dropdown-item" href="{{ route('caretaker.profile') }}">Profil</a></li>
-                            <li><a class="dropdown-item" href="#">Pengaturan</a></li>
                             <li>
                                 <hr class="dropdown-divider">
                             </li>

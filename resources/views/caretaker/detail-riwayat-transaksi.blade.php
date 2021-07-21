@@ -21,7 +21,7 @@
                                 <h3 class="fw-bold m-0 mb-2">{{ $transaction->JobOffer->judul_pekerjaan }}</h3>
                                 <div class="d-flex">
                                     <h5 class="fw-bold m-0 me-3">{{ $transaction->JobOffer->User->nama_depan }} {{ $transaction->JobOffer->User->nama_belakang }}</h5>
-                                    <a href="#" class="btn btn-light text-warning py-0 px-3">Lihat Profil</a>
+                                    <a href="{{ route('caretaker.review-user', $transaction->jobOffer->user_id) }}" class="btn btn-light text-warning py-0 px-3">Lihat Profil</a>
                                 </div>
                             </div>
                         </div>
