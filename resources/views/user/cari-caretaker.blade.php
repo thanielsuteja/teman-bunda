@@ -130,12 +130,11 @@
                                                 @endif
                                             </div>
                                             <div class="col-1">
-                                                @if ($care->dokumen_vaksin_path == null && $care->dokumen_ijazah_path == null && $care->dokumen_psikotes_path == null && $care->dokumen_akta_kelahiran_path == null)
+                                                @if ($care->dokumen_vaksin_path == null && $care->dokumen_ijazah_path == null && $care->dokumen_psikotes_path == null && $care->dokumen_skck_path == null)
                                                 <button type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="Belum memasukkan dokumen pribadi" style="border: none; padding: 0; background: none; margin-top: 5px;">
                                                     <i class="bi bi-file-earmark-x-fill m-0" style="font-size: 24px;"></i>
                                                 </button>
                                                 @else
-                                                <!-- <p style="font-size: 24; display: inline;">{{ ($care->dokumen_vaksin == null ? 0 : 1 ) + ($care->ijazah == null ? 0 : 1 ) + ($care->dokumen_psikotes == null ? 0 : 1 ) + ($care->akte_lahir == null ? 0 : 1 ) }}</p> -->
                                                 <button type="button" data-bs-toggle="tooltip" data-bs-placement="left" title="{{ $care->dokumen_vaksin_path != null ? 'Sertifikat Vaksinasi' : '' }} {{ $care->dokumen_ijazah_path != null ? 'Ijazah' : '' }} {{ $care->dokumen_psikotes_path != null ? 'Psikotes' : '' }} {{ $care->dokumen_skck_path != null ? 'SKCK' : '' }}" style="border: none; padding: 0; background: none; margin-top: 5px;">
                                                     <i class="bi bi-file-earmark-check-fill m-0" style="font-size: 24;"></i>
                                                 </button>

@@ -1,16 +1,16 @@
-@extends ('navbar.adminSB')
+@extends ('layout.navbar.adminSB')
 
 @section ('content')
 <div class="container rounded  bg-dark p-5" style="margin-left:20%; margin-top:5%; margin-bottom:5%; height:50%">
 
     <div class="container rounded p-3 mb-4 bg-primary text-white">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-        Job Offer Data
+            Job Offer Data
         </h2>
     </div>
 
     <div class="container rounded bg-white p-3">
-        
+
         <div class="card-header">Displaying data of job_offer: {{ $job_offers->job_id }}</div>
 
         <table class="table">
@@ -18,12 +18,12 @@
                 <tr>
                     <th scope="col">Field</th>
                     <th scope="col">Value</th>
-                    
+
                 </tr>
             </thead>
 
             <tbody>
-            
+
                 <tr>
                     <td>job_id</td>
                     <td>{{ $job_offers->job_id }}</td>
@@ -37,7 +37,7 @@
                     <td>{{ $job_offers->user_id }}</td>
                 </tr>
                 <tr>
-                    <td>caretaker_id<</td>
+                    <td>caretaker_id</td>
                     <td>{{ $job_offers->caretaker_id }}</td>
                 </tr>
                 <tr>
@@ -66,11 +66,39 @@
                 </tr>
                 <tr>
                     <td>hari_kerja</td>
-                    <td>{{ $job_offers->wd_1 }}</td>
+                    <td>
+                        @if( $job_offers->wd_1)
+                        Senin
+                        @endif
+                        
+                        @if( $job_offers->wd_2)
+                        Selasa
+                        @endif
+
+                        @if( $job_offers->wd_3)
+                        Rabu
+                        @endif
+
+                        @if( $job_offers->wd_4)
+                        Kamis
+                        @endif
+
+                        @if( $job_offers->wd_5)
+                        Jumat
+                        @endif
+
+                        @if( $job_offers->wd_6)
+                        Sabtu
+                        @endif
+
+                        @if( $job_offers->wd_7)
+                        Minggu
+                        @endif
+                    </td>
                 </tr>
                 <tr>
                     <td>estimasi_biaya</td>
-                    <td>{{ $job_offers->estimasi_biaya }}</td>
+                    <td>Rp{{ number_format($job_offers->estimasi_biaya, 2, ",", ".") }}</td>
                 </tr>
                 <tr>
                     <td>created_at</td>
@@ -80,12 +108,12 @@
                     <td>updated_at</td>
                     <td>{{ $job_offers->updated_at }}</td>
                 </tr>
-                
-                
+
+
             </tbody>
         </table>
 
-        <a href="{{ url('admin/job_offers') }}" class="btn btn-primary float-right">Back</a>     
+        <a href="{{ url('admin/job_offers') }}" class="btn btn-primary float-right">Back</a>
     </div>
 
 

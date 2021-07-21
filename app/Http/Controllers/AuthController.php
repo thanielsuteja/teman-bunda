@@ -132,29 +132,30 @@ class AuthController extends Controller
         // }
 
         if ($request->hasFile('ktp')) {
-            if ($request->hasFile('foto_profil')) {
-                
-                // Save the file locally in the storage/public/ folder under a new folder named /product
-                $request->ktp->store('ktp', 'public');
-                $request->foto_profil->store('foto_profil', 'public');
 
-                // Store the record, using the new file hashname which will be it's new filename identity.
-                $user = User::create([
-                    'nama_depan'            =>  ucwords(strtolower($request->nama_depan)),
-                    'nama_belakang'         =>  ucwords(strtolower($request->nama_belakang)),
-                    'email'                 =>  strtolower($request->email),
-                    'password'              =>  Hash::make($request->password),
-                    'nomor_telepon'         =>  $request->nomor_telepon,
-                    'tanggal_lahir'         =>  $request->tanggal_lahir,
-                    'jenis_kelamin'         =>  $request->jenis_kelamin,
-                    'alamat'                =>  $request->alamat,
-                    'provinsi'              =>  Province::find($request->provinsi)->name,
-                    'kabupaten'             =>  City::find($request->kabupaten)->name,
-                    'kecamatan'             =>  District::find($request->kecamatan)->name,
-                    'kelurahan'             =>  Village::find($request->kelurahan)->name,
+            $request->ktp->store('ktp', 'public');
+
+            $user = User::create([
+                'nama_depan'            =>  ucwords(strtolower($request->nama_depan)),
+                'nama_belakang'         =>  ucwords(strtolower($request->nama_belakang)),
+                'email'                 =>  strtolower($request->email),
+                'password'              =>  Hash::make($request->password),
+                'nomor_telepon'         =>  $request->nomor_telepon,
+                'tanggal_lahir'         =>  $request->tanggal_lahir,
+                'jenis_kelamin'         =>  $request->jenis_kelamin,
+                'alamat'                =>  $request->alamat,
+                'provinsi'              =>  Province::find($request->provinsi)->name,
+                'kabupaten'             =>  City::find($request->kabupaten)->name,
+                'kecamatan'             =>  District::find($request->kecamatan)->name,
+                'kelurahan'             =>  Village::find($request->kelurahan)->name,
+                'dokumen_ktp_path'      =>  $request->ktp->hashName(),
+                'virtual_account'       =>  $faker->numberBetween(100000000000000, 999999999999999)
+            ]);
+
+            if ($request->hasFile('foto_profil')) {
+                $request->foto_profil->store('foto_profil', 'public');
+                User::where('user_id', $user->user_id)->update([
                     'profile_img_path'      =>  $request->foto_profil->hashName(),
-                    'dokumen_ktp_path'      =>  $request->ktp->hashName(),
-                    'virtual_account'       =>  $faker->numberBetween(100000000000000, 999999999999999)
                 ]);
             }
         }

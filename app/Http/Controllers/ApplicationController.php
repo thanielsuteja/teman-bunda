@@ -12,35 +12,42 @@ class ApplicationController extends Controller
     //
     public function AllApplications(){
 
-         $caretakers = Caretaker::latest()->paginate(5);
+        $caretakers = Caretaker::latest()->paginate(5);
         return view('admin.application.applications', compact('caretakers') ); 
+    }
+
+    public function getAgeAttribute()
+    {
+        return \Carbon\Carbon::parse($this->User->tanggal_lahir)->age;
     }
 
     public function Details($id){
 
-        $caretaker= Caretaker::find($id);
+        $caretaker = Caretaker::find($id);
         return view('admin.application.application_details',compact('caretaker'));
     }
 
-    public function AcceptApplication(Request $request,$id){
-
-        $update = Caretaker::find($id)->update([
-            'approved' => $request->approved,
+    public function AcceptApplication($id){
+        
+        Caretaker::find($id)->update([
+            'approved' => 'accepted',
             'updated_at' => Carbon::now()
         ]);
+        
+        $user = Caretaker::select('user_id')->where('caretaker_id',$id)->first();
 
-        $update2 = User::where('user_id',$request->user_id)->update([
-            'role' => "caretaker",
+        User::where('user_id', $user->user_id)->update([
+            'role' => 'caretaker',
             'updated_at' => Carbon::now()
         ]);
 
         return Redirect()->route('adm.applications')->with('success','Caretaker application accepted, role of apllying user has been updated to "caretaker"');
     }
 
-    public function DenyApplication(Request $request,$id){
+    public function DenyApplication($id){
 
-        $update = Caretaker::find($id)->update([
-            'approved' => $request->approved,
+        Caretaker::find($id)->update([
+            'approved' => 'denied',
             'updated_at' => Carbon::now()
         ]);
 

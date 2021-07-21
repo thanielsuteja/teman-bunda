@@ -65,15 +65,14 @@ class Caretaker extends Model
     protected $table = "Caretakers";
 
     protected $fillable = [
+        'user_id',
         'caretaker_status',
         'approved',
         'kode_bank',
         'bank_account',
         'cost_per_hour',
         'edukasi',
-        'religi',
-        'tinggi',
-        'berat',
+        'tipe_caretaker',
         'deskripsi_caretaker',
         'pengawasan_kamera',
         'takut_anjing',
@@ -88,6 +87,8 @@ class Caretaker extends Model
         'rating_caretaker'  => 0.0,
         'caretaker_status'  => 1,
         'approved'          => "pending",
+        'pengawasan_kamera' => 0,
+        // 'takut_anjing'      => 1,
     ];
 
     protected $casts =[

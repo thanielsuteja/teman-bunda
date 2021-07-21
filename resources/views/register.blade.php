@@ -14,7 +14,7 @@
             }
         });
 
-        $('#provinsi').on('change', function() {
+        $('#provinsi').on('click', function() {
             $.ajax({
                 url: '{{ route("getKabupaten") }}',
                 method: 'POST',
@@ -31,7 +31,7 @@
             })
         });
 
-        $('#kabupaten').on('change', function() {
+        $('#kabupaten').on('click', function() {
             $.ajax({
                 url: '{{ route("getKecamatan") }}',
                 method: 'POST',
@@ -47,7 +47,7 @@
             })
         });
 
-        $('#kecamatan').on('change', function() {
+        $('#kecamatan').on('click', function() {
             $.ajax({
                 url: '{{ route("getKelurahan") }}',
                 method: 'POST',
@@ -173,7 +173,7 @@
                                     <div class="form-floating mb-3">
                                         <select class="form-select rounded-input" id="jenis_kelamin" name="jenis_kelamin" aria - label="Floating label select example">
                                             <option value=""> Pilih jenis kelamin </option>
-                                            <option value="lakilaki"> Laki - laki </option>
+                                            <option value="lakilaki"> Laki-laki </option>
                                             <option value="perempuan"> Perempuan </option>
                                         </select>
                                         <label for="jenis_kelamin"> Jenis kelamin </label>
@@ -230,7 +230,8 @@
                                 <input type="checkbox" name="setuju" id="check_syarat" class="form-check-input">
                                 <label for="setuju" class="form-check-label ms-2"> Dengan mencentang ini, kamu menyetujui <a href="/syaratdanketentuan" class="text-decoration-none"> Syarat & Ketentuan </a> kami</label>
                             </div>
-                            <input type="submit" class="btn bg-temanbunda text-white mt-4" id="btn_daftar" value="Daftar" style="width: 240px; height: 60px;" disabled>
+                            <input type="button" name="previous" class="previous btn btn-secondary text-white mt-4" id="btn_prev2" value="Sebelumnya" style="width: 170px; height: 60px;">
+                            <input type="submit" class="btn next bg-temanbunda text-white mt-4" id="btn_daftar" value="Daftar" style="width: 170px; height: 60px;" disabled>
                         </fieldset>
                     </form>
                 </div>

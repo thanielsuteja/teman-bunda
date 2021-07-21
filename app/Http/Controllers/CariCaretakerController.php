@@ -29,7 +29,7 @@ class CariCaretakerController extends Controller
             });
         }
 
-        $caretaker = $caretaker->where('caretaker_status', 1)->get();
+        $caretaker = $caretaker->where('caretaker_status', 1)->where('approved','accepted')->get();
 
         if ($request->get('sort') == 'rating-tertinggi') {
             $caretaker = $caretaker->sortByDesc('MeanRating')->values();

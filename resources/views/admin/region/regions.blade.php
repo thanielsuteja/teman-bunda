@@ -1,4 +1,4 @@
-@extends ('navbar.adminSB')
+@extends ('layout.navbar.adminSB')
 
 @section ('content')
     <div class="container rounded border border-dark bg-dark p-5" style="margin-left:20%; margin-top:5%; height:50%">

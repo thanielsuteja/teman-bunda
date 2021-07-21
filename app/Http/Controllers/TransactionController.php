@@ -15,11 +15,21 @@ class TransactionController extends Controller
         return view('admin.transaction.transactions', compact('transactions') );
     }
 
-    public function VerifyTransaction(Request $request ,$id){
+    public function FinishTransaction($id)
+    {
+        $update = Transaction::find($id)->update([
+            'transaction_status' => 'terbayar',
+            'payment_date' => Carbon::now(),
+            'updated_at' => Carbon::now()
+        ]);
+    
+        return Redirect()->route('adm.transactions')->with('success','Payment Finished');
+    }
+
+    public function VerifyTransaction($id){
 
         $update = Transaction::find($id)->update([
-            'transaction_status' => $request->transaction_status,
-            'payment_date' => Carbon::now(),
+            'transaction_status' => 'terverifikasi',
             'updated_at' => Carbon::now()
         ]);
 
