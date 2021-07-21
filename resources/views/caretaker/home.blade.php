@@ -42,9 +42,9 @@
                         <div class="card-body text-center">
                             <img src="/img/icon/find.png" class="py-5" alt="" width="80">
                             <div class="mb-2" style="min-height: 50px;">
-                                <p class="card-title fw-bold">Cari Teman Bunda</p>
+                                <p class="card-title fw-bold">Tunggu Penawaran Kerja</p>
                             </div>
-                            <p>Pilih Caregiver yang cocok serta dapat bekerja di lokasimu</p>
+                            <p>Kamu cukup diam dan tunggu penawaran dari Parent masuk ke notifikasimu.</p>
                         </div>
                     </div>
                 </div>
@@ -53,9 +53,9 @@
                         <div class="card-body text-center">
                             <img src="/img/icon/verify.png" class="py-5" alt="" width="80">
                             <div class="mb-2" style="min-height: 50px;">
-                                <p class="card-title fw-bold">Isi Formulir Penawaran Kerja</p>
+                                <p class="card-title fw-bold">Ikuti Wawancara dan Bekerja</p>
                             </div>
-                            <p>Isi deskripsi pekerjaan, tanggal, waktu, dan estimasi gaji yang ingin kamu tawarkan</p>
+                            <p>Hubungi dan ikuti wawancara Parent sebelum kamu mulai bekerja</p>
                         </div>
                     </div>
                 </div>
@@ -64,20 +64,9 @@
                         <div class="card-body text-center">
                             <img src="/img/icon/interview.png" class="py-5" alt="" width="80">
                             <div class="mb-2" style="min-height: 50px;">
-                                <p class="card-title fw-bold">Wawancara dan Pekerjakan</p>
-                            </div>
-                            <p>Caregiver pilihanmu akan menghubungi dan lakukanlah tanya jawab sebelum memperkerjakan</p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-sm">
-                    <div class="card bg-efefef h-100" style="border-radius: 15px;">
-                        <div class="card-body text-center">
-                            <img src="/img/icon/review.png" class="py-5" alt="" width="80">
-                            <div class="mb-2" style="min-height: 50px;">
                                 <p class="card-title fw-bold">Beri Ulasan dan Penilaian</p>
                             </div>
-                            <p>Beri ulasan dan penilaian pada Caregiver yang sudah membantumu! Caregiver dapat melihat ulasanmu</p>
+                            <p>Beri ulasan dan penilaian kepada Parent agar pengguna lainnya bisa mengetahui nilai Parent</p>
                         </div>
                     </div>
                 </div>
