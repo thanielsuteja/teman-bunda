@@ -65,7 +65,7 @@ class UserSeeder extends Seeder
             'kabupaten'         => 'Kabupaten Semarang',
             'kecamatan'         => 'Alambaka',
             'kelurahan'         => 'Syoerkka',
-            'dokumen_ktp_path'  => asset('3JIBFxDnmueBJQNxEfMes96JHTa01SBzx4brUGCO.png'),
+            'dokumen_ktp_path'  => '3JIBFxDnmueBJQNxEfMes96JHTa01SBzx4brUGCO.png',
             'virtual_account'   => '111000000000000',
             'created_at'        => '2019-06-01 16:12:05'
         ]);
@@ -84,7 +84,7 @@ class UserSeeder extends Seeder
             'kabupaten'         => 'ADMIN',
             'kecamatan'         => 'ADMIN',
             'kelurahan'         => 'ADMIN',
-            'dokumen_ktp_path'  => asset('storage/ktp/3JIBFxDnmueBJQNxEfMes96JHTa01SBzx4brUGCO.png'),
+            'dokumen_ktp_path'  => '3JIBFxDnmueBJQNxEfMes96JHTa01SBzx4brUGCO.png',
             'virtual_account'   => '111100000000000',
         ]);
 

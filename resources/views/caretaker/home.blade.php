@@ -1,7 +1,7 @@
 @extends ('layout.master')
 @section ('title', 'Home | Teman Bunda')
-@include ('layout.navbar.navbar-user')
-@include ('layout.sidebar.sidebar-user')
+@include ('layout.navbar.navbar-caretaker')
+@include ('layout.sidebar.sidebar-caretaker')
 
 @section ('content')
 
@@ -23,12 +23,6 @@
                 <div class="carousel-item">
                     <img src="{{ asset('/img/login.png') }}" class="d-block w-100" style="width: 1280px; height: 548.57px;" alt="...">
                 </div>
-                <div class="carousel-item">
-                    <img src="{{ asset('/img/KakaoTa.jpg') }}" class="d-block w-100" style="width: 1280px; height: 548.57px;" alt="...">
-                </div>
-                <div class="carousel-item">
-                    <img src="{{ asset('/img/login.png') }}" class="d-block w-100" style="width: 1280px; height: 548.57px;" alt="...">
-                </div>
             </div>
             <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
@@ -43,7 +37,6 @@
         <section class="container py-5 my-5 bg-white">
             <h2 class="pt-5 text-center">Bagaimana cara penggunaannya?</h2>
             <div class="row gx-3 bg-white justify-content-center mx-5">
-
                 <div class="col-sm">
                     <div class="card bg-efefef h-100" style="border-radius: 15px;">
                         <div class="card-body text-center">
@@ -88,7 +81,6 @@
                         </div>
                     </div>
                 </div>
-
             </div>
         </section>
     </main>

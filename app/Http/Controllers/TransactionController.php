@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Models\Transaction;
 use Illuminate\Support\Carbon;
+use App\Models\Transaction;
+use App\Models\Notification;
+use App\Models\Job_offer;
 
 class TransactionController extends Controller
 {
@@ -17,7 +18,7 @@ class TransactionController extends Controller
 
     public function FinishTransaction($id)
     {
-        $update = Transaction::find($id)->update([
+        $transaction = Transaction::find($id)->update([
             'transaction_status' => 'terbayar',
             'payment_date' => Carbon::now(),
             'updated_at' => Carbon::now()
@@ -28,9 +29,19 @@ class TransactionController extends Controller
 
     public function VerifyTransaction($id){
 
-        $update = Transaction::find($id)->update([
+        $transaction = Transaction::find($id)->update([
             'transaction_status' => 'terverifikasi',
             'updated_at' => Carbon::now()
+        ]);
+
+        $job = Job_offer::find($transaction->job_id);
+
+        Notification::create([
+            'notification_type' => 'Uang Terkirim ke Rekeningmu',
+            'content' => 'Sejumlah Rp'.$transaction->transaction_amount*(95/100).',00 telah dikirim ke rekeningmu.',
+            'user_id' => null,
+            'caretaker_id' => $job->caretaker_id,
+            'url' => route('caretaker.detail-riwayat-transaksi', $transaction->transaction_id),
         ]);
 
         return Redirect()->route('adm.transactions')->with('success','Payment Verified');

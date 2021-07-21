@@ -6,7 +6,7 @@
 <main class="container main col-xxl-12 px-0">
     <section class="row flex-lg-row-reverse align-items-center py-5 mb-5">
         <div class="col-10 col-sm-8 col-lg-6">
-            <img src="/img/homepage_picture(copy).png" class="d-block mx-lg-auto img-fluid" alt="" width="600" loading="lazy">
+            <img src="{{ asset('/img/homepage_picture(copy).png') }}" class="d-block mx-lg-auto img-fluid" alt="" width="600" loading="lazy">
         </div>
         <div class="col-lg-6">
             <h1 class="display-5 lg-1 mb-3">Cara baru dan mudah mencari <i>caregiver</i> dengan cepat</h1>
