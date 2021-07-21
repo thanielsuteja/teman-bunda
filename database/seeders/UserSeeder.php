@@ -27,7 +27,7 @@ class UserSeeder extends Seeder
             'kabupaten'         => 'KOTA JAKARTA PUSAT',
             'kecamatan'         => 'SENEN',
             'kelurahan'         => 'SENEN',
-            'dokumen_ktp_path'  => asset('xxduqwLCgfVEtgOi5fiUokRfCUTH0nSc2KcqASzD.png'),
+            'dokumen_ktp_path'  => 'xxduqwLCgfVEtgOi5fiUokRfCUTH0nSc2KcqASzD.png',
             'virtual_account'   => '100000000000000',
         ]);
 
@@ -45,8 +45,8 @@ class UserSeeder extends Seeder
             'kabupaten'         => 'KOTA JAKARTA PUSAT',
             'kecamatan'         => 'GAMBIR',
             'kelurahan'         => 'CIDENG',
-            'dokumen_ktp_path'  => asset('jbFRhQY2IOH7EZFwLLggMuAU7U0flu9QKc4fH1hA.png'),
-            'profile_img_path'  => asset('QtZJ52FNKZPij4LmqcFGU8GOON4Vd6VMcLaSUku8.jpg'),
+            'dokumen_ktp_path'  => 'jbFRhQY2IOH7EZFwLLggMuAU7U0flu9QKc4fH1hA.png',
+            'profile_img_path'  => 'QtZJ52FNKZPij4LmqcFGU8GOON4Vd6VMcLaSUku8.jpg',
             'virtual_account'   => '110000000000000',
             'created_at'        => '2020-07-11 16:12:05'
         ]);
