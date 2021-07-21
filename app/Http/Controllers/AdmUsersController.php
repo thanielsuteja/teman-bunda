@@ -15,7 +15,6 @@ class AdmUsersController extends Controller
 
     public function AllUsers()
     {
-
         $users = User::oldest()->paginate(5);
         return view('admin.users.users', compact('users'));
     }
