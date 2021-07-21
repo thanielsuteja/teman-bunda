@@ -86,7 +86,7 @@ class Caretaker extends Model
 
     protected $attributes = [
         'rating_caretaker'  => 0.0,
-        'caretaker_status'  => 0,
+        'caretaker_status'  => 1,
         'approved'          => "pending",
     ];
 

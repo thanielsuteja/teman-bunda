@@ -87,7 +87,17 @@ class CaretakerController extends Controller
     {
         $jobOffer = Job_offer::find($id);
         $jobOffer->update([
-            'job_status' => 'diterima'
+            'job_status' => 'diterima',
+        ]);
+        $caretaker = $jobOffer->Caretaker;
+
+        Transaction::create([
+            'transaction_status' => 'menunggu',
+            'job_id' => $jobOffer->job_id,
+            'transaction_ammount' => $job->estimasi_biaya,
+            'transaction_due' => date('Y-m-d', strtotime('+1 days')),
+            'bank_account' => $caretaker->bank_account,
+            'virtual_account' => '1234567899'
         ]);
 
         return redirect()->route('caretaker.status-order');
