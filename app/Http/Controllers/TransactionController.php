@@ -23,6 +23,10 @@ class TransactionController extends Controller
             'payment_date' => Carbon::now(),
             'updated_at' => Carbon::now()
         ]);
+
+        Job_offer::where('job_id', $transaction->job_id)->update([
+            'job_status' => 'berlangsung',
+        ]);
     
         return Redirect()->route('adm.transactions')->with('success','Payment Finished');
     }
