@@ -44,10 +44,10 @@
                 </div>
             </div>
             <hr class="my-1">
-            <div class="row justify-content-end">
-                <p>Bagaimana kualitas pelayanan caregiver ini?</p>
-                <div class="row">
-                    <div class="stars"></div>
+            <div class="row">
+                <p class="mb-2">Bagaimana kualitas pelayanan caregiver ini?</p>
+                <div class="row justify-content-center">
+                    <div class="stars p-0" style="width: 150px;"></div>
                 </div>
                 <textarea name="ulasan" id="ulasan" cols="30" rows="10" class="form-control rounded-input-sm" placeholder="Berikan ulasan untuk pengguna ini (opsional)" style="height: 110px !important; background-color: #f1f1f1;"></textarea>
             </div>

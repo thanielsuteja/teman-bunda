@@ -9,7 +9,7 @@ class UlasanSayaController extends Controller
 {
     public function showPageUlasanSaya()
     {
-        $reviews = Auth::user()->Caretaker->JobOffers()->with('ReviewUser', 'User')->has('ReviewUser')->get();
+        $reviews = Auth::user()->Caretaker->JobOffers()->with('ReviewUser', 'User')->has('ReviewUser')->orderBy('created_at', 'desc')->get();
 
         return view('caretaker.ulasan-saya', ['reviews' => $reviews]);
     }

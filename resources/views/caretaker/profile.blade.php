@@ -5,7 +5,7 @@
 
 @section ('content')
 <meta name="csrf-token" content="{{ csrf_token() }}">
-<style>
+<!-- <style>
     .box-placeholder {
         display: block;
         width: 100%;
@@ -42,7 +42,7 @@
         -ms-transform: translate(-50%, -50%);
         text-align: center;
     }
-</style>
+</style> -->
 <script>
     $(function() {
         $.ajaxSetup({

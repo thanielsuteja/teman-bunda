@@ -8,103 +8,89 @@
     body {
         background-color: #efefef;
     }
+
+    p {
+        font-size: 16px;
+        margin-bottom: 0.3rem;
+    }
 </style>
 
-<div class="container main col-xxl-12 px-5">
+<div class="container col-xxl-12 px-5">
     <div class="row">
         <div class="col-md-8 offset-md-2">
-            <div class="card mb-5" style="border-radius: 20px; overflow: hidden;">
-                <div class="card-header bg-temanbunda pt-4">
+            <div class="card shadow mb-2" style="border-radius: 20px; overflow: hidden; margin-top: 90px;">
+                <div class="card-header bg-temanbunda p-0 d-flex align-items-center" style="height: 107px;">
                     <div class="row">
-                        <div class="col-3"></div>
-                        <div class="col-9">
-                            <h3 class="fw-bold m-0 mb-2">{{ $transaction->JobOffer->judul_pekerjaan }}</h3>
-                            <div class="d-flex">
-                                <h5 class="fw-bold m-0 me-3">{{ $transaction->JobOffer->User->nama_depan }} {{ $transaction->JobOffer->User->nama_belakang }}</h5>
-                                <a href="{{ route('caretaker.profil-user', $transaction->jobOffer->user_id) }}" class="btn btn-light text-warning py-0 px-3">Lihat Profil</a>
-                            </div>
+                        <div class="col-1 d-flex align-items-center">
+                            <a href="{{ url()->previous() }}" class="text-decoration-none fw-bold" style="color: black;">
+                                <i class="bi bi-chevron-left ps-3" style="font-size: 36px; height: 36; width: 36;"></i>
+                            </a>
+                        </div>
+                        <div class="col">
+                            <h2 class="m-0 ms-5">Info Transaksi</h2>
                         </div>
                     </div>
                 </div>
-                <div class="card-body">
-                    <div class="row mb-4">
-                        <div class="col-md-3 text-center">
-                            @if ($transaction->JobOffer->User->profile_img_path != null)
-                            <img src="{{ asset($transaction->JobOffer->User->profile_img_path) }}" style="border-radius: 50%; object-fit: cover; width: 110px; height: 110px; border: 7px solid #FFE074; margin-top: -75px">
-                            @else
-                            <img src="{{ asset('img/no-profile.png') }}" style="border-radius: 50%; object-fit: cover; width: 110px; height: 110px; border: 7px solid #FFE074; margin-top: -75px">
-                            @endif
+                <div class="card-body mx-5" style="min-height: 532px;">
+                    <div class="row mt-4">
+                        <div class="col-md-4">
+                            <p class="text-secondary text-end m-0 mb-2">Nomor Transaksi</p>
                         </div>
-                        <div class="col-md-9">
-                            <div class="row">
-                                <div class="col">
-                                    <div>
-                                        @for ($i = 1; $i < 6; $i++) @if ($transaction->JobOffer->User->meanRating >= $i)
-                                            <i class="bi-star-fill" style="color: #FFDE59;"></i>
-                                            @elseif (($i - $transaction->JobOffer->User->meanRating) >= 1)
-                                            <i class="bi-star" style="color: #FFDE59;"></i>
-                                            @elseif (fmod($transaction->JobOffer->User->meanRating, 1) != 0)
-                                            <i class="bi-star-half" style="color: #FFDE59;"></i>
-                                            @endif
-                                            @endfor
-                                    </div>
-                                    <span class="text-secondary">{{ $transaction->JobOffer->User->CountReviewCaretaker }} Ulasan</span>
-                                </div>
-                                <div class="col">
-                                    <span class="text-secondary me-1">Nomor transaksi</span> {{ $transaction->transaction_id }}
-                                </div>
-                            </div>
+                        <div class="col-md-8">
+                            <p class="m-0 mb-2">{{ $transaction->transaction_id }}</p>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-3">
-                            <p class="text-secondary text-end m-0 mb-2 me-5">ID</p>
+                        <div class="col-md-4">
+                            <p class="text-secondary text-end m-0 mb-2">Dibayar tanggal</p>
                         </div>
-                        <div class="col-md-9">
+                        <div class="col-md-8">
+                            <p class="m-0 mb-2">{{ date('d/m/Y', strtotime($transaction->payment_date)) }}</p>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <p class="text-secondary text-end m-0 mb-2">Nomor Order</p>
+                        </div>
+                        <div class="col-md-8">
                             <p class="m-0 mb-2">{{ $transaction->JobOffer->job_id }}</p>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-3">
-                            <p class="text-secondary text-end m-0 mb-2 me-5">Alamat</p>
+                        <div class="col-md-4">
+                            <p class="text-secondary text-end m-0 mb-2">Judul Pekerjaan</p>
                         </div>
-                        <div class="col-md-9">
-                            <p class="m-0 mb-2">{{ $transaction->JobOffer->User->alamat }}</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-3">
-                            <p class="text-secondary text-end m-0 mb-2 me-5">Tanggal bekerja</p>
-                        </div>
-                        <div class="col-md-9">
-                            <p class="m-0 mb-2">{{ date('d/m/Y', strtotime($transaction->JobOffer->tanggal_masuk)) }} {{ date('d/m/Y', strtotime($transaction->JobOffer->tanggal_berakhir)) }}</p>
+                        <div class="col-md-8">
+                            <p class="m-0 mb-2">{{ $transaction->JobOffer->judul_pekerjaan }}</p>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-3">
-                            <p class="text-secondary text-end m-0 mb-2 me-5">Jam kerja</p>
+                        <div class="col-md-4">
+                            <p class="text-secondary text-end m-0 mb-2">Status</p>
                         </div>
-                        <div class="col-md-9">
-                            <p class="m-0 mb-2">{{ $transaction->JobOffer->jam_masuk }} - {{ $transaction->JobOffer->jam_berakhir }}</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-3">
-                            <p class="text-secondary text-end m-0 mb-2 me-5">Hari masuk</p>
-                        </div>
-                        <div class="col-md-9">
-                            <p class="m-0 mb-2">{{ implode(', ', $transaction->JobOffer->Days) }}</p>
+                        <div class="col-md-8">
+                            <p class="m-0 mb-2">{{ ucfirst($transaction->transaction_status) }}</p>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-md-3">
-                            <p class="text-secondary text-end m-0 mb-2 me-5">Deskripsi Pekerjaan</p>
+                        <div class="col-md-4">
+                            <p class="text-secondary text-end m-0 mb-2">Total upah</p>
                         </div>
-                        <div class="col-md-9">
-                            <p class="m-0 mb-2">{{ $transaction->JobOffer->deskripsi_pekerjaan }}</p>
+                        <div class="col-md-8">
+                            <p class="m-0 mb-2">Rp{{ number_format($transaction->transaction_amount, 2, ',', '.') }}</p>
                         </div>
                     </div>
                     <div class="row">
+                        <div class="col-md-4">
+                            <p class="text-secondary text-end m-0 mb-2">Upah diterima</p>
+                        </div>
+                        <div class="col-md-8">
+                            <p class="m-0 mb-2">Rp{{ number_format($transaction->transaction_amount*0.95, 2, ',', '.') }}
+                                <span data-bs-toggle="tooltip" data-bs-placement="right" title="Teman Bunda mengambil sebanyak lima persen dari penghasilanmu untuk mengembangkan Teman Bunda lebih lanjut"><i class="bi bi-info-circle-fill d-inline"></i></span>
+                            </p>
+                        </div>
+                    </div>
+                    <!-- <div class="row">
                         <div class="col-md-12">
                             <hr style="background: black; margin-top: 40px; margin-bottom: 25px">
                         </div>
@@ -135,6 +121,9 @@
                         <div class="col-md-9">
                             <p class="m-0 mb-2">{{ ucwords($transaction->transaction_status) }}</p>
                         </div>
+                    </div> -->
+                    <div class="row justify-content-end" style="padding-top: 170px;">
+                        <a href="{{ route('caretaker.detail-order', $transaction->job_id) }}" class="btn bg-temanbunda ms-3 fw-bold py-3" style="width: 180px; height: 58px;">Lihat Order</a>
                     </div>
                 </div>
             </div>

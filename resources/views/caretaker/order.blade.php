@@ -43,7 +43,7 @@
                                 <div class="row">
                                     <div class="col-md-3 px-2 text-center">
                                         @if ($jobOffer->User->profile_img_path != null)
-                                        <img src="{{ asset($jobOffer->User->profile_img_path) }}" style="border-radius: 50%; object-fit: cover; width: 110px; height: 110px; border: 7px solid #FFE074">
+                                        <img src="{{ asset('storage/foto_profil/'.$jobOffer->User->profile_img_path) }}" style="border-radius: 50%; object-fit: cover; width: 110px; height: 110px; border: 7px solid #FFE074">
                                         @else
                                         <img src="{{ asset('img/no-profile.png') }}" style="border-radius: 50%; object-fit: cover; width: 110px; height: 110px; border: 7px solid #FFE074">
                                         @endif

@@ -18,7 +18,7 @@
 <div class="container col-xxl-12 px-5">
     <div class="row">
         <div class="col-md-8 offset-md-2">
-            <div class="card shadow" style="border-radius: 20px; overflow: hidden; margin-top: 90px;">
+            <div class="card shadow mb-2" style="border-radius: 20px; overflow: hidden; margin-top: 90px;">
                 <div class="card-header bg-temanbunda p-0 d-flex align-items-center" style="height: 120px;">
                     <div class="row">
                         <div class="col-1 d-flex align-items-center">

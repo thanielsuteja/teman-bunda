@@ -27,7 +27,7 @@
     <div class="row">
         <div class="col-md-8 offset-md-2">
             <div class="card mb-2 shadow" style="border-radius: 20px; overflow: hidden; margin-top: 90px;">
-                <div class="card-header bg-temanbunda d-flex justify-content-between align-items-center p-0" style="height: 120px;">
+                <div class="card-header bg-temanbunda d-flex align-items-center p-0" style="height: 120px;">
                     <div class="row">
                         <div class="col-1 d-flex align-items-center">
                             <a href="{{ url()->previous() }}" class="text-decoration-none fw-bold" style="color: black;">
@@ -71,7 +71,7 @@
                         </div>
                         <div class="col-3" style="margin-top: -40px;">
                             @if ($jobOffer->Caretaker->User->profile_img_path != null)
-                            <img src="{{ asset('storage/foto_profil/'.$jobOffer->Caretaker->User->profile_img_path) }}" class="profile-pic-lg border">
+                            <img src="{{ asset('storage/foto_profil/'.$jobOffer->User->profile_img_path) }}" class="profile-pic-lg border">
                             @else
                             <img src="{{ asset('img/no-profile.png') }}" class="profile-pic-lg border">
                             @endif
@@ -174,7 +174,7 @@
                         <button type="button" class="btn fw-bold" style="width: 180px; height: 58px; border: 1px solid #ffde59; color: #ffde59;" disabled>Tolak</button>
                         <button type="button" class="btn bg-temanbunda ms-3 fw-bold" style="width: 180px; height: 58px;" disabled>Terima</button>
                         @elseif ($jobOffer->job_status == 'selesai' && $jobOffer->ReviewCaretaker == null)
-                        <a href="{{ route('caretaker.review', $jobOffer->job_id) }}" class="btn bg-temanbunda ms-3 fw-bold" style="width: 180px; height: 58px;">Beri Ulasan</a>
+                        <a href="{{ route('caretaker.review', $jobOffer->job_id) }}" class="btn bg-temanbunda ms-3 fw-bold py-3" style="width: 180px; height: 58px;">Beri Ulasan</a>
                         @endif
                     </div>
                     @endif

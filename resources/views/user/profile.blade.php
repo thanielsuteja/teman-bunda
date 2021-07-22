@@ -66,7 +66,7 @@
 <div class="container main col-xxl-12 px-5">
     <div class="row">
         <div class="col-md-8 offset-md-2">
-            <div class="card" style="border: 1px solid #C4C4C4; border-radius: 30px;">
+            <div class="card mb-3" style="border: 1px solid #C4C4C4; border-radius: 30px;">
                 <div class="card-body p-5">
                     <h5 class="card-title">My Profile</h5>
                     <hr>
@@ -86,15 +86,17 @@
                             </div>
                         </div>
                         <div class="col-md-4">
-                            <div class="row justify-content-center">
-                                @if ($user->profile_img_path != null)
-                                <img src="{{ asset('storage/foto_profil/'.$user->profile_img_path) }}" class="p-0" style="border-radius: 50%; object-fit: cover; width: 90px; height: 90px; border: 1px solid black">
-                                @else
-                                <img src="{{ asset('img/no-profile.png') }}" class="p-0" style="border-radius: 50%; object-fit: cover; width: 90px; height: 90px; border: 1px solid black">
-                                @endif
-                            </div>
-                            <div class="row justify-content-center">
-                                <button type="button" class="btn btn-outline-warning d-inline-block text-warning mt-3" style="width: 150px;">Edit Foto</button>
+                            <div class="d-flex justify-content-center image-container">
+                                <a type="button" class="" data-bs-toggle="modal" href="#editFotoModal">
+                                    @if ($user->profile_img_path != null)
+                                    <img src="{{ asset('storage/foto_profil/'.$user->profile_img_path) }}" class="p-0 image" style="border-radius: 50%; object-fit: cover; width: 140px; height: 140px; border: 1px solid black">
+                                    @else
+                                    <img src="{{ asset('img/no-profile.png') }}" class="p-0 image" style="border-radius: 50%; object-fit: cover; width: 140px; height: 140px; border: 1px solid black">
+                                    @endif
+                                    <div class="profile-text middle">
+                                        <i class="bi bi-plus-lg text-808080 m-0" style="font-size: 50px; width: fit-content; height: fit-content;"></i>
+                                    </div>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -163,11 +165,43 @@
                     <h5 class="text-secondary">Dokumen</h5>
                     <div class="row">
                         <div class="col-4">
+                            @if ($user->dokumen_ktp_path == null)
+                            <div class="box-placeholder"></div>
+                            @else
                             <img src="{{ asset('storage/ktp/'.$user->dokumen_ktp_path) }}" alt="" style="object-fit: cover; width: 80px; height: 80px; border: 1px solid black">
+                            @endif
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="editFotoModal" tabindex="-1" aria-labelledby="editFotoModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editFotoModalLabel">Edit</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form action="{{ route('user.profile-foto') }}" method="post" enctype="multipart/form-data">
+                @csrf
+                <div class="modal-body">
+                    <input type="file" name="profile_img_path" id="profile_img_path" class="d-none">
+                    <div id="btn-change" style="cursor: pointer">
+                        @if ($user->profile_img_path != null)
+                        <img src="{{ asset('storage/foto_profil/'.$user->profile_img_path) }}" class="img-fluid">
+                        @else
+                        <img src="{{ asset('img/no-profile.png') }}" class="img-fluid">
+                        @endif
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="submit" class="btn btn-primary">Simpan</button>
+                </div>
+            </form>
         </div>
     </div>
 </div>
@@ -211,7 +245,7 @@
                     <div class="mb-3 row">
                         <label class="col-md-4 col-form-label">Kecamatan</label>
                         <div class="col-md-4">
-                        <select name="kecamatan" id="kecamatan" class="form-select">
+                            <select name="kecamatan" id="kecamatan" class="form-select">
                                 <option value="">Pilih kecamatan</option>
                             </select>
                         </div>
@@ -219,7 +253,7 @@
                     <div class="mb-3 row">
                         <label class="col-md-4 col-form-label">Kelurahan</label>
                         <div class="col-md-4">
-                        <select name="kelurahan" id="kelurahan" class="form-select">
+                            <select name="kelurahan" id="kelurahan" class="form-select">
                                 <option value="">Pilih kelurahan</option>
                             </select>
                         </div>
@@ -233,5 +267,13 @@
         </div>
     </div>
 </div>
-
+<script>
+    $('#btn-change').click(function(e) {
+        $('#profile_img_path').click();
+    });
+    $('#profile_img_path').change(function(e) {
+        var src = window.URL.createObjectURL(this.files[0]);
+        $('#btn-change').html(`<img src="${src}" class="img-fluid" />`);
+    });
+</script>
 @endsection

@@ -42,4 +42,5 @@ Route::middleware(['auth', 'pending.caregiver'])->group(function () {
     // User Profile
     Route::get('/user/profile/{id}', [ProfilUserController::class, 'showProfile'])->name('user.profile');
     Route::post('/user/ganti-alamat/{id}', [ProfilUserController::class, 'simpanAlamat']);
+    Route::post('/user/profile/foto', [ProfilUserController::class, 'updateFotoProfil'])->name('user.profile-foto');
 });

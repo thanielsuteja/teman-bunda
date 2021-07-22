@@ -13,7 +13,7 @@ class OrderCaretakerController extends Controller
 {
     public function showPageOrder()
     {
-        $jobOffers = Auth::user()->Caretaker->JobOffers()->with('User')->get();
+        $jobOffers = Auth::user()->Caretaker->JobOffers()->with('User')->orderBy('created_at', 'desc')->get();
 
         return view('caretaker.order', ['jobOffers' => $jobOffers]);
     }
@@ -69,8 +69,6 @@ class OrderCaretakerController extends Controller
     public function approvedStatusOrder($id)
     {
         $jobOffer = Job_offer::find($id);
-
-        return $jobOffer->estimasi_biaya;
 
         $jobOffer->update([
             'job_status' => 'diterima',

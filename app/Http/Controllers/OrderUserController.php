@@ -13,7 +13,7 @@ use Illuminate\Support\Facades\Auth;
 class OrderUserController extends Controller
 {
     public function showOrder () {
-        $job = Job_offer::where('user_id', Auth::user()->user_id)->get(); 
+        $job = Job_offer::where('user_id', Auth::user()->user_id)->orderBy('created_at','desc')->get(); 
 
         return view('user.order', ['job_offer' => $job]);
     }
@@ -27,7 +27,7 @@ class OrderUserController extends Controller
 
     public function updateGaji($id, Request $request)
     {
-        $temp = Job_offer::find($id)->permintaan_gaji_baru;
+        $temp = Job_offer::find($id)->estimasi_biaya;
 
         Job_offer::find($id)->update([
             'estimasi_biaya' => $request->gaji_baru,

@@ -3,14 +3,17 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\Transaction;
 
 class TransaksiUserController extends Controller
 {
     public function showTransaksi() {
-        $transaction = Transaction::get();
+        $transaction = Transaction::where('transaction_id',);
 
-        return view('user.transaksi', ['transaction' => $transaction]);
+        $transactions = Auth::user()->JobOffers->has('Transaction')->orderBy('created_at', 'desc')->get();
+
+        return view('user.transaksi', ['transaction' => $transactions]);
     }
 
     public function showInfoTransaksi($id)

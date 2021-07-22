@@ -54,7 +54,7 @@
                                 <input type="text" readonly class="form-control-plaintext" id="alamat_kerja" value="{{ $care->User->alamat }}, {{ ucwords(strtolower($care->User->kelurahan)) }}, {{ ucwords(strtolower($care->User->kecamatan)) }}, {{ ucwords(strtolower($care->User->kabupaten)) }}" style="background-color: white !important;">
                             </div>
                             <div class="col-sm-2">
-                                <a href="#" class="btn btn-outline-default">Ubah</a>
+                                <a href="{{ route('user.profile', Auth::user()->user_id) }}" class="btn btn-outline-default">Ubah</a>
                             </div>
                         </div>
                         <div class="row mb-2 align-items-center">
@@ -88,7 +88,28 @@
 
                                 <div class="collapse" id="listhari">
                                     <div class="card card-body d-grip ps-0">
-                                        <div class="btn-group-vertical" role="group" aria-label="Basic checkbox toggle button group"></div>
+                                        <div class="btn-group-vertical" role="group" aria-label="Basic checkbox toggle button group">
+                                            <input type="checkbox" class="btn-check" value="1" name="wd_1" id="wd_1">
+                                            <label class="btn btn-outline-default text-start" for="wd_1">Senin</label>
+
+                                            <input type="checkbox" class="btn-check" value="1" name="wd_2" id="wd_2">
+                                            <label class="btn btn-outline-default text-start" for="wd_2">Selasa</label>
+
+                                            <input type="checkbox" class="btn-check" value="1" name="wd_3" id="wd_3">
+                                            <label class="btn btn-outline-default text-start" for="wd_3">Rabu</label>
+
+                                            <input type="checkbox" class="btn-check" value="1" name="wd_4" id="wd_4">
+                                            <label class="btn btn-outline-default text-start" for="wd_4">Kamis</label>
+
+                                            <input type="checkbox" class="btn-check" value="1" name="wd_5" id="wd_5">
+                                            <label class="btn btn-outline-default text-start" for="wd_5">Jumat</label>
+
+                                            <input type="checkbox" class="btn-check" value="1" name="wd_6" id="wd_6">
+                                            <label class="btn btn-outline-default text-start" for="wd_6">Sabtu</label>
+
+                                            <input type="checkbox" class="btn-check" value="1" name="wd_7" id="wd_7">
+                                            <label class="btn btn-outline-default text-start" for="wd_7">Minggu</label>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -115,14 +136,14 @@
 </div>
 
 <script>
-    $(document).ready(function () {
+    $(document).ready(function() {
         $.ajaxSetup({
             headers: {
                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
             }
         });
 
-        $('#tanggal_masuk, #tanggal_berakhir').on('change', function (e) {
+        $('#tanggal_masuk, #tanggal_berakhir').on('change', function(e) {
             var tanggal_masuk = $('#tanggal_masuk').val();
             var tanggal_berakhir = $('#tanggal_berakhir').val();
             if (tanggal_masuk !== '' && tanggal_berakhir !== '') {
@@ -133,7 +154,7 @@
                         tanggal_masuk,
                         tanggal_berakhir
                     },
-                    success: function (data) {
+                    success: function(data) {
                         $('.btn-group-vertical').empty();
                         $('#estimasi_biaya').val('');
                         for (const [key, value] of Object.entries(data)) {
@@ -142,14 +163,14 @@
                                 <label class="btn btn-outline-default text-start" for="wd_${key}">${value}</label>
                             `);
                         }
-                        $('#jam_masuk, #jam_berakhir, input[class="btn-check days"]').on('change', function (e) {
+                        $('#jam_masuk, #jam_berakhir, input[class="btn-check days"]').on('change', function(e) {
                             var caretaker_id = "{{ $care->caretaker_id }}";
                             var tanggal_masuk = $('#tanggal_masuk').val();
                             var tanggal_berakhir = $('#tanggal_berakhir').val();
                             var jam_masuk = $('#jam_masuk').val();
                             var jam_berakhir = $('#jam_berakhir').val();
                             var days = [];
-                            $('input[class="btn-check days"]:checked').each(function () {
+                            $('input[class="btn-check days"]:checked').each(function() {
                                 days.push(this.value);
                             });
                             if (tanggal_masuk !== '' && tanggal_berakhir !== '' && jam_masuk !== '' && jam_berakhir !== '') {
@@ -164,7 +185,7 @@
                                         jam_berakhir,
                                         days
                                     },
-                                    success: function (data) {
+                                    success: function(data) {
                                         $('#estimasi_biaya').val('');
                                         $('#estimasi_biaya').val(data);
                                     }

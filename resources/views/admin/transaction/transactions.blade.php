@@ -3,13 +3,13 @@
 @section ('content')
 <div class="container rounded border border-dark bg-dark p-5" style="margin-left:20%; margin-top:5%; height:50%;">
 
-    <div class="container rounded p-3 mb-4 bg-primary text-white">
+    <div class="container rounded p-3 mb-4 text-white">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
             Transaction Data
         </h2>
     </div>
 
-    <div class="container rounded bg-white p-3">
+    <div class="container rounded bg-white p-3" style="min-width: 1400px;">
 
         @if(session('success'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -74,11 +74,6 @@
                     </td>
                     <td>
                         @if($transaction->transaction_status=="menunggu")
-                        <!-- <form action="{{ url('/admin/transactions/verify/'.$transaction->transaction_id) }}" method="POST">
-                            @csrf
-                            <input type="text" name="transaction_status" class="form-control invisible" style="height:1px; width:1px;" value="paid">
-                            <button type="submit" class="btn btn-primary" onclick="return confirm('Verify Payment ?')">Verify Payment</button>
-                        </form> -->
                         <a role="button" class="btn btn-primary btn-sm" onclick="return confirm('Finish Payment ?')" href="/admin/transactions/finish/{{ $transaction->transaction_id }}">Finish Payment</a>
                         @elseif($transaction->transaction_status == "terbayar")
                         <a role="button" class="btn btn-secondary btn-sm" onclick="return confirm('Verify Payment ?')" href="/admin/transactions/verify/{{ $transaction->transaction_id }}">Verify Payment</a>

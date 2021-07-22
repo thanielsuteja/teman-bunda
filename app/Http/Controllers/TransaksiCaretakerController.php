@@ -10,9 +10,9 @@ class TransaksiCaretakerController extends Controller
 {
     public function showPageRiwayatTransaksi()
     {
-        $transactions = Auth::user()->Caretaker->JobOffers()->with('Transaction', 'User')->has('Transaction')->whereIn('job_status', ['diterima', 'selesai', 'berlangsung'])->get();
+        $job = Auth::user()->Caretaker->JobOffers()->with('Transaction', 'User')->has('Transaction')->whereIn('job_status', ['diterima', 'selesai', 'berlangsung'])->orderBy('created_at', 'desc')->get();
 
-        return view('caretaker.riwayat-transaksi', ['transactions' => $transactions]);
+        return view('caretaker.riwayat-transaksi', ['job' => $job]);
     }
 
     public function showPageDetailRiwayatTransaksi($id)

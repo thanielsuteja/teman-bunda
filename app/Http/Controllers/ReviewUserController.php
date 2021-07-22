@@ -28,7 +28,7 @@ class ReviewUserController extends Controller
 
         Notification::create([
             'notification_type' => 'Kamu Mendapat Ulasan Baru',
-            'content' => 'Pengguna '.$user->nama_depan.' telah memberikan penilaian sebesar '.$request->penilaian.' <i class="bi bi-star-fill"></i>. Buruan cek sekarang!',
+            'content' => 'Pengguna '.$user->nama_depan.' telah memberikan penilaian sebesar '.$request->penilaian.' ★. Jangan lupa untuk menilai dia ya.',
             'user_id' => null,
             'caretaker_id' => $job->caretaker_id,
             'url' => route('caretaker.ulasan-saya'),

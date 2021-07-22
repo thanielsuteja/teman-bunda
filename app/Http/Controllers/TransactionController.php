@@ -18,13 +18,14 @@ class TransactionController extends Controller
 
     public function FinishTransaction($id)
     {
-        $transaction = Transaction::find($id)->update([
+        $transaction = Transaction::find($id);
+        $transaction->update([
             'transaction_status' => 'terbayar',
             'payment_date' => Carbon::now(),
             'updated_at' => Carbon::now()
         ]);
 
-        Job_offer::where('job_id', $transaction->job_id)->update([
+        Job_offer::find($transaction->job_id)->update([
             'job_status' => 'berlangsung',
         ]);
     
