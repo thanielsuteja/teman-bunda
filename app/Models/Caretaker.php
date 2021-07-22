@@ -35,7 +35,12 @@ class Caretaker extends Model
 
         return doubleval($total / $count);
     }
-
+    public function getCountReviewUserAttribute()
+    {
+        return $this->jobOffers->reduce(function ($total, $jobOffer) {
+            return $total + ($jobOffer->ReviewUser == null ? 0 : 1);
+        }, 0);
+    }
     public function JobOffers()
     {
         return $this->hasMany(Job_offer::class, 'caretaker_id', 'caretaker_id');

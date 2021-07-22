@@ -46,9 +46,14 @@
                                 @endif
                                 @endfor
                                 <span class="ps-4" style="font-size: 20px;">
+                                    @if($care->JobOffers->reduce(function($total, $jobOffer) {
+                                        return $total + ($jobOffer->ReviewUser);}) != null)
                                     {{ $care->JobOffers->reduce(function($total, $jobOffer) {
                                         return $total + ($jobOffer->ReviewUser == null ? 0 : 1);
                                     }) }} ulasan
+                                    @else
+                                    Tidak ada ulasan
+                                    @endif
                                 </span>
                                 <div class="row pt-3">
                                     <div class="col-3 text-center">
@@ -165,21 +170,21 @@
                                     <p>Tidak ada dokumen</p>
                                     @endif
                                     <p>
-                                    @if ($care->dokumen_vaksin_path != null)
-                                    Sertifikat Vaksinasi
-                                    <br>
-                                    @endif
-                                    @if ($care->dokumen_psikotes_path != null)
-                                    Berkas Psikotes
-                                    <br>
-                                    @endif
-                                    @if ($care->dokumen_ijazah_path != null)
-                                    Ijazah
-                                    <br>
-                                    @endif
-                                    @if ($care->dokumen_skck_path != null)
-                                    SKCK
-                                    @endif
+                                        @if ($care->dokumen_vaksin_path != null)
+                                        Sertifikat Vaksinasi
+                                        <br>
+                                        @endif
+                                        @if ($care->dokumen_psikotes_path != null)
+                                        Berkas Psikotes
+                                        <br>
+                                        @endif
+                                        @if ($care->dokumen_ijazah_path != null)
+                                        Ijazah
+                                        <br>
+                                        @endif
+                                        @if ($care->dokumen_skck_path != null)
+                                        SKCK
+                                        @endif
                                     </p>
                                 </div>
                             </div>
