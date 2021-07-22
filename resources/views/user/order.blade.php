@@ -5,11 +5,6 @@
 
 @section ('content')
 <style>
-    .line {
-        border-left: 5px solid white;
-        height: 3px;
-    }
-
     body {
         background-color: #efefef;
     }
@@ -23,12 +18,12 @@
         <div class="col-md-8 offset-md-2">
             <div class="card mb-2 shadow" style="border-radius: 20px; overflow: hidden; margin-top: 90px;">
                 <div class="card-header row bg-temanbunda p-0 align-items-center" style="height: 107px;">
-                    <h2 class="m-0 ms-5">Status Order Saya</h2>
+                    <h2 class="m-0 ms-5">Order Saya</h2>
                 </div>
                 <div class="card-body" style="min-height: 532px;">
                     @foreach ($job_offer as $job)
                     <a href="/user/order-info/{{$job->job_id}}" class="text-decoration-none" style="color: black;">
-                        <div class="card border-2 mx-4 my-2 zoom" style="background-color: #f3f3f3; border-radius: 10px; overflow: hidden;">
+                        <div class="card border-2 mx-5 my-3 zoom" style="background-color: #f3f3f3; border-radius: 10px; overflow: hidden;">
                             <div class="card-header d-flex align-items-center p-0" style="background-color: #ffeea8;">
                                 <div class="col-sm-10 border-end border-5 border-white">
                                     <h4 class="my-2 ps-4">{{ $job->judul_pekerjaan }}</h4>
@@ -37,6 +32,8 @@
                                     @if ($job->job_status == "menunggu")
                                     <p class="text-808080 fw-bold" style="font-size: 17px; margin: 0;">{{ ucfirst($job->job_status) }}</p>
                                     @elseif ($job->job_status == "ditolak")
+                                    <p class="text-danger fw-bold" style="font-size: 17px; margin: 0;">{{ ucfirst($job->job_status) }}</p>
+                                    @elseif ($job->job_status == "dibatalkan")
                                     <p class="text-danger fw-bold" style="font-size: 17px; margin: 0;">{{ ucfirst($job->job_status) }}</p>
                                     @elseif ($job->job_status == "diterima")
                                     <p class="text-primary fw-bold" style="font-size: 17px; margin: 0;">{{ ucfirst($job->job_status) }}</p>
@@ -67,7 +64,7 @@
                                                 <p class="text-808080">Tanggal kerja</p>
                                             </div>
                                             <div class="col-md-6">
-                                                <p>{{ date('d-m-Y', strtotime($job->tanggal_masuk)) }} - {{ date('d-m-Y', strtotime($job->tanggal_berakhir)) }}</p>
+                                                <p>{{ date('d/m/Y', strtotime($job->tanggal_masuk)) }} - {{ date('d/m/Y', strtotime($job->tanggal_berakhir)) }}</p>
                                             </div>
                                         </div>
                                         <div class="row">

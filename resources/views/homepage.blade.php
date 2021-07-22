@@ -12,7 +12,7 @@
             <h1 class="display-5 lg-1 mb-3">Cara baru dan mudah mencari <i>caregiver</i> dengan cepat</h1>
             <p class="lead">Teman Bunda membantu anda mencari Caregiver yang tepat dengan memanfaatkan para anak muda untuk merawat sang hati</p>
             <div class="d-grid d-md-flex justify-content-md-start">
-                <a href="#whyus" class="btn bg-temanbunda py-3 px-5 text-white">Lebih lanjut</a>
+                <a href="#whyus" class="btn bg-temanbunda py-3 px-5" style="font-size: 20px;">Lebih lanjut</a>
             </div>
         </div>
     </section>

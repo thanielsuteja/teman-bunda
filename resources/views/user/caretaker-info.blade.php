@@ -25,7 +25,7 @@
                 <div class="card-header bg-temanbunda d-flex align-items-center p-0" style="height: 107px;">
                     <div class="row">
                         <div class="col-1 d-flex align-items-center">
-                            <a href="{{ url()->previous() }}" class="text-decoration-none fw-bold" style="color: black;">
+                            <a href="{{ route('cari-caregiver') }}" class="text-decoration-none fw-bold" style="color: black;">
                                 <i class="bi bi-chevron-left ps-3" style="font-size: 36px; height: 36; width: 36;"></i>
                             </a>
                         </div>
@@ -80,7 +80,7 @@
                                     </div>
                                 </div>
                         </div>
-                        <div class="col-3" style="margin-top: -45px;">
+                        <div class="col-3 mb-2" style="margin-top: -45px;">
                             @if ($care->User->profile_img_path != null)
                             <img src="{{ asset('storage/foto_profil/'.$care->User->profile_img_path) }}" class="profile-pic-lg border">
                             @else
@@ -89,13 +89,13 @@
                         </div>
                     </div>
                     <div class="row pt-2">
-                        <div class="col-md-6" style="border-right: 1px solid #9e9e9e;">
+                        <div class="col-md-6 pe-0" style="border-right: 1px solid #9e9e9e;">
                             <div class="row">
                                 <div class="col-md-5">
                                     <p class="text-808080 text-end">Jenis kelamin</p>
                                 </div>
                                 <div class="col-md-7">
-                                    <p>{{ $care->User->jenis_kelamin }}</p>
+                                    <p>{{ ucfirst($care->User->jenis_kelamin) }}</p>
                                 </div>
                             </div>
                             <div class="row">
@@ -125,7 +125,7 @@
                                 <div class="col-md-7">
                                     <p>
                                         @foreach ( $care->ProfessionCaretakerRelation as $mengasuh)
-                                        {{ $mengasuh->Profession->profession_name }},
+                                        {{ $mengasuh->Profession->profession_name }} <br>
                                         @endforeach
                                     </p>
                                 </div>
@@ -137,7 +137,7 @@
                                     <p class="text-808080 text-end">Aktif sejak</p>
                                 </div>
                                 <div class="col-md-7">
-                                    <p>{{ date('d-m-Y', strtotime($care->created_at)) }}</p>
+                                    <p>{{ date('d/m/Y', strtotime($care->created_at)) }}</p>
                                 </div>
                             </div>
                             <div class="row">
@@ -164,22 +164,23 @@
                                     @if ($care->dokumen_vaksin_path == null && $care->dokumen_psikotes_path == null && $care->dokumen_ijazah_path == null && $care->dokumen_skck_path == null)
                                     <p>Tidak ada dokumen</p>
                                     @endif
+                                    <p>
                                     @if ($care->dokumen_vaksin_path != null)
-                                    <p>Sertifikat Vaksinasi</p>
+                                    Sertifikat Vaksinasi
                                     <br>
                                     @endif
                                     @if ($care->dokumen_psikotes_path != null)
-                                    <p>Berkas Psikotes</p>
+                                    Berkas Psikotes
                                     <br>
                                     @endif
                                     @if ($care->dokumen_ijazah_path != null)
-                                    <p>Ijazah</p>
+                                    Ijazah
                                     <br>
                                     @endif
                                     @if ($care->dokumen_skck_path != null)
-                                    <p>SKCK</p>
-                                    <br>
+                                    SKCK
                                     @endif
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -192,7 +193,7 @@
                             <p>{{ $care->deskripsi_caretaker }}</p>
                         </div>
                     </div>
-                    <div class="row justify-content-end pt-5">
+                    <div class="row justify-content-end pt-4">
                         <a href="/user/buat-penawaran/{{$care->caretaker_id}}" class="btn bg-temanbunda fw-bold d-flex align-items-center justify-content-center" style="width: 235px; height: 58px;">Buat Penawaran</a>
                     </div>
                 </div>

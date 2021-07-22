@@ -8,19 +8,21 @@ use App\Models\Review_caretaker;
 
 class ReviewCaretakerController extends Controller
 {
-    public function showCaretakerReviewForm($id) {
+    public function showPageReview($id)
+    {
         $job = Job_offer::where('job_id', $id)->first();
 
-        return view('user.review', ['job' => $job]);
+        return view('caretaker.review', ['job' => $job]);
     }
 
-    public function reviewUser(Request $request) {
+    public function sendReview($id, Request $request)
+    {
         Review_caretaker::create([
-            'job_id' => $request->job_id,
+            'job_id' => $id,
             'review_rating' => $request->penilaian,
             'review_content' => $request->ulasan,
         ]);
 
-        return redirect("/user/home-page");
+        return redirect()->route('caretaker.order');
     }
 }

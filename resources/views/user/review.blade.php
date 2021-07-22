@@ -46,9 +46,9 @@
             <hr class="my-1">
             <div class="row justify-content-end">
                 <p>Bagaimana kualitas pelayanan caregiver ini?</p>
-
-                <div class="stars"></div>
-
+                <div class="row">
+                    <div class="stars"></div>
+                </div>
                 <textarea name="ulasan" id="ulasan" cols="30" rows="10" class="form-control rounded-input-sm" placeholder="Berikan ulasan untuk pengguna ini (opsional)" style="height: 110px !important; background-color: #f1f1f1;"></textarea>
             </div>
             <div class="d-flex justify-content-end mt-4">

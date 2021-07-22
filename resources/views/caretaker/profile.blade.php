@@ -4,130 +4,164 @@
 @include ('layout.sidebar.sidebar-caretaker')
 
 @section ('content')
-    <meta name="csrf-token" content="{{ csrf_token() }}">
-    <style>
-        .box-palceholder {
-            display: block;
-            width: 100%;
-            height: 100px;
-            background: #C4C4C4;
-        }
-    </style>
-    <script>
-        $(function() {
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
+<meta name="csrf-token" content="{{ csrf_token() }}">
+<style>
+    .box-placeholder {
+        display: block;
+        width: 100%;
+        height: 100px;
+        background: #C4C4C4;
+    }
 
-            $('#provinsi').on('click', function() {
-                $.ajax({
-                    url: '{{ route("getKabupaten") }}',
-                    method: 'POST',
-                    data: {
-                        id: $(this).val()
-                    },
-                    success: function(response) {
-                        $('#kabupaten').empty();
+    .image-container {
+        position: relative;
+    }
 
-                        $.each(response, function(id, name) {
-                            $('#kabupaten').append(new Option(name, id))
-                        })
-                    }
-                })
-            });
+    .image {
+        opacity: 1;
+        display: block;
+        transition: 2s ease;
+        backface-visibility: hidden;
+    }
 
-            $('#kabupaten').on('click', function() {
-                $.ajax({
-                    url: '{{ route("getKecamatan") }}',
-                    method: 'POST',
-                    data: {
-                        id: $(this).val()
-                    },
-                    success: function(response) {
-                        $('#kecamatan').empty();
-                        $.each(response, function(id, name) {
-                            $('#kecamatan').append(new Option(name, id))
-                        })
-                    }
-                })
-            });
+    .image-container:hover .image {
+        opacity: 0.3;
+    }
 
-            $('#kecamatan').on('click', function() {
-                $.ajax({
-                    url: '{{ route("getKelurahan") }}',
-                    method: 'POST',
-                    data: {
-                        id: $(this).val()
-                    },
-                    success: function(response) {
-                        $('#kelurahan').empty();
-                        $.each(response, function(id, name) {
-                            $('#kelurahan').append(new Option(name, id))
-                        })
-                    }
-                })
-            });
+    .image-container:hover .middle {
+        opacity: 1;
+    }
 
-            $('#flexSwitchCheckTerbuka').on('change', function (e) {
-                e.preventDefault();
-                $.ajax({
-                    url: '{{ route("caretaker.profile-terbuka") }}',
-                    method: 'POST',
-                    success: function(response) {
-                        if (response) {
-                            document.location.reload();
-                        }
-                    }
-                })
-            });
+    .middle {
+        transition: 1.0s;
+        opacity: 0;
+        top: 50%;
+        left: 50%;
+        position: absolute;
+        transform: translate(-50%, -50%);
+        -ms-transform: translate(-50%, -50%);
+        text-align: center;
+    }
+</style>
+<script>
+    $(function() {
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
         });
-    </script>
-    <div class="container main col-xxl-12 px-5">
-        <div class="row">
-            <div class="col-md-8 offset-md-2">
-                <div class="card" style="border: 1px solid #C4C4C4; border-radius: 30px;">
-                    <div class="card-body">
-                        <h5 class="card-title">My Profile</h5>
-                        <hr>
-                        <div class="row mb-3">
-                            <div class="col-md-4">
-                                <div class="mb-2">
-                                    @if ($user->profile_img_path != null)
-                                        <img src="{{ asset('storage/foto_profile/'.$user->profile_img_path) }}" style="border-radius: 50%; object-fit: cover; width: 80px; height: 80px; border: 1px solid black">
+
+        $('#provinsi').on('click', function() {
+            $.ajax({
+                url: '{{ route("getKabupaten") }}',
+                method: 'POST',
+                data: {
+                    id: $(this).val()
+                },
+                success: function(response) {
+                    $('#kabupaten').empty();
+
+                    $.each(response, function(id, name) {
+                        $('#kabupaten').append(new Option(name, id))
+                    })
+                }
+            })
+        });
+
+        $('#kabupaten').on('click', function() {
+            $.ajax({
+                url: '{{ route("getKecamatan") }}',
+                method: 'POST',
+                data: {
+                    id: $(this).val()
+                },
+                success: function(response) {
+                    $('#kecamatan').empty();
+                    $.each(response, function(id, name) {
+                        $('#kecamatan').append(new Option(name, id))
+                    })
+                }
+            })
+        });
+
+        $('#kecamatan').on('click', function() {
+            $.ajax({
+                url: '{{ route("getKelurahan") }}',
+                method: 'POST',
+                data: {
+                    id: $(this).val()
+                },
+                success: function(response) {
+                    $('#kelurahan').empty();
+                    $.each(response, function(id, name) {
+                        $('#kelurahan').append(new Option(name, id))
+                    })
+                }
+            })
+        });
+
+        $('#flexSwitchCheckTerbuka').on('change', function(e) {
+            e.preventDefault();
+            $.ajax({
+                url: '{{ route("caretaker.profile-terbuka") }}',
+                method: 'POST',
+                success: function(response) {
+                    if (response) {
+                        document.location.reload();
+                    }
+                }
+            })
+        });
+    });
+</script>
+<div class="container main col-xxl-12 px-5">
+    <div class="row">
+        <div class="col-md-8 offset-md-2">
+            <div class="card" style="border: 1px solid #C4C4C4; border-radius: 30px;">
+                <div class="card-body p-5">
+                    <h5 class="card-title">My Profile</h5>
+                    <hr>
+                    <div class="row mb-3">
+                        <div class="col-md row">
+                            <label class="col-md-6 col-form-label mb-3">Terbuka untuk bekerja</label>
+                            <div class="col-md-6 row ps-3">
+                                <div class="col-md-10 p-0">
+                                    @if ($user->Caretaker->caretaker_status == 1)
+                                    <p class="text-808080 mb-1" style="font-size: 12px;">Apabila dimatikan, kamu tidak akan muncul di pencarian halaman Caregiver</p>
                                     @else
-                                        <img src="{{ asset('img/no-profile.png') }}" style="border-radius: 50%; object-fit: cover; width: 80px; height: 80px; border: 1px solid black">
+                                    <p class="text-808080 mb-1 pe-2" style="font-size: 12px;">Nyalakan untuk kembali menerima penawaran kerja dari pengguna</p>
                                     @endif
                                 </div>
-                                <button type="button" class="btn btn-outline-warning d-inline-block mb-3" data-bs-toggle="modal" data-bs-target="#editFotoModal">Edit Foto</button>
-                            </div>
-                            <div class="col-md-4">
-                                <div class="d-flex justify-content-between">
-                                    <p class="m-0 d-inline">Terbuka untuk bekerja</p>
-                                    <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckTerbuka" {{ $user->Caretaker->caretaker_status == 1 ? 'checked' : '' }}>
-                                    </div>
+                                <div class="col-md-auto form-check form-switch p-0">
+                                    <input class="form-check-input m-0 mt-3" type="checkbox" id="flexSwitchCheckTerbuka" style="padding-top: 20px;width: 36px;" {{ $user->Caretaker->caretaker_status == 1 ? 'checked' : '' }}>
                                 </div>
-                                <p class="text-secondary" style="font-size: 12px">Apabila switch ini dimatikan, kamu tidak akan muncul di pencarian Caregiver pada halaman pengguna.</p>
+                            </div>
+
+                            <label class="col-md-6 col-form-label mb-3">Member Since</label>
+                            <div class="col-md-6 ps-1" style="padding-right: 28px;">
+                                <input type="text" value="{{ date('d/m/Y', strtotime($user->created_at)) }}" class="form-control" disabled readonly>
+                            </div>
+                            <label class="col-md-6 col-form-label mb-3">User ID</label>
+                            <div class="col-md-6 ps-1" style="padding-right: 28px;">
+                                <input type="text" value="{{ $user->user_id }}" class="form-control" disabled readonly>
+                            </div>
+                            <label class="col-md-6 col-form-label mb-3">Email</label>
+                            <div class="col-md-6 ps-1" style="padding-right: 28px;">
+                                <input type="text" name="cost_per_hour" value="{{ $user->email }}" disabled class="form-control">
                             </div>
                         </div>
-                        <div class="mb-3 row">
-                            <label class="col-md-4 col-form-label">Member Since</label>
-                            <div class="col-md-4">
-                                <input type="text" value="{{ date('d-m-Y', strtotime($user->Caretaker->created_at)) }}" class="form-control" disabled>
-                            </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label class="col-md-4 col-form-label">User ID</label>
-                            <div class="col-md-4">
-                                <input type="text" value="{{ $user->user_id }}" class="form-control" disabled>
-                            </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label class="col-md-4 col-form-label">Email</label>
-                            <div class="col-md-4">
-                                <input type="text" value="{{ $user->email }}" class="form-control" disabled>
+                        <div class="col-md-4 ps-0 pe-4">
+                            <div class="d-flex justify-content-center image-container mt-4">
+                                <a type="button" class="" data-bs-toggle="modal" href="#editFotoModal">
+                                    @if ($user->profile_img_path != null)
+                                    <img src="{{ asset('storage/foto_profil/'.$user->profile_img_path) }}" class="p-0 image" style="border-radius: 50%; object-fit: cover; width: 140px; height: 140px; border: 1px solid black">
+                                    @else
+                                    <img src="{{ asset('img/no-profile.png') }}" class="p-0 image" style="border-radius: 50%; object-fit: cover; width: 140px; height: 140px; border: 1px solid black">
+                                    @endif
+                                    <div class="profile-text middle">
+                                        <i class="bi bi-plus-lg text-808080 m-0" style="font-size: 50px; width: fit-content; height: fit-content;"></i>
+                                    </div>
+                                </a>
                             </div>
                         </div>
                         <hr>
@@ -157,14 +191,14 @@
                             <div class="col-md-4">
                                 <select name="jenis_kelamin" disabled class="form-control">
                                     @if ($user->jenis_kelamin == 'laki-laki')
-                                        <option value="laki-laki" selected>Laki-Laki</option>
+                                    <option value="laki-laki" selected>Laki-Laki</option>
                                     @else
-                                        <option value="laki-laki">Laki-Laki</option>
+                                    <option value="laki-laki">Laki-Laki</option>
                                     @endif
                                     @if ($user->jenis_kelamin == 'perempuan')
-                                        <option value="perempuan" selected>Perempuan</option>
+                                    <option value="perempuan" selected>Perempuan</option>
                                     @else
-                                        <option value="perempuan">Perempuan</option>
+                                    <option value="perempuan">Perempuan</option>
                                     @endif
                                 </select>
                             </div>
@@ -227,14 +261,14 @@
                             <div class="col-md-4">
                                 <select name="pengawasan_kamera" disabled class="form-control">
                                     @if ($user->Caretaker->pengawasan_kamera == 1)
-                                        <option value="1" selected>Bersedia</option>
+                                    <option value="1" selected>Bersedia</option>
                                     @else
-                                        <option value="1">Bersedia</option>
+                                    <option value="1">Bersedia</option>
                                     @endif
                                     @if ($user->Caretaker->pengawasan_kamera == 0)
-                                        <option value="0" selected>Tidak Bersedia</option>
+                                    <option value="0" selected>Tidak Bersedia</option>
                                     @else
-                                        <option value="0">Tidak Bersedia</option>
+                                    <option value="0">Tidak Bersedia</option>
                                     @endif
                                 </select>
                             </div>
@@ -245,52 +279,38 @@
                                 <textarea name="deskripsi_caretaker" rows="5" disabled class="form-control">{{ $user->Caretaker->deskripsi_caretaker }}</textarea>
                             </div>
                         </div>
-                        <div class="mb-3 row">
-                            <label class="col-md-4 col-form-label">Tinggi Badan</label>
-                            <div class="col-md-2">
-                                <input type="text" name="tinggi" value="{{ $user->Caretaker->tinggi }}" disabled class="form-control">
-                            </div>
-                            <div class="col-md-4 col-form-label">cm</div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label class="col-md-4 col-form-label">Berat Badan</label>
-                            <div class="col-md-2">
-                                <input type="text" name="berat" value="{{ $user->Caretaker->berat }}" disabled class="form-control">
-                            </div>
-                            <div class="col-md-4 col-form-label">kg</div>
-                        </div>
                         <hr>
                         <h5 class="text-secondary">Dokumen</h5>
                         <div class="row">
                             <div class="col-3">
                                 @if ($user->dokumen_ktp_path == null)
-                                    <div class="box-palceholder"></div>
+                                <div class="box-placeholder"></div>
                                 @else
-                                    <img src="{{ asset('storage/ktp/'.$user->dokumen_ktp_path) }}" alt="" class="img-fluid">
+                                <img src="{{ asset('storage/ktp/'.$user->dokumen_ktp_path) }}" alt="" class="img-fluid">
                                 @endif
                                 <p class="text-center">KTP</p>
                             </div>
                             <div class="col-3">
                                 @if ($user->Caretaker->dokumen_vaksin_path == null)
-                                    <div class="box-palceholder"></div>
+                                <div class="box-placeholder"></div>
                                 @else
-                                    <img src="{{ asset('storage/vaksin/'.$user->Caretaker->dokumen_vaksin_path) }}" alt="" class="img-fluid">
+                                <img src="{{ asset('storage/vaksin/'.$user->Caretaker->dokumen_vaksin_path) }}" alt="" class="img-fluid">
                                 @endif
                                 <p class="text-center">Vaksinasi</p>
                             </div>
                             <div class="col-3">
                                 @if ($user->Caretaker->dokumen_psikotes_path == null)
-                                    <div class="box-palceholder"></div>
+                                <div class="box-placeholder"></div>
                                 @else
-                                    <img src="{{ asset('storage/psikotes/'.$user->Caretaker->dokumen_psikotes_path) }}" alt="" class="img-fluid">
+                                <img src="{{ asset('storage/psikotes/'.$user->Caretaker->dokumen_psikotes_path) }}" alt="" class="img-fluid">
                                 @endif
                                 <p class="text-center">Psikotes</p>
                             </div>
                             <div class="col-3">
                                 @if ($user->Caretaker->dokumen_ijazah_path == null)
-                                    <div class="box-palceholder"></div>
+                                <div class="box-placeholder"></div>
                                 @else
-                                    <img src="{{ asset('storage/ijazah/'.$user->Caretaker->dokumen_ijazah_path) }}" alt="" class="img-fluid">
+                                <img src="{{ asset('storage/ijazah/'.$user->Caretaker->dokumen_ijazah_path) }}" alt="" class="img-fluid">
                                 @endif
                                 <p class="text-center">Ijazah</p>
                             </div>
@@ -324,7 +344,7 @@
                                 <select name="provinsi" id="provinsi" class="form-control">
                                     <option value="">Pilih Provinsi</option>
                                     @foreach ($provinces as $id => $name)
-                                        <option value="{{ $id }}">{{ $name }}</option>
+                                    <option value="{{ $id }}">{{ $name }}</option>
                                     @endforeach
                                 </select>
                             </div>
@@ -376,9 +396,9 @@
                         <input type="file" name="profile_img_path" id="profile_img_path" class="d-none">
                         <div id="btn-change" style="cursor: pointer">
                             @if ($user->profile_img_path != null)
-                                <img src="{{ asset('storage/foto_profile/'.$user->profile_img_path) }}" class="img-fluid">
+                            <img src="{{ asset('storage/foto_profil/'.$user->profile_img_path) }}" class="img-fluid">
                             @else
-                                <img src="{{ asset('img/no-profile.png') }}" class="img-fluid">
+                            <img src="{{ asset('img/no-profile.png') }}" class="img-fluid">
                             @endif
                         </div>
                     </div>
@@ -413,14 +433,14 @@
                             <label class="col-md-4 col-form-label">Profesi</label>
                             <div class="col-md-8">
                                 @foreach ($professions as $profession)
-                                    <div class="form-check form-check-inline">
-                                        @if (in_array($profession->profession_id, $user->Caretaker->ProfessionCaretakerRelation->pluck('profession_id')->toArray()))
-                                            <input class="form-check-input" type="checkbox" name="profession_id[]" id="inlineCheckbox{{ $profession->profession_id  }}" value="{{ $profession->profession_id }}" checked>
-                                        @else
-                                            <input class="form-check-input" type="checkbox" name="profession_id[]" id="inlineCheckbox{{ $profession->profession_id  }}" value="{{ $profession->profession_id }}">
-                                        @endif
-                                        <label class="form-check-label" for="inlineCheckbox{{ $profession->profession_id  }}">{{ $profession->profession_name  }}</label>
-                                    </div>
+                                <div class="form-check form-check-inline">
+                                    @if (in_array($profession->profession_id, $user->Caretaker->ProfessionCaretakerRelation->pluck('profession_id')->toArray()))
+                                    <input class="form-check-input" type="checkbox" name="profession_id[]" id="inlineCheckbox{{ $profession->profession_id  }}" value="{{ $profession->profession_id }}" checked>
+                                    @else
+                                    <input class="form-check-input" type="checkbox" name="profession_id[]" id="inlineCheckbox{{ $profession->profession_id  }}" value="{{ $profession->profession_id }}">
+                                    @endif
+                                    <label class="form-check-label" for="inlineCheckbox{{ $profession->profession_id  }}">{{ $profession->profession_name  }}</label>
+                                </div>
                                 @endforeach
                             </div>
                         </div>
@@ -429,14 +449,14 @@
                             <div class="col-md-4">
                                 <select name="pengawasan_kamera" class="form-control">
                                     @if ($user->Caretaker->pengawasan_kamera == 1)
-                                        <option value="1" selected>Bersedia</option>
+                                    <option value="1" selected>Bersedia</option>
                                     @else
-                                        <option value="1">Bersedia</option>
+                                    <option value="1">Bersedia</option>
                                     @endif
                                     @if ($user->Caretaker->pengawasan_kamera == 0)
-                                        <option value="0" selected>Tidak Bersedia</option>
+                                    <option value="0" selected>Tidak Bersedia</option>
                                     @else
-                                        <option value="0">Tidak Bersedia</option>
+                                    <option value="0">Tidak Bersedia</option>
                                     @endif
                                 </select>
                             </div>
@@ -446,20 +466,6 @@
                             <div class="col-md-8">
                                 <textarea name="deskripsi_caretaker" rows="5" class="form-control">{{ $user->Caretaker->deskripsi_caretaker }}</textarea>
                             </div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label class="col-md-4 col-form-label">Tinggi Badan</label>
-                            <div class="col-md-2">
-                                <input type="text" name="tinggi" value="{{ $user->Caretaker->tinggi }}" class="form-control">
-                            </div>
-                            <div class="col-md-4 col-form-label">cm</div>
-                        </div>
-                        <div class="mb-3 row">
-                            <label class="col-md-4 col-form-label">Berat Badan</label>
-                            <div class="col-md-2">
-                                <input type="text" name="berat" value="{{ $user->Caretaker->berat }}" class="form-control">
-                            </div>
-                            <div class="col-md-4 col-form-label">kg</div>
                         </div>
                     </div>
                     <div class="modal-footer">
@@ -471,12 +477,12 @@
         </div>
     </div>
     <script>
-        $('#btn-change').click(function (e) {
+        $('#btn-change').click(function(e) {
             $('#profile_img_path').click();
         });
-        $('#profile_img_path').change(function (e) {
+        $('#profile_img_path').change(function(e) {
             var src = window.URL.createObjectURL(this.files[0]);
             $('#btn-change').html(`<img src="${src}" class="img-fluid" />`);
         });
     </script>
-@endsection
+    @endsection

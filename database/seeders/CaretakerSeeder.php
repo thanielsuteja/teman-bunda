@@ -21,7 +21,7 @@ class CaretakerSeeder extends Seeder
             'kode_bank' => '130',
             'bank_account' => '6041067006',
             'cost_per_hour' => '20000',
-            'tipe_caretaker' => 'Normal',
+            'tipe_caretaker' => 'Umum',
             'edukasi' => 'Sarjana',
             'deskripsi_caretaker' => 'Saya suka makan babi ayam kecap otak semur tapi dulu pernah bekerja di Hanyang Unversity sebagai seorang professor Administrasi dan Manajemen. Namun saya kembali ke Indonesia setelah diceraikan oleh suami saya lelaki yang tidak bertanggung jawab. Nyatanya, saya sudah memberikan kepada seporsi harta yang saya kumpulkan di Indonesia. Jadi begitulah bagaimana saya berakhir bekerja sebagai pengasuh Caretaker.',
             'pengawasan_kamera' => 1,

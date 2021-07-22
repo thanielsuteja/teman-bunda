@@ -72,7 +72,7 @@
                                                         <p class="m-0 text-secondary">Gaji diterima</p>
                                                     </div>
                                                     <div class="col">
-                                                        <p class="m-0">Rp. {{ number_format($transaction->Transaction->transaction_ammount, 0, ',', '.') }}</p>
+                                                        <p class="m-0">Rp. {{ number_format($transaction->Transaction->transaction_amount, 0, ',', '.') }}</p>
                                                     </div>
                                                 </div>
                                                 <p class="m-0 text-end">

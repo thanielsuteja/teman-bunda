@@ -68,7 +68,7 @@
     })
 </script>
 
-<main class="container col-xxl-12 px-0 py-3">
+<main class="container col-xxl-12 px-0 py-3 pb-0">
     <div class="row" style="margin-top: 80px;">
         <div class="col-md-6 text-center">
             <p class="display-6 pt-1 fw-normal pb-2 title text-center"> Daftar Menjadi Caregiver </p>
@@ -81,22 +81,22 @@
                         @csrf
                         <ul id="progressbar2" class="text-center m-0 ps-5">
                             <li class="active" id="pilih_profesi">
-                                <p class="width15 text-dark">Pilih Profesi</p>
+                                <p class="width15 text-dark fw-normal">Pilih Profesi</p>
                             </li>
                             <li id="isi_formulir_caretaker">
-                                <p class="width15 text-dark">Isi Formulir</p>
+                                <p class="width15 text-dark fw-normal">Isi Formulir</p>
                             </li>
                             <li id="isi_area">
-                                <p class="width15 text-dark">Isi Area Layanan</p>
+                                <p class="width15 text-dark fw-normal">Isi Area Layanan</p>
                             </li>
                             <li id="deskripsi_diri">
-                                <p class="width15 text-dark">Isi Deskipsi Diri</p>
+                                <p class="width15 text-dark fw-normal">Isi Deskipsi Diri</p>
                             </li>
                             <li id="upload_dokumen_caretaker">
-                                <p class="width15 text-dark">Upload Dokumen</p>
+                                <p class="width15 text-dark fw-normal">Upload Dokumen</p>
                             </li>
                             <li id="proses">
-                                <p class="width15 text-dark">Tunggu Diproses</p>
+                                <p class="width15 text-dark fw-normal">Tunggu Diproses</p>
                             </li>
                         </ul>
                         <fieldset>
@@ -142,7 +142,7 @@
                                     <option value="Ibu">Ibu rumah tangga</option>
                                     <option value="Mahasiswa">Mahasiswa</option>
                                     <option value="Tenaga profesional">Tenaga profesional</option>
-                                    <option value="Normal">Normal</option>
+                                    <option value="Umum">Umum</option>
                                 </select>
                                 <label for="tipe">Profesi sekarang</label>
                             </div>

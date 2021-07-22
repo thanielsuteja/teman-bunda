@@ -17,13 +17,13 @@
                     <div class="card-header bg-temanbunda d-flex justify-content-between align-items-center py-4">
                         <h3 class="ps-3 fw-bold m-0">Ulasan</h3>
                     </div>
-                    <div class="card-body">
+                    <div class="card-body" style="min-height: 532px;">
                         @foreach ($reviews as $review)
                             <div class="text-decoration-none" style="color: black;">
                                 <div class="card border-2 mx-4 my-2" style="background-color: #f3f3f3; border-radius: 10px; overflow: hidden;">
                                     <div class="card-header d-flex justify-content-between py-3" style="background: #FFEEA8;">
-                                        <div><span class="text-secondary me-1">Ulasan dari</span> {{ $review->User->nama_depan }} {{ $review->User->nama_belakang }}</div>
-                                        <div><span class="text-secondary me-1">Tanggal kerja</span> {{ date('d/m/Y', strtotime($review->tanggal_masuk)) }} - {{ date('d/m/Y', strtotime($review->tanggal_berakhir)) }}</div>
+                                        <div><span class="text-808080 me-1">Ulasan dari</span> {{ $review->User->nama_depan }} {{ $review->User->nama_belakang }}</div>
+                                        <div><span class="text-808080 me-1">Tanggal kerja</span> {{ date('d/m/Y', strtotime($review->tanggal_masuk)) }} - {{ date('d/m/Y', strtotime($review->tanggal_berakhir)) }}</div>
                                     </div>
                                     <div class="card-body">
                                         <div class="row">
@@ -35,7 +35,7 @@
                                                 @endif
                                             </div>
                                             <div class="col-md-9">
-                                                <p class="m-0"><span class="text-secondary">Order ID</span> {{ $review->job_id }}</p>
+                                                <p class="m-0"><span class="text-808080">Order ID</span> {{ $review->job_id }}</p>
                                                 <p class="m-0">{{ $review->judul_pekerjaan }}</p>
                                                 <div>
                                                     @for ($i = 1; $i < 6; $i++)
@@ -50,7 +50,7 @@
                                                 </div>
                                                 <p class="m-0">{{ $review->ReviewUser->review_content }}</p>
                                                 <p class="m-0 text-end">
-                                                    <a href="{{ route('caretaker.detail-status-order', $review->job_id) }}" class="text-decoration-none" style="color: #FFDE59">Lihat Detail Order</a>
+                                                    <a href="{{ route('caretaker.detail-order', $review->job_id) }}" class="text-decoration-none" style="color: #FFDE59">Lihat Detail Order</a>
                                                 </p>
                                             </div>
                                         </div>

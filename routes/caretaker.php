@@ -1,29 +1,37 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\CaretakerController;
 
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\ProfilCaretakerController;
+use App\Http\Controllers\UlasanSayaController;
+use App\Http\Controllers\OrderCaretakerController;
+use App\Http\Controllers\TransaksiCaretakerController;
+use App\Http\Controllers\ReviewCaretakerController;
+
 Route::middleware(['auth'])->group(function () {
-    Route::get('/caretaker/home', [CaretakerController::class, 'showPageHome'])->name('caretaker.home');
+    Route::get('/caretaker/home', [HomeController::class, 'showCaretakerHome'])->name('caretaker.home');
 
-    Route::get('/caretaker/profile', [CaretakerController::class, 'showPageProfile'])->name('caretaker.profile');
-    Route::post('/caretaker/profile/area', [CaretakerController::class, 'updateProfileArea'])->name('caretaker.profile-area');
-    Route::post('/caretaker/profile/detail', [CaretakerController::class, 'updateProfileDetail'])->name('caretaker.profile-detail');
-    Route::post('/caretaker/profile/foto', [CaretakerController::class, 'updateProfileFoto'])->name('caretaker.profile-foto');
-    Route::post('/caretaker/profile/terbuka', [CaretakerController::class, 'updateProfileTerbuka'])->name('caretaker.profile-terbuka');
+    Route::get('/caretaker/profile', [ProfilCaretakerController::class, 'showPageProfile'])->name('caretaker.profile');
+    Route::post('/caretaker/profile/area', [ProfilCaretakerController::class, 'updateProfileArea'])->name('caretaker.profile-area');
+    Route::post('/caretaker/profile/detail', [ProfilCaretakerController::class, 'updateProfileDetail'])->name('caretaker.profile-detail');
+    Route::post('/caretaker/profile/foto', [ProfilCaretakerController::class, 'updateFotoProfil'])->name('caretaker.profile-foto');
+    Route::post('/caretaker/profile/terbuka', [ProfilCaretakerController::class, 'updateStatusTerbukaUntukPekerjaans'])->name('caretaker.profile-terbuka');
 
-    Route::get('/caretaker/ulasan-saya', [CaretakerController::class, 'showPageUlasanSaya'])->name('caretaker.ulasan-saya');
+    Route::get('/caretaker/profil-user/{id}', [ProfilCaretakerController::class, 'showProfilUser'])->name('caretaker.profil-user');
+    
+    Route::get('/caretaker/ulasan-saya', [UlasanSayaController::class, 'showPageUlasanSaya'])->name('caretaker.ulasan-saya');
 
-    Route::get('/caretaker/review-user/{id}', [CaretakerController::class, 'showPageReviewUser'])->name('caretaker.review-user');
+    Route::get('/caretaker/order', [OrderCaretakerController::class, 'showPageOrder'])->name('caretaker.order');
+    Route::get('/caretaker/order/{id}', [OrderCaretakerController::class, 'showPageDetailOrder'])->name('caretaker.detail-order');
+    Route::post('/caretaker/order/{id}/request-salary', [OrderCaretakerController::class, 'requestSalaryStatusOrder'])->name('caretaker.request-salary-order');
+    Route::post('/caretaker/order/{id}/rejected', [OrderCaretakerController::class, 'rejectedStatusOrder'])->name('caretaker.rejected-order');
+    Route::post('/caretaker/order/{id}/approved', [OrderCaretakerController::class, 'approvedStatusOrder'])->name('caretaker.approved-order');
 
-    Route::get('/caretaker/status-order', [CaretakerController::class, 'showPageStatusOrder'])->name('caretaker.status-order');
-    Route::get('/caretaker/status-order/{id}', [CaretakerController::class, 'showPageDetailStatusOrder'])->name('caretaker.detail-status-order');
-    Route::post('/caretaker/status-order/{id}/request-salary', [CaretakerController::class, 'requestSalaryStatusOrder'])->name('caretaker.request-salary-status-order');
-    Route::post('/caretaker/status-order/{id}/rejected', [CaretakerController::class, 'rejectedStatusOrder'])->name('caretaker.rejected-status-order');
-    Route::post('/caretaker/status-order/{id}/approved', [CaretakerController::class, 'approvedStatusOrder'])->name('caretaker.approved-status-order');
+    Route::get('/caretaker/riwayat-transaksi', [TransaksiCaretakerController::class, 'showPageRiwayatTransaksi'])->name('caretaker.riwayat-transaksi');
+    Route::get('/caretaker/riwayat-transaksi/{id}', [TransaksiCaretakerController::class, 'showPageDetailRiwayatTransaksi'])->name('caretaker.detail-riwayat-transaksi');
 
-    Route::get('/caretaker/riwayat-transaksi', [CaretakerController::class, 'showPageRiwayatTransaksi'])->name('caretaker.riwayat-transaksi');
-    Route::get('/caretaker/riwayat-transaksi/{id}', [CaretakerController::class, 'showPageDetailRiwayatTransaksi'])->name('caretaker.detail-riwayat-transaksi');
-
-    Route::get('/caretaker/review/{id}', [CaretakerController::class, 'showPageReview'])->name('caretaker.review');
-    Route::post('/caretaker/review/{id}', [CaretakerController::class, 'sendReview'])->name('caretaker.send-review');
+    Route::get('/caretaker/review/{id}', [ReviewCaretakerController::class, 'showPageReview'])->name('caretaker.review');
+    Route::post('/caretaker/review/{id}', [ReviewCaretakerController::class, 'sendReview'])->name('caretaker.send-review');
 });

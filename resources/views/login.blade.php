@@ -47,7 +47,7 @@
                         <div class="col-md text-end">
                             <p><a href="/forgot-password" class="text-decoration-none">Lupa kata sandi</a></p>
                         </div>
-                        <input type="submit" value="Log in" id="btn_login" class="btn bg-temanbunda text-white mt-2 mb-4 w-full" style="width: 100%; height: 60px;" disabled>
+                        <input type="submit" value="Log in" id="btn_login" class="btn bg-temanbunda text-white mb-4 w-full" style="width: 100%; height: 60px;" disabled>
                     </div>
                 </div>
                 <div class="col-md text-center">

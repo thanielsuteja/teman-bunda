@@ -3,17 +3,26 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Caretaker;
 use App\Models\Job_offer;
 use App\Models\Notification;
 use App\Models\User;
+use App\Models\Transaction;
 use Illuminate\Support\Facades\Auth;
 
-class InfoOrderController extends Controller
+class OrderUserController extends Controller
 {
+    public function showOrder () {
+        $job = Job_offer::where('user_id', Auth::user()->user_id)->get(); 
+
+        return view('user.order', ['job_offer' => $job]);
+    }
+
     public function showOrderInfo ($id) {
-        $job = Job_offer::where('job_id', $id)->first();
+        $job = Job_offer::find($id);
+        $transaction = Transaction::where('job_id', $id)->first();
         
-        return view('user.order-info', ['job' => $job]);
+        return view('user.order-info', ['job' => $job, 'transaction' => $transaction]);
     }
 
     public function updateGaji($id, Request $request)
@@ -34,7 +43,7 @@ class InfoOrderController extends Controller
             'content' => 'Pengguna '.$user->nama_depan.' telah mengizinkan perubahan gaji dari Rp'.number_format($temp,2,",",".").' menjadi Rp'.number_format($job->estimasi_biaya,2,",",".").".",
             'user_id' => null,
             'caretaker_id' => $job->caretaker_id,
-            'url' => route('caretaker.detail-status-order', $job->job_id)
+            'url' => route('caretaker.detail-order', $job->job_id)
         ]);
 
         return redirect("/user/order-info/$id");
@@ -53,7 +62,7 @@ class InfoOrderController extends Controller
             'content' => 'Oh tidak! Penawaran kerja untuk judul \''.$job->judul_pekerjaan.'\' telah dibatalkan. Yang sabar ya :(',
             'user_id' => null,
             'caretaker_id' => $job->caretaker_id,
-            'url' => route('caretaker.detail-status-order', $job->job_id)
+            'url' => route('caretaker.detail-order', $job->job_id)
         ]);
 
         return redirect("/user/order-info/$id");

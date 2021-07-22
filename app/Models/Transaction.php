@@ -13,6 +13,7 @@ class Transaction extends Model
     public function JobOffer() {
         return $this->belongsTo(Job_offer::class,'job_id','job_id');
     }
+    
     public function getTransactionStatusColorAttribute()
     {
         $colors = [
@@ -24,6 +25,7 @@ class Transaction extends Model
         ];
         return $colors[$this->transaction_status] ?? 'text-secondary';
     }
+
     protected $fillable = [
         'transaction_status',
         'job_id',

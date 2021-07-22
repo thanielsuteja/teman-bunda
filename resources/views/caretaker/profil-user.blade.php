@@ -73,7 +73,7 @@
                     </div>
                     <div class="row mb-5">
                         <div class="col">
-                            <span class="text-secondary">Aktif sejak</span> {{ date('d-m-Y', strtotime($user->created_at)) }}
+                            <span class="text-secondary">Aktif sejak</span> {{ date('d/m/Y', strtotime($user->created_at)) }}
                         </div>
                     </div>
                     @foreach ($user->JobOffers()->has('ReviewCaretaker')->get() as $jobOffer)

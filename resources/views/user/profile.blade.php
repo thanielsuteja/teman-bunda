@@ -74,7 +74,7 @@
                         <div class="col-md row">
                             <label class="col-md-6 col-form-label mb-3">Member Since</label>
                             <div class="col-md-6">
-                                <input type="text" value="{{ date('d-m-Y', strtotime($user->created_at)) }}" class="form-control" disabled readonly>
+                                <input type="text" value="{{ date('d/m/Y', strtotime($user->created_at)) }}" class="form-control" disabled readonly>
                             </div>
                             <label class="col-md-6 col-form-label mb-3">User ID</label>
                             <div class="col-md-6">
@@ -88,7 +88,7 @@
                         <div class="col-md-4">
                             <div class="row justify-content-center">
                                 @if ($user->profile_img_path != null)
-                                <img src="{{ asset($user->profile_img_path) }}" class="p-0" style="border-radius: 50%; object-fit: cover; width: 90px; height: 90px; border: 1px solid black">
+                                <img src="{{ asset('storage/foto_profil/'.$user->profile_img_path) }}" class="p-0" style="border-radius: 50%; object-fit: cover; width: 90px; height: 90px; border: 1px solid black">
                                 @else
                                 <img src="{{ asset('img/no-profile.png') }}" class="p-0" style="border-radius: 50%; object-fit: cover; width: 90px; height: 90px; border: 1px solid black">
                                 @endif

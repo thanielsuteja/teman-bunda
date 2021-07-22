@@ -32,7 +32,7 @@
 <div class="container main col-xxl-12 px-5 mt-0">
     <div class="row">
         <div class="col-md-8 offset-md-2">
-            <div class="card shadow" style="border-radius: 20px; overflow: hidden; margin-top: 90px;">
+            <div class="card shadow mb-4" style="border-radius: 20px; overflow: hidden; margin-top: 90px;">
                 <div class="card-header bg-temanbunda d-flex align-items-center py-4">
                     <label class="h5 px-3 m-0">Cari berdasarkan</label>
                     <div class="form-floating d-inline-block pe-3" style="width: 200px;">
@@ -59,7 +59,7 @@
                             <i class="bi bi-x-circle m-0" style="font-size: 30;"></i>
                         </a>
                         @else
-                        <a href="{{ route('cari-caregiver') }}" class="nav-link link-dark text-decoration-none p-2 disabled" data-bs-toggle="tooltip" data-placement="bottom" title="Hapus filter" style="border-radius: 10px;">
+                        <a href="{{ route('cari-caregiver') }}" class="nav-link link-dark text-decoration-none p-2 disabled" data-bs-toggle="tooltip" data-placement="right" title="Hapus filter" style="border-radius: 10px;">
                             <i class="bi bi-x-circle m-0" style="font-size: 30;"></i>
                         </a>
                         @endif
@@ -82,7 +82,7 @@
                         <div class="card border-2 mx-5 my-3 zoom" style="background-color: #f3f3f3; border-radius: 10px; overflow: hidden; min-height: 190px;">
                             <div class="card-body">
                                 <div class="row">
-                                    <div class="col-md-3 px-2 text-center">
+                                    <div class="col-md-auto px-4 text-center">
                                         @if ($care->User->profile_img_path != null)
                                         <img src="{{ asset('storage/foto_profil/'.$care->User->profile_img_path) }}" class="profile-pic border border-5">
                                         @else
@@ -104,7 +104,7 @@
                                             }) }} Rating</p>
                                         </div>
                                     </div>
-                                    <div class="col-md-9">
+                                    <div class="col-md-9 ps-0">
                                         <div class="row pb-1 pt-1">
                                             <div class="col">
                                                 <h4 class="card-title m-0 py-1" style="display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden;">
@@ -162,7 +162,7 @@
                                             </div>
                                         </div>
                                         <div class="row mt-2" style="font-size: 16px; padding-left: 12px;">
-                                            <p class="line-clamp text-808080 pb-1">{{ $care->deskripsi_caretaker }}...</p>
+                                            <p class="line-clamp text-808080 mb-0">{{ $care->deskripsi_caretaker }}...</p>
                                         </div>
                                     </div>
                                 </div>
@@ -178,8 +178,8 @@
     </div>
 </div>
 <script>
-    $(document).ready(function () {
-        $('#filter_mengasuh').on('change', function () {
+    $(document).ready(function() {
+        $('#filter_mengasuh').on('change', function() {
             var mengasuh = $(this).val();
             var url = window.location.protocol + '//' + window.location.host + window.location.pathname;
             var query = new URLSearchParams(window.location.search);
@@ -187,5 +187,11 @@
             window.location.href = url + '?' + query.toString();
         });
     });
+</script>
+<script>
+    var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))
+    var tooltipList = tooltipTriggerList.map(function(tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl)
+    })
 </script>
 @endsection

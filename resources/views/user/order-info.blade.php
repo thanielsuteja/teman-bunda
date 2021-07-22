@@ -52,19 +52,20 @@
                             </div>
                             <div class="row">
                                 <div class="col-3 text-center">
-                                    @for ($i = 1; $i < 6; $i++) @if ($job->Caretaker->meanRating >= $i)
+                                    @for ($i = 1; $i < 6; $i++) 
+                                        @if ($job->Caretaker->meanRating >= $i)
                                         <i class="bi-star-fill" style="color: #FFDE59; font-size: 12px;"></i>
                                         @elseif (($i - $job->Caretaker->meanRating) >= 1)
                                         <i class="bi-star" style="color: #FFDE59; font-size: 12px;"></i>
                                         @elseif (fmod($job->Caretaker->meanRating, 1) != 0)
                                         <i class="bi-star-half" style="color: #FFDE59; font-size: 12px;"></i>
                                         @endif
-                                        @endfor
-                                        <p style="font-size: 16px;">
-                                            {{ $job->Caretaker->JobOffers->reduce(function ($total, $jobOffer) {
-                                            return $total + ($jobOffer->ReviewUser == null ? 0 : 1);
-                                        }) }} Rating
-                                        </p>
+                                    @endfor
+                                    <p style="font-size: 16px;">
+                                        {{ $job->Caretaker->JobOffers->reduce(function ($total, $jobOffer) {
+                                        return $total + ($jobOffer->ReviewUser == null ? 0 : 1);
+                                    }) }} Rating
+                                    </p>
                                 </div>
                                 <div class="row col-9 d-flex align-items-center">
                                     <div class="col-auto pe-0">
@@ -105,7 +106,7 @@
                             <p class="text-808080 text-end">Tanggal</p>
                         </div>
                         <div class="col-md-9">
-                            <p>{{ date('d-m-Y', strtotime($job->tanggal_masuk)) }} - {{ date('d-m-Y', strtotime($job->tanggal_berakhir)) }}</p>
+                            <p>{{ date('d/m/Y', strtotime($job->tanggal_masuk)) }} - {{ date('d/m/Y', strtotime($job->tanggal_berakhir)) }}</p>
                         </div>
                     </div>
                     <div class="row">
@@ -113,29 +114,7 @@
                             <p class="text-808080 text-end">Hari masuk</p>
                         </div>
                         <div class="col-md-9">
-                            <p>
-                                @if ($job->wd_1 == 1)
-                                Senin
-                                @endif
-                                @if ($job->wd_2 == 1)
-                                Selasa
-                                @endif
-                                @if ($job->wd_3 == 1)
-                                Rabu
-                                @endif
-                                @if ($job->wd_4 == 1)
-                                Kamis
-                                @endif
-                                @if ($job->wd_5 == 1)
-                                Jumat
-                                @endif
-                                @if ($job->wd_6 == 1)
-                                Sabtu
-                                @endif
-                                @if ($job->wd_7 == 1)
-                                Minggu
-                                @endif
-                            </p>
+                            <p>{{ implode(', ', $job->Days) }}</p>
                         </div>
                     </div>
                     <div class="row">
@@ -163,22 +142,27 @@
                         </div>
                     </div>
 
-                    @if ($job->job_status != "selesai" || $job->job_status != "ditolak" || $job->job_status != "dibatalkan")
+                    @if ($job->job_status != "ditolak" || $job->job_status != "dibatalkan")
                     <div class="row text-end pt-5">
                         @if ($job->job_status == "ubah gaji")
                         <p style="font-size: 14px; color: red;">Caregiver meminta perubahan gaji menjadi Rp{{ number_format($job->permintaan_gaji_baru,0, ",", ".") }},00</p>
+                        @elseif ($job->job_status == "diterima")
+                        <p style="font-size: 14px; color: red;">Jangan lupa untuk melakukan pembayaran sebelum tenggat waktu</p>
                         @endif
                     </div>
                     <div class="row justify-content-end">
-                        @if ($job->job_status == "menunggu" || $job->job_status == "diterima")
+                        @if ($job->job_status == "menunggu")
                         <button type="button" class="btn fw-bold" data-bs-toggle="modal" data-bs-target="#batal" style="width: 180px; height: 58px; border: 1px solid #ffde59; color: #ffde59;">Batalkan Order</button>
-                        @endif
-                        @if ($job->job_status == "ubah gaji")
+                        @elseif ($job->job_status == "diterima")
+                        <button type="button" class="btn fw-bold" data-bs-toggle="modal" data-bs-target="#batal" style="width: 180px; height: 58px; border: 1px solid #ffde59; color: #ffde59;">Batalkan Order</button>
+                        <a href="{{ route('info-transaksi', $transaction->transaction_id) }}" class="btn bg-temanbunda ms-3 fw-bold p-3" style="width: 180px; height: 58px;">Pembayaran</a>
+                        @elseif ($job->job_status == "ubah gaji")
                         <button type="button" class="btn fw-bold" data-bs-toggle="modal" data-bs-target="#batal" style="width: 180px; height: 58px; border: 1px solid #ffde59; color: #ffde59;">Batalkan Order</button>
                         <button type="button" class="btn bg-temanbunda ms-3 fw-bold" data-bs-toggle="modal" data-bs-target="#ganti_gaji_modal" style="width: 180px; height: 58px;">Izinkan</button>
-                        @endif
-                        @if ($job->job_status == "berlangsung")
+                        @elseif ($job->job_status == "berlangsung")
                         <button type="button" class="btn bg-temanbunda fw-bold" data-bs-toggle="modal" data-bs-target="#selesai" style="width: 180px; height: 58px;">Selesai</button>
+                        @elseif ($job->job_status == "selesai" && $job->ReviewUser == null)
+                        <a href="{{ route('user.review', $job->job_id) }}" class="btn bg-temanbunda ms-3 fw-bold p-3" style="width: 180px; height: 58px;">Beri Ulasan</a>
                         @endif
                     </div>
                     @endif

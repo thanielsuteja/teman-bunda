@@ -1,7 +1,7 @@
 <header class="header">
     <nav class="navbar shadow navbar-expand-lg navbar-light bg-white" id="navbar">
         <div class="container-fluid">
-            <a class="navbar-brand" href="/home">
+            <a class="navbar-brand" href="/">
                 <img src="/img/logoTemanBunda.png" alt="" width="90px" class="py-2">
             </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">

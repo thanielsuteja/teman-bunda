@@ -23,7 +23,7 @@
                 <div class="card-body" style="min-height: 532px;">
                     @foreach ($transaction as $transaction)
                     <a href="/user/info-transaksi/{{$transaction->transaction_id}}" class="text-decoration-none" style="color: black;">
-                        <div class="card border-2 mx-4 my-4 zoom" style="background-color: #f3f3f3; border-radius: 10px; overflow: hidden;">
+                        <div class="card border-2 mx-5 my-3 zoom" style="background-color: #f3f3f3; border-radius: 10px; overflow: hidden;">
                             <div class="card-header d-flex align-items-center p-0" style="background-color: #ffeea8;">
                                 <div class="col-sm-10 border-end border-5 border-white">
                                     <h4 class="my-2 ps-4">{{ $transaction->JobOffer->judul_pekerjaan }}</h4>

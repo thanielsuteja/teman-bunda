@@ -83,7 +83,7 @@ class BuatPenawaranController extends Controller
             'content' => 'Yey! Kamu mendapatkan tawaran kerja baru. Buruan cek sekarang!',
             'user_id' => null,
             'caretaker_id' => $request->caretaker_id,
-            'url' => route('caretaker.detail-status-order', $job->job_id)
+            'url' => route('caretaker.detail-order', $job->job_id)
         ]);
 
         return redirect('/user/home-page');

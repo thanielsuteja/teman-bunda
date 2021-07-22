@@ -6,22 +6,22 @@
                 <span class="nav-title">Beranda</span>
             </a>
         </li>
-        <li class="{{ request()->is('caretaker/ulasan-saya*') ? 'active' : '' }}">
-            <a href="{{ route('caretaker.ulasan-saya') }}">
-                <span class="nav-icon"><i class="bi bi-people-fill"></i></span>
-                <span class="nav-title">Ulasan Saya</span>
-            </a>
-        </li>
-        <li class="{{ request()->is('caretaker/status-order*') ? 'active' : '' }}">
-            <a href="{{ route('caretaker.status-order') }}">
+        <li class="{{ request()->is('caretaker/order*') ? 'active' : '' }}">
+            <a href="{{ route('caretaker.order') }}">
                 <span class="nav-icon"><i class="bi bi-table"></i></span>
-                <span class="nav-title">Status Order</span>
+                <span class="nav-title">Order Saya</span>
             </a>
         </li>
         <li class="{{ request()->is('caretaker/riwayat-transaksi*') ? 'active' : '' }}">
             <a href="{{ route('caretaker.riwayat-transaksi') }}">
                 <span class="nav-icon"><i class="bi bi-file-text"></i></span>
                 <span class="nav-title">Riwayat Transaksi</span>
+            </a>
+        </li>
+        <li class="{{ request()->is('caretaker/ulasan-saya*') ? 'active' : '' }}">
+            <a href="{{ route('caretaker.ulasan-saya') }}">
+                <span class="nav-icon"><i class="bi bi-star"></i></span>
+                <span class="nav-title">Ulasan Saya</span>
             </a>
         </li>
     </ul>

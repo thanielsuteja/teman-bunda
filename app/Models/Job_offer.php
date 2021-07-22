@@ -34,7 +34,7 @@ class Job_offer extends Model
         $colors = [
             'menunggu' => 'text-secondary',
             'ditolak' => 'text-danger',
-            'ubah gaji' => 'text-primary',
+            'ubah gaji' => 'text-secondary',
             'berlangsung' => 'text-primary',
             'diterima' => 'text-primary',
             'selesai' => 'text-success'

@@ -93,7 +93,7 @@
                             <p class="text-808080 text-end">Jumlah dibayar</p>
                         </div>
                         <div class="col-md-9">
-                            <p>Rp{{ number_format($transaction->JobOffer->transaction_amount,0,",",".") }},00</p>
+                            <p>Rp{{ number_format($transaction->transaction_amount,2,",",".") }}</p>
                         </div>
                     </div>
                     <div class="row">
@@ -145,7 +145,7 @@
                             <p class="text-808080 text-end">Tanggal bekerja</p>
                         </div>
                         <div class="col-md-9">
-                            <p>{{ date('d-m-Y', strtotime($transaction->JobOffer->tanggal_masuk)) }} - {{ date('d-m-Y', strtotime($transaction->JobOffer->tanggal_berakhir)) }}</p>
+                            <p>{{ date('d/m/Y', strtotime($transaction->JobOffer->tanggal_masuk)) }} - {{ date('d/m/Y', strtotime($transaction->JobOffer->tanggal_berakhir)) }}</p>
                         </div>
                     </div>
                     <div class="row">
@@ -162,7 +162,7 @@
                         </div>
                         <div class="col-md-9">
                             <p>
-                                @if ($transaction->JobOffer->wd_1 == 1)
+                                <!-- @if ($transaction->JobOffer->wd_1 == 1)
                                 Senin
                                 @endif
                                 @if ($transaction->JobOffer->wd_2 == 1)
@@ -182,7 +182,8 @@
                                 @endif
                                 @if ($transaction->JobOffer->wd_7 == 1)
                                 Minggu
-                                @endif
+                                @endif -->
+                                {{ implode(', ', $transaction->JobOffer->Days) }}
                             </p>
                         </div>
                     </div>

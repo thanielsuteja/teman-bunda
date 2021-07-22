@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use Laravolt\Indonesia\Models\Province;
 use Laravolt\Indonesia\Models\City;
@@ -56,5 +57,19 @@ class ProfilUserController extends Controller
         ]);
 
         return redirect("user/profile/$id");
+    }
+
+    
+    public function updateFotoProfil(Request $request)
+    {
+        $user = Auth::user();
+
+        $request->profile_img_path->store('foto_profil', 'public');
+
+        $user->update([
+            'profile_img_path' => $request->profile_img_path->hashName()
+        ]);
+
+        return redirect()->route('user.profile', $user->user_id);
     }
 }

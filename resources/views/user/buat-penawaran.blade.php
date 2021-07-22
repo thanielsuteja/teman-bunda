@@ -98,7 +98,7 @@
                         <div class="row mb-2 align-items-center">
                             <label for="" class="col-sm-3 text-808080 ps-4">Estimasi biaya</label>
                             <div class="col-sm">
-                                <input type="text" id="estimasi_biaya" name="estimasi_biaya" class="form-control rounded-input" placeholder="Rp." style="height: 58px;" readonly>
+                                <input type="text" id="estimasi_biaya" name="estimasi_biaya" class="form-control rounded-input" placeholder="Rp." style="height: 58px;">
                                 <!-- JAM_KERJA = jam_berakhir-jam_masuk
                                 UPAH_PER_HARI = JAM_KERJA * cost_per_hour -->
                             </div>
