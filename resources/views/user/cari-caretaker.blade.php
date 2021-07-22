@@ -99,9 +99,13 @@
                                                 @endfor
                                         </div>
                                         <div class="row text-center">
-                                            <p class="m-0">{{ $care->JobOffers->reduce(function ($total, $jobOffer) {
-                                                return $total + ($jobOffer->ReviewUser == null ? 0 : 1);
-                                            }) }} Rating</p>
+                                            <p class="m-0">
+                                                @if ($care->countReviewUser == 0)
+                                                    Tidak ada ulasan
+                                                @else
+                                                    {{ $care->countReviewUser }} Rating
+                                                @endif
+                                            </p>
                                         </div>
                                     </div>
                                     <div class="col-md-9 ps-0">

@@ -43,7 +43,6 @@ class User extends Authenticatable
         return $this->jobOffers->reduce(function ($total, $jobOffer) {
             return $total + ($jobOffer->ReviewCaretaker == null ? 0 : 1);
         }, 0);
-        return $this->hasMany(Job_offer::class, 'user_id', 'user_id');
     }
     public function getMeanRatingAttribute()
     {
@@ -77,6 +76,7 @@ class User extends Authenticatable
         'profile_img_path',
         'dokumen_ktp_path',
         'virtual_account',
+        'rating_user',
     ];
 
     protected $attributes = [

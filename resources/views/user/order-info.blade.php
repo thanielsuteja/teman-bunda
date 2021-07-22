@@ -52,7 +52,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-3 text-center">
-                                    @for ($i = 1; $i < 6; $i++) 
+                                    @for ($i = 1; $i < 6; $i++)
                                         @if ($job->Caretaker->meanRating >= $i)
                                         <i class="bi-star-fill" style="color: #FFDE59; font-size: 12px;"></i>
                                         @elseif (($i - $job->Caretaker->meanRating) >= 1)
@@ -62,9 +62,11 @@
                                         @endif
                                     @endfor
                                     <p style="font-size: 16px;">
-                                        {{ $job->Caretaker->JobOffers->reduce(function ($total, $jobOffer) {
-                                        return $total + ($jobOffer->ReviewUser == null ? 0 : 1);
-                                    }) }} Rating
+                                        @if ($job->Caretaker->countReviewUser == 0)
+                                            Tidak ada ulasan
+                                        @else
+                                            {{ $job->Caretaker->countReviewUser }} Rating
+                                        @endif
                                     </p>
                                 </div>
                                 <div class="row col-9 d-flex align-items-center">
