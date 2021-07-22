@@ -46,13 +46,10 @@
                                 @endif
                                 @endfor
                                 <span class="ps-4" style="font-size: 20px;">
-                                    @if($care->JobOffers->reduce(function($total, $jobOffer) {
-                                        return $total + ($jobOffer->ReviewUser);}) != null)
-                                    {{ $care->JobOffers->reduce(function($total, $jobOffer) {
-                                        return $total + ($jobOffer->ReviewUser == null ? 0 : 1);
-                                    }) }} ulasan
+                                    @if ($care->countReviewUser == 0)
+                                        Tidak ada ulasan
                                     @else
-                                    Tidak ada ulasan
+                                        {{ $care->countReviewUser }} ulasan
                                     @endif
                                 </span>
                                 <div class="row pt-3">

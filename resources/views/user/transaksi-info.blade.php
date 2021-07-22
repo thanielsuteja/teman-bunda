@@ -48,9 +48,11 @@
                                         @endif
                                         @endfor
                                         <p style="font-size: 16px;">
-                                            {{ $transaction->JobOffer->Caretaker->JobOffers->reduce(function ($total, $jobOffer) {
-                                            return $total + ($jobOffer->ReviewUser == null ? 0 : 1);
-                                        }) }} ulasan
+                                            @if ($transaction->JobOffer->Caretaker->countReviewUser == 0)
+                                                Tidak ada ulasan
+                                            @else
+                                                {{ $transaction->JobOffer->Caretaker->countReviewUser }} ulasan
+                                            @endif
                                         </p>
                                 </div>
                                 <div class="row col-9 d-flex align-items-center">
