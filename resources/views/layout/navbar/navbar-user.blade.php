@@ -19,7 +19,7 @@
                             <div class="d-flex position-relative"><i class="bi bi-bell-fill m-0" style="font-size: 22px;"></i> <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger">{{ Auth::user()->Notifications->count() }}</span></div>
                         </a>
                         <ul class="dropdown-menu text-small dropdown-menu-end" aria-labelledby="dropdownNotification">
-                            @foreach (Auth::user()->Notifications as $notification)
+                            @foreach (Auth::user()->Notifications()->orderBy('created_at', 'DESC')->get() as $notification)
                                 <li>
                                     <a class="dropdown-item" href="{{ $notification->url }}">
                                         <strong class="d-block">{!! $notification->notification_type !!}</strong>
