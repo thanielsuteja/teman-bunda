@@ -36,6 +36,8 @@
                                     <p class="fw-bold" style="color: #0063BE; font-size: 17px; margin: 0;">{{ ucfirst($job->Transaction->transaction_status) }}</p>
                                     @elseif ($job->Transaction->transaction_status == "terverifikasi")
                                     <p class="fw-bold" style=" color: #0EAD00; font-size: 17px; margin: 0;">{{ ucfirst($job->Transaction->transaction_status) }}</p>
+                                    @else
+                                    <p class="fw-bold text-danger" style="font-size: 17px; margin: 0;">{{ ucfirst($job->Transaction->transaction_status) }}</p>
                                     @endif
                                 </div>
                             </div>

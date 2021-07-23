@@ -70,7 +70,7 @@
                             </div>
                         </div>
                         <div class="col-3" style="margin-top: -40px;">
-                            @if ($jobOffer->Caretaker->User->profile_img_path != null)
+                            @if ($jobOffer->User->profile_img_path != null)
                             <img src="{{ asset('storage/foto_profil/'.$jobOffer->User->profile_img_path) }}" class="profile-pic-lg border">
                             @else
                             <img src="{{ asset('img/no-profile.png') }}" class="profile-pic-lg border">
@@ -156,7 +156,7 @@
                         </div>
                     </div>
 
-                    @if ($jobOffer->job_status != 'dibatalkan' || $jobOffer->job_status != 'ditolak' || $jobOffer->job_status != 'diterima')
+                    @if ($jobOffer->job_status != 'batal' || $jobOffer->job_status != 'ditolak' || $jobOffer->job_status != 'diterima')
                     <div class="row mt-5 d-flex justify-content-end">
                         @if ($jobOffer->job_status == 'menunggu')
                         <form action="{{ route('caretaker.rejected-order', $jobOffer->job_id) }}" class="w-auto" method="post">

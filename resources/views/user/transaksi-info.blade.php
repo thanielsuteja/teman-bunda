@@ -49,9 +49,9 @@
                                         @endfor
                                         <p style="font-size: 16px;">
                                             @if ($transaction->JobOffer->Caretaker->countReviewUser == 0)
-                                                Tidak ada ulasan
+                                            0 ulasan
                                             @else
-                                                {{ $transaction->JobOffer->Caretaker->countReviewUser }} ulasan
+                                            {{ $transaction->JobOffer->Caretaker->countReviewUser }} ulasan
                                             @endif
                                         </p>
                                 </div>
@@ -73,6 +73,7 @@
                             @endif
                         </div>
                     </div>
+                    @if ($transaction->transaction_status != "batal")
                     <div class="row">
                         @if ($transaction->transaction_status == "menunggu")
                         <div class="col-md-3">
@@ -90,6 +91,7 @@
                         </div>
                         @endif
                     </div>
+                    @endif
                     <div class="row">
                         <div class="col-md-3">
                             <p class="text-808080 text-end">Jumlah dibayar</p>
@@ -139,7 +141,7 @@
                             <p class="text-808080 text-end">Alamat</p>
                         </div>
                         <div class="col-md-9">
-                            <p>{{ $transaction->JobOffer->User->alamat }}, {{ $transaction->JobOffer->User->kelurahan }}, {{ $transaction->JobOffer->User->kecamatan }}</p>
+                            <p>{{ $transaction->JobOffer->User->alamat }}, {{ ucwords(strtolower($transaction->JobOffer->User->kelurahan)) }}, {{ ucwords(strtolower($transaction->JobOffer->User->kecamatan)) }}</p>
                         </div>
                     </div>
                     <div class="row">
@@ -164,27 +166,6 @@
                         </div>
                         <div class="col-md-9">
                             <p>
-                                <!-- @if ($transaction->JobOffer->wd_1 == 1)
-                                Senin
-                                @endif
-                                @if ($transaction->JobOffer->wd_2 == 1)
-                                Selasa
-                                @endif
-                                @if ($transaction->JobOffer->wd_3 == 1)
-                                Rabu
-                                @endif
-                                @if ($transaction->JobOffer->wd_4 == 1)
-                                Kamis
-                                @endif
-                                @if ($transaction->JobOffer->wd_5 == 1)
-                                Jumat
-                                @endif
-                                @if ($transaction->JobOffer->wd_6 == 1)
-                                Sabtu
-                                @endif
-                                @if ($transaction->JobOffer->wd_7 == 1)
-                                Minggu
-                                @endif -->
                                 {{ implode(', ', $transaction->JobOffer->Days) }}
                             </p>
                         </div>

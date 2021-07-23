@@ -25,8 +25,24 @@ class TransactionController extends Controller
             'updated_at' => Carbon::now()
         ]);
 
-        Job_offer::find($transaction->job_id)->update([
+        $job = Job_offer::find($transaction->job_id)->update([
             'job_status' => 'berlangsung',
+        ]);
+
+        Notification::create([
+            'notification_type' => 'Pembayaran Berhasil',
+            'content' => 'Pembayaran untuk judul \''.$job->judul_pekerjaan.'\' telah berhasil. Jangan lupa untuk menekan \'Selesai\' apabila sudah selesai',
+            'user_id' => $job->user_id,
+            'caretaker_id' => null,
+            'url' => route('order-info', $job->job_id)
+        ]);
+
+        Notification::create([
+            'notification_type' => 'Pengguna Telah Melakukan Pembayaran',
+            'content' => 'Order untuk judul \''.$job->judul_pekerjaan.'\' terverifikasi. Periksa ulang informasi waktu dan tempat Order',
+            'user_id' => null,
+            'caretaker_id' => $job->caretaker_id,
+            'url' => route('caretaker.detail-order', $job->job_id)
         ]);
     
         return Redirect()->route('adm.transactions')->with('success','Payment Finished');

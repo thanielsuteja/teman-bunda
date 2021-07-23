@@ -31,7 +31,7 @@
 <div class="container col-xxl-12 px-5">
     <div class="row">
         <div class="col-md-8 offset-md-2">
-            <div class="card shadow" style="border-radius: 20px; overflow: hidden; margin-top: 90px;">
+            <div class="card mb-2 shadow" style="border-radius: 20px; overflow: hidden; margin-top: 90px;">
                 <div class="card-header bg-temanbunda d-flex justify-content-between align-items-center p-0" style="height: 120px;">
                     <div class="row">
                         <div class="col-1 d-flex align-items-center">
@@ -63,7 +63,7 @@
                                     @endfor
                                     <p style="font-size: 16px;">
                                         @if ($job->Caretaker->countReviewUser == 0)
-                                            Tidak ada ulasan
+                                            0 ulasan
                                         @else
                                             {{ $job->Caretaker->countReviewUser }} Rating
                                         @endif
@@ -144,7 +144,7 @@
                         </div>
                     </div>
 
-                    @if ($job->job_status != "ditolak" || $job->job_status != "dibatalkan")
+                    @if ($job->job_status != "ditolak" || $job->job_status != "batal")
                     <div class="row text-end pt-5">
                         @if ($job->job_status == "ubah gaji")
                         <p style="font-size: 14px; color: red;">Caregiver meminta perubahan gaji menjadi Rp{{ number_format($job->permintaan_gaji_baru,0, ",", ".") }},00</p>

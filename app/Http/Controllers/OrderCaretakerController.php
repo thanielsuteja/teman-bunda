@@ -90,7 +90,7 @@ class OrderCaretakerController extends Controller
 
         Notification::create([
             'notification_type' => 'Lakukan Pembayaran',
-            'content' => 'Penawaran kerja untuk '.$user->nama_depan.' '.$user->nama_belakang.' telah diterima. Segera lakukan pembayaran pada halaman Transaksi',
+            'content' => 'Penawaran kerja untuk '.$user->nama_depan.' '.$user->nama_belakang.' telah diterima. Segera lakukan pembayaran.',
             'user_id' => $jobOffer->user_id,
             'caretaker_id' => null,
             'url' => route('info-transaksi', $transaction->transaction_id),

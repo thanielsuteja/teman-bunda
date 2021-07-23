@@ -72,13 +72,13 @@ class UserSeeder extends Seeder
 
         User::create([
             'nama_depan'        => 'Admin',
-            'nama_belakang'     => 'Admin',
+            'nama_belakang'     => 'Teman Bunda',
             'role'              => 'admin',
-            'password'          => bcrypt('admin123'),
+            'password'          => bcrypt('123admin123'),
             'tanggal_lahir'     => '2000-02-02',
             'jenis_kelamin'     => 'perempuan',
             'nomor_telepon'     => '081111111111',
-            'email'             => 'admin@mail.com',
+            'email'             => 'torbmegadap@admin.com',
             'alamat'            => 'Admin',
             'provinsi'          => 'ADMIN',
             'kabupaten'         => 'ADMIN',

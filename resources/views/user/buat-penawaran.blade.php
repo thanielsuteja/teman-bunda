@@ -159,7 +159,7 @@
                         $('#estimasi_biaya').val('');
                         for (const [key, value] of Object.entries(data)) {
                             $('.btn-group-vertical').append(`
-                                <input type="checkbox" class="btn-check days" value="${key}" name="wd_${key}" id="wd_${key}">
+                                <input type="checkbox" class="btn-check days" value="1" name="wd_${key}" id="wd_${key}">
                                 <label class="btn btn-outline-default text-start" for="wd_${key}">${value}</label>
                             `);
                         }

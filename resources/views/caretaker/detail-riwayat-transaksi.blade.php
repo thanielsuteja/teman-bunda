@@ -90,38 +90,6 @@
                             </p>
                         </div>
                     </div>
-                    <!-- <div class="row">
-                        <div class="col-md-12">
-                            <hr style="background: black; margin-top: 40px; margin-bottom: 25px">
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-3">
-                            <p class="text-secondary text-end m-0 mb-2 me-5">Total Upah</p>
-                        </div>
-                        <div class="col-md-9">
-                            <p class="m-0 mb-2">Rp{{ number_format($transaction->transaction_amount, 2, ',', '.') }}</p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-3">
-                            <p class="text-secondary text-end m-0 mb-4 me-5">Upah Diterima</p>
-                        </div>
-                        <div class="col-md-9">
-                            <p class="m-0 mb-2">
-                                Rp{{ number_format($transaction->transaction_amount*0.95, 2, ',', '.') }}
-                                <span data-bs-toggle="tooltip" data-bs-placement="right" title="Teman Bunda mengambil sebanyak lima persen dari penghasilanmu untuk mengembangkan Teman Bunda lebih lanjut"><i class="bi bi-info-circle-fill d-inline"></i></span>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-3">
-                            <p class="text-secondary text-end m-0 mb-2 me-5">Status</p>
-                        </div>
-                        <div class="col-md-9">
-                            <p class="m-0 mb-2">{{ ucwords($transaction->transaction_status) }}</p>
-                        </div>
-                    </div> -->
                     <div class="row justify-content-end" style="padding-top: 170px;">
                         <a href="{{ route('caretaker.detail-order', $transaction->job_id) }}" class="btn bg-temanbunda ms-3 fw-bold py-3" style="width: 180px; height: 58px;">Lihat Order</a>
                     </div>

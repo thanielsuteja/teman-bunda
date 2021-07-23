@@ -47,9 +47,9 @@
                                 @endfor
                                 <span class="ps-4" style="font-size: 20px;">
                                     @if ($care->countReviewUser == 0)
-                                        Tidak ada ulasan
+                                    0 ulasan
                                     @else
-                                        {{ $care->countReviewUser }} ulasan
+                                    {{ $care->countReviewUser }} ulasan
                                     @endif
                                 </span>
                                 <div class="row pt-3">
@@ -94,7 +94,7 @@
                         <div class="col-md-6 pe-0" style="border-right: 1px solid #9e9e9e;">
                             <div class="row">
                                 <div class="col-md-5">
-                                    <p class="text-808080 text-end">Jenis kelamin</p>
+                                    <p class="text-808080">Jenis kelamin</p>
                                 </div>
                                 <div class="col-md-7">
                                     <p>{{ ucfirst($care->User->jenis_kelamin) }}</p>
@@ -102,7 +102,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-5">
-                                    <p class="text-808080 text-end">Harapan tarif</p>
+                                    <p class="text-808080">Harapan tarif</p>
                                 </div>
                                 <div class="col-md-7">
                                     <p>Rp{{ number_format($care->cost_per_hour, 0, ",", ".") }},00</p>
@@ -110,7 +110,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-5">
-                                    <p class="text-808080 text-end">Area</p>
+                                    <p class="text-808080">Area</p>
                                 </div>
                                 <div class="col-md-7">
                                     <p>
@@ -122,7 +122,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-5">
-                                    <p class="text-808080 text-end">Mengasuh</p>
+                                    <p class="text-808080">Mengasuh</p>
                                 </div>
                                 <div class="col-md-7">
                                     <p>
@@ -136,7 +136,7 @@
                         <div class="col-md-6">
                             <div class="row">
                                 <div class="col-md-5">
-                                    <p class="text-808080 text-end">Aktif sejak</p>
+                                    <p class="text-808080">Aktif sejak</p>
                                 </div>
                                 <div class="col-md-7">
                                     <p>{{ date('d/m/Y', strtotime($care->created_at)) }}</p>
@@ -144,7 +144,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-5">
-                                    <p class="text-808080 text-end">Tipe caregiver</p>
+                                    <p class="text-808080">Tipe caregiver</p>
                                 </div>
                                 <div class="col-md-7">
                                     <p>{{ $care->tipe_caretaker }}</p>
@@ -152,7 +152,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-5">
-                                    <p class="text-808080 text-end">Edukasi</p>
+                                    <p class="text-808080">Edukasi</p>
                                 </div>
                                 <div class="col-md-7">
                                     <p>{{ $care->edukasi }}</p>
@@ -160,7 +160,7 @@
                             </div>
                             <div class="row">
                                 <div class="col-md-5">
-                                    <p class="text-808080 text-end">Dokumen</p>
+                                    <p class="text-808080">Dokumen</p>
                                 </div>
                                 <div class="col-md-7">
                                     @if ($care->dokumen_vaksin_path == null && $care->dokumen_psikotes_path == null && $care->dokumen_ijazah_path == null && $care->dokumen_skck_path == null)
@@ -189,10 +189,48 @@
                     </div>
                     <div class="row pt-3">
                         <div class="col-md-auto ps-2" style="width: 145px;">
-                            <p class="text-808080 text-end">Tentang</p>
+                            <p class="text-808080">Tentang</p>
                         </div>
                         <div class="col-md">
                             <p>{{ $care->deskripsi_caretaker }}</p>
+                        </div>
+                    </div>
+                    <hr class="mt-2 mb-3">
+                    <div class="row pt-1">
+                        <p class="text-808080">Ulasan Untuk Caregiver Ini</p>
+                    </div>
+                    <div class="d-flex pt-1 justify-content-center">
+                        <div class="card card-body py-2 px-4" style="background-color: #f6f6f6; border-radius: 5px;">
+                            @foreach ($care->JobOffers()->has('ReviewUser')->orderBy('job_id', 'desc')->get() as $job)
+                            <div class="row py-2 border-top border-bottom" style="min-height: 118px;">
+                                <div class="col-md-auto px-3">
+                                    @if ($job->User->profile_img_path != null)
+                                    <img src="{{ asset('storage/foto_profil/'.$job->User->profile_img_path) }}" style="border-radius: 50%; object-fit: cover; width: 69px; height: 69px">
+                                    @else
+                                    <img src="{{ asset('img/no-profile.png') }}" style="border-radius: 50%; object-fit: cover; width: 69px; height: 69px">
+                                    @endif
+                                </div>
+                                <div class="col-md ps-0 pe-3">
+                                    <p class="m-0 fw-bold">{{ $job->User->nama_depan }} {{ $job->User->nama_belakang }}</p>
+                                    <div class="d-flex">
+                                        <div class="me-2">
+                                            @for ($i = 1; $i < 6; $i++) @if ($job->ReviewUser->review_rating >= $i)
+                                                <i class="bi-star-fill" style="color: #FFDE59; font-size: 14px;"></i>
+                                                @elseif (($i - $job->ReviewUser->review_rating) >= 1)
+                                                <i class="bi-star" style="color: #FFDE59; font-size: 14px;"></i>
+                                                @elseif (fmod($job->ReviewUser->review_rating, 1) != 0)
+                                                <i class="bi-star-half" style="color: #FFDE59; font-size: 14px;"></i>
+                                                @endif
+                                                @endfor
+                                        </div>
+                                        <span class="text-secondary">
+                                            {{ \Carbon\Carbon::parse($job->created_at)->diffForHumans() }}
+                                        </span>
+                                    </div>
+                                    <p>{{ $job->ReviewUser->review_content }}</p>
+                                </div>
+                            </div>
+                            @endforeach
                         </div>
                     </div>
                     <div class="row justify-content-end pt-4">
@@ -202,7 +240,6 @@
             </div>
         </div>
     </div>
-</div>
 </div>
 
 @endsection

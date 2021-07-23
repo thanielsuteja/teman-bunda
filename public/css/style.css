@@ -423,3 +423,8 @@ input::-webkit-inner-spin-button {
     -ms-transform: translate(-50%, -50%);
     text-align: center;
 }
+
+.dropdown-menu-text-wrap li a {
+    width: 350px;
+    white-space: normal;
+}

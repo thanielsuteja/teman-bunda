@@ -51,12 +51,15 @@ class OrderUserController extends Controller
     
     public function batalkanOrder($id)
     {
-        Job_offer::where('job_id', $id)->update([
-            'job_status' => 'dibatalkan',
+        $job = Job_offer::find($id)->update([
+            'job_status' => 'batal',
         ]);
 
-        $job = Job_offer::find($id);
-        
+        // if ($job->has())
+        // Transaction::where('job_id', $job->job_id)->update([
+        //     'transaction_status' => 'batal',
+        // ]);
+
         Notification::create([
             'notification_type' => 'Penawaran Kerja Dibatalkan',
             'content' => 'Oh tidak! Penawaran kerja untuk judul \''.$job->judul_pekerjaan.'\' telah dibatalkan. Yang sabar ya :(',
