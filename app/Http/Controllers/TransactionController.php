@@ -25,7 +25,9 @@ class TransactionController extends Controller
             'updated_at' => Carbon::now()
         ]);
 
-        $job = Job_offer::find($transaction->job_id)->update([
+        $job = Job_offer::find($transaction->job_id);
+
+        $job->update([
             'job_status' => 'berlangsung',
         ]);
 
@@ -50,8 +52,10 @@ class TransactionController extends Controller
 
     public function VerifyTransaction($id){
 
-        $transaction = Transaction::find($id)->update([
-            'transaction_status' => 'terverifikasi',
+        $transaction = Transaction::find($id);
+
+        $transaction->update([
+        'transaction_status' => 'terverifikasi',
             'updated_at' => Carbon::now()
         ]);
 

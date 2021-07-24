@@ -55,7 +55,7 @@ class Job_offer extends Model
         return $this->hasOne(Review_caretaker::class, 'job_id', 'job_id');
     }
 
-    protected $table = "Job_offers";
+    protected $table = "job_offers";
 
     protected $fillable = [
         'user_id',

@@ -13,7 +13,7 @@ class CreateCaretakersTable extends Migration
      */
     public function up()
     {
-        Schema::create('Caretakers', function (Blueprint $table) {
+        Schema::create('caretakers', function (Blueprint $table) {
             $table->id('caretaker_id');
             $table->boolean('caretaker_status');
             $table->string('approved');
@@ -31,7 +31,7 @@ class CreateCaretakersTable extends Migration
             $table->string('dokumen_ijazah_path')->nullable();
             $table->string('dokumen_psikotes_path')->nullable();
             $table->string('dokumen_skck_path')->nullable();
-            $table->decimal('rating_caretaker', 2, 1);
+            $table->boolean('first_login');
             $table->timestamps();
         });
     }

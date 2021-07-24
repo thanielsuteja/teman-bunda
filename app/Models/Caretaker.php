@@ -67,7 +67,7 @@ class Caretaker extends Model
         return $this->hasMany(Region_caretaker_relation::class, 'caretaker_id', 'caretaker_id');
     }
 
-    protected $table = "Caretakers";
+    protected $table = "caretakers";
 
     protected $fillable = [
         'user_id',
@@ -86,14 +86,14 @@ class Caretaker extends Model
         'dokumen_ijazah_path',
         'dokumen_psikotes_path',
         'dokumen_skck_path',
+        'first_login',
     ];
 
     protected $attributes = [
-        'rating_caretaker'  => 0.0,
         'caretaker_status'  => 1,
         'approved'          => "pending",
         'pengawasan_kamera' => 0,
-        // 'takut_anjing'      => 1,
+        'first_login'       => 1,
     ];
 
     protected $casts =[

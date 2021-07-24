@@ -44,6 +44,15 @@
                 </div>
             </div>
             <hr class="my-1">
+            @if (count($errors) > 0)
+            <div class="alert alert-danger" role="alert">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                    <li class="text-danger" style="font-size: 14px;">{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+            @endif
             <div class="row">
                 <p class="mb-2">Bagaimana kualitas user ini?</p>
                 <div class="row justify-content-center">

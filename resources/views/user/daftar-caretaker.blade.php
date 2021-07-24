@@ -133,6 +133,15 @@
                                     <p class="text-808080 ms-2">Kegiatan utama mereka adalah memandikan, merawat, dan menemani.</p>
                                 </div>
                             </div>
+                            @if (count($errors) > 0)
+                            <div class="alert alert-danger" role="alert">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                    <li class="text-danger" style="font-size: 14px;">{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                            @endif
                             <input type="button" name="next" class="next btn bg-temanbunda text-white mt-2 me-3" id="btn_next1" value="Selanjutnya" style="width: 170px; height: 60px;">
                         </fieldset>
                         <fieldset class="mx-3" style="min-height: 466px;">
@@ -159,7 +168,7 @@
                                 <label for="pendidikan">Pendidikan terakhir</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input type="text" id="NIK" name="NIK" placeholder="nik" class="form-control rounded-input">
+                                <input type="number" id="NIK" name="NIK" placeholder="nik" class="form-control rounded-input">
                                 <label for="NIK">Nomor Induk KTP</label>
                             </div>
                             <div class="input-group mb-3">
@@ -240,19 +249,19 @@
                         </fieldset>
                         <fieldset class="mx-3" style="height: 466px;">
                             <div class=" form-group mb-3">
-                                <label for="vaksin">Sertifikat Vaksinasi</label>
+                                <label for="vaksin">Sertifikat Vaksinasi <span style="font-size: 14px;">.jpeg,jpg,png (opsional)</span></label>
                                 <input type="file" class="form-control" id="vaksin" name="vaksin">
                             </div>
                             <div class="form-group mb-3">
-                                <label for="psikotes">Berkas psikotes</label>
+                                <label for="psikotes">Berkas psikotes <span style="font-size: 14px;">.jpeg,jpg,png (opsional)</span></label>
                                 <input type="file" class="form-control" id="psikotes" name="psikotes">
                             </div>
                             <div class="form-group mb-3">
-                                <label for="ijazah">Ijazah</label>
+                                <label for="ijazah">Ijazah <span style="font-size: 14px;">.jpeg,jpg,png (opsional)</span></label>
                                 <input type="file" class="form-control" id="ijazah" name="ijazah">
                             </div>
                             <div class="form-group mb-3">
-                                <label for="skck">Surat Keterangan Catatan Kepolisian</label>
+                                <label for="skck">Surat Keterangan Catatan Kepolisian <span style="font-size: 14px;">.jpeg,jpg,png (opsional)</span></label>
                                 <input type="file" class="form-control" id="skck" name="skck">
                             </div>
                             <div class="form-check">

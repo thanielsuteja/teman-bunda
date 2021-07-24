@@ -8,6 +8,7 @@
     body {
         background-color: #efefef;
     }
+
     p {
         margin-bottom: 0.1rem;
     }
@@ -22,6 +23,17 @@
                 </div>
                 <div class="card-body" style="min-height: 532px;">
                     @foreach ($job_offer as $job)
+                    @if (Session::get('success'))
+                    <div class="alert alert-success alert-dismissible fade show" role="alert">
+                        {{ Session::get('success') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    @elseif (Session::get('error'))
+                    <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                        {{ Session::get('error') }}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>
+                    @endif
                     <a href="/user/order-info/{{$job->job_id}}" class="text-decoration-none" style="color: black;">
                         <div class="card border-2 mx-5 my-3 zoom" style="background-color: #f3f3f3; border-radius: 10px; overflow: hidden;">
                             <div class="card-header d-flex align-items-center p-0" style="background-color: #ffeea8;">

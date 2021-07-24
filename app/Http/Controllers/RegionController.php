@@ -46,7 +46,7 @@ class RegionController extends Controller
     }
 
     public function Update(Request $request ,$id){
-        $update = Region::find($id)->update([
+        Region::find($id)->update([
             'region_name' => $request->region_name,
             'updated_at' => Carbon::now()
         ]);

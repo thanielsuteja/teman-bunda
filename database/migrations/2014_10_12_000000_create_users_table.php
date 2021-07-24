@@ -21,8 +21,8 @@ class CreateUsersTable extends Migration
             $table->string('role');
             $table->date('tanggal_lahir');
             $table->string('jenis_kelamin');
-            $table->string('nomor_telepon')->unique();
-            $table->string('email')->unique();
+            $table->string('nomor_telepon',16)->unique();
+            $table->string('email',100)->unique();
             $table->string('alamat');
             $table->string('provinsi');
             $table->string('kabupaten');

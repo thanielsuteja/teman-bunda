@@ -125,10 +125,6 @@
                     <td><img src="{{ asset('storage/skck/'.$caretaker->dokumen_skck_path) }}" style="height:70px;width:70px"></td>
                 </tr>
                 <tr>
-                    <td>rating_caretaker</td>
-                    <td>{{ $caretaker->rating_caretaker }}</td>
-                </tr>
-                <tr>
                     <td>created_at</td>
                     <td>{{ $caretaker->created_at }}</td>
                 </tr>

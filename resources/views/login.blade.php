@@ -53,6 +53,27 @@
                 <div class="col-md text-center">
                     <p>Belum punya akun? <a href="/register" class="text-decoration-none">Daftar</a></p>
                 </div>
+                @if (count($errors) > 0)
+                <div class="alert alert-danger" role="alert">
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                        <li class="text-danger" style="font-size: 14px;">{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+                @endif
+                @if (Session::get('error'))
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                    {{ Session::get('error') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                @endif
+                @if (Session::get('success'))
+                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                    {{ Session::get('success') }}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+                @endif
             </form>
         </div>
     </section>

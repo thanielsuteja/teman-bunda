@@ -28,9 +28,8 @@ class CariCaretakerController extends Controller
                 return $query->where('region_id', $request->area);
             });
         }
-
-        $caretaker = $caretaker->where('caretaker_status', 1)->where('approved','accepted')->orderBy('updated_at','desc')->paginate(1);
-
+        $caretaker = $caretaker->where('caretaker_status', 1)->where('approved','accepted')->orderBy('updated_at','desc')->get();
+        
         if ($request->get('sort') == 'rating-tertinggi') {
             $caretaker = $caretaker->sortByDesc('MeanRating')->values();
         } elseif ($request->get('sort') == 'harga-terendah') {

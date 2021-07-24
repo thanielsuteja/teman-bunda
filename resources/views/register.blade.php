@@ -180,6 +180,15 @@
                                     </div>
                                 </div>
                             </div>
+                            @if (count($errors) > 0)
+                            <div class="alert alert-danger" role="alert">
+                                <ul>
+                                    @foreach ($errors->all() as $error)
+                                    <li class="text-danger" style="font-size: 14px;">{{ $error }}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                            @endif
                             <input type="button" name="next" class="next btn bg-temanbunda text-white mt-4" id="btn_next1" value="Selanjutnya" style="width: 170px; height: 60px;">
                         </fieldset>
                         <fieldset>
@@ -219,11 +228,11 @@
                         </fieldset>
                         <fieldset>
                             <div class="form-group mb-3">
-                                <label for="inputGroupFile01">Upload foto profil</label>
+                                <label for="inputGroupFile01">Upload foto profil <span style="font-size: 14px;">.jpeg,jpg,png (opsional)</span></label>
                                 <input type="file" class="form-control" id="inputGroupFile01" name="foto_profil">
                             </div>
                             <div class="form-group mb-3">
-                                <label for="inputGroupFile02">Upload foto KTP</label>
+                                <label for="inputGroupFile02">Upload foto KTP <span style="font-size: 14px;">.jpeg,jpg,png</span></label>
                                 <input type="file" class="form-control" id="inputGroupFile02" name="ktp">
                             </div>
                             <div class="form-check ms-4">

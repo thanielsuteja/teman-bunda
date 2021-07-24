@@ -17,29 +17,29 @@
         </div>
     </section>
     <section class="px-0 py-5" id="whyus">
-        <div class="row w-100 my-md-3 bg-light align-items-center">
-            <div class="col-md-4 offset-md-1 rounded-rectangle mx-5 my-5">
-                <img src="/img/" class="p-5" height="395" width="380">
+        <div class="row w-100 my-md-3 bg-light align-items-center p-5">
+            <div class="col-md-5 rounded-rectangle">
+                <img src="{{ asset('img/employee.png') }}" class="" height="395" width="380">
             </div>
-            <div class="col-md-6">
+            <div class="col-md-7 ms-5">
                 <h1 class="display-5 ">Untuk kamu, orang tua yang bekerja</h1>
-                <p class="lead">Teman Bunda menyediakan jasa mengasuh anggota keluargamu agar kamu dapat fokus bekerja tanpa mengkhawatirkan keluargamu</p>
+                <p class="lead">Teman Bunda menyediakan pengasuh untuk anggota keluargamu agar kamu dapat fokus bekerja tanpa mengkhawatirkan keluargamu</p>
             </div>
         </div>
         <div class="row w-100 my-sm-3 bg-white align-items-center">
-            <div class="col-md-6 text-end">
-                <h1 class="display-5">Kredibilitas partner Teman Bunda tidak teragukan lagi</h1>
-                <p class="lead">Untuk keamanan kamu, tim Manajemen Keselamatan Pengguna Teman Bunda dengan teliti memeriksa dokumen pribadi partner Teman Bunda </p>
+            <div class="col-md-7 text-end ps-2">
+                <h1 class="display-5">Kredibilitas mitra Teman Bunda tidak teragukan lagi</h1>
+                <p class="lead">Untuk keamanan kamu, tim Manajemen Keselamatan Pengguna Teman Bunda dengan teliti memeriksa dokumen pribadi mitra Teman Bunda </p>
             </div>
-            <div class="col-sm-4 rounded-rectangle-white ms-5 my-5 ps-5">
-                <img src="/img/" class="p-5" height="395" width="380">
+            <div class="col-md-5 rounded-rectangle-white ms-5 my-5 ps-5 bg-light">
+                <img src="{{ asset('img/documents.png') }}" class="p-5" height="395" width="380">
             </div>
         </div>
-        <div class="row w-100 my-md-3 bg-light align-items-center">
-            <div class="col-md-4 offset-md-1 rounded-rectangle mx-5 my-5">
-                <img src="/img/murah.png" class="p-5" height="395" width="380">
+        <div class="row w-100 my-md-3 bg-light align-items-center p-5">
+            <div class="col-md-5 rounded-rectangle">
+                <img src="{{ asset('img/reduction.png') }}" class="p-5" height="395" width="380">
             </div>
-            <div class="col-md-6">
+            <div class="col-md-7 ms-5">
                 <h1 class="display-5 ">Menghemat anggaran keluarga untuk perawatan anggota keluargamu</h1>
                 <p class="lead">Kamu menghemat banyak dengan tidak mengeluarkan biaya makelar, akomodasi, dan konsumsi untuk menggunakan jasa Teman Bunda</p>
             </div>
@@ -120,27 +120,16 @@
                             <div class="card-body text-center">
                                 <img src="/img/icon/register.png" class="py-5" alt="" width="80">
                                 <div class="mb-2" style="min-height: 50px;">
-                                    <p class="card-title fw-bold">Daftar Menjadi User</p>
-                                </div>
-                                <p>Sebelum menjadi Caregiver, kamu harus mendaftar menjadi pengguna terlebih dahulu</p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm">
-                        <div class="card bg-efefef h-100" style="border-radius: 15px;">
-                            <div class="card-body text-center">
-                                <img src="/img/icon/verify.png" class="py-5" alt="" width="80">
-                                <div class="mb-2" style="min-height: 50px;">
                                     <p class="card-title fw-bold">Ajukan Permohonan Menjadi Caregiver</p>
                                 </div>
-                                <p>Ajukan data serta dokumen pribadimu dan tunggu kami mengkonfirmasi datamu</p>
+                                <p>Ajukan data serta dokumen pribadimu dan tunggu konfirmasi setelah kamu terdaftar sebagai pengguna</p>
                             </div>
                         </div>
                     </div>
                     <div class="col-sm">
                         <div class="card bg-efefef h-100" style="border-radius: 15px;">
                             <div class="card-body text-center">
-                                <img src="/img/icon/find.png" class="py-5" alt="" width="80"> <!-- CARI ICON YANG BENAR !-->
+                                <img src="/img/icon/alarm.png" class="py-5" alt="" width="80">
                                 <div class="mb-2" style="min-height: 50px;">
                                     <p class="card-title fw-bold">Tunggu Penawaran Kerja</p>
                                 </div>
@@ -153,9 +142,20 @@
                             <div class="card-body text-center">
                                 <img src="/img/icon/interview.png" class="py-5" alt="" width="80">
                                 <div class="mb-2" style="min-height: 50px;">
-                                    <p class="card-title fw-bold">Ikuti Wawancara dan Bekerja</p>
+                                    <p class="card-title fw-bold">Ikuti Wawancara dengan Parent</p>
                                 </div>
                                 <p>Hubungi dan ikuti wawancara Parent sebelum kamu mulai bekerja</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm">
+                        <div class="card bg-efefef h-100" style="border-radius: 15px;">
+                            <div class="card-body text-center">
+                                <img src="/img/icon/health.png" class="py-5" alt="" width="80">
+                                <div class="mb-2" style="min-height: 50px;">
+                                    <p class="card-title fw-bold">Datang dan Bekerja</p>
+                                </div>
+                                <p>Bekerja sesuai dengan deskripsi pekerjaan dan berikan kesan yang baik</p>
                             </div>
                         </div>
                     </div>

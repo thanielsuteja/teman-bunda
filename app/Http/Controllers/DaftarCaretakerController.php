@@ -8,6 +8,7 @@ use App\Models\Profession_caretaker_relation;
 use App\Models\Region;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Validator;
 use Laravolt\Indonesia\Models\Province;
 use Laravolt\Indonesia\Models\City;
 use Laravolt\Indonesia\Models\District;
@@ -39,10 +40,33 @@ class DaftarCaretakerController extends Controller
 
     public function registerCaretaker(Request $request)
     {
+        $rules = [
+            'tipe'                  =>  'required|string',
+            'pendidikan'            =>  'required|string',
+            'NIK'                   =>  'required|numeric|digits:16',
+            'tarif'                 =>  'required|numeric|digits:5',
+            'kode_bank'             =>  'required|numeric|digits:3',
+            'rekening'              =>  'required|numeric|digits_between:10,16',
+            'perkenalan_diri'       =>  'required|string|max:255',
+            'ijazah'                =>  'mimes:jpeg,jpg,png',
+            'vaksin'                =>  'mimes:jpeg,jpg,png',
+            'psikotes'              =>  'mimes:jpeg,jpg,png',
+            'skck'                  =>  'mimes:jpeg,jpg,png',
+        ];
 
-        // Auth::user()->update([
-        //     'role' => 'caretaker',
-        // ]);
+        $messages = [
+            'required'              =>  ':attribute wajib diisi',
+            'digits'                =>  ':attribute harus diisi sebanyak :digits digit',
+            'max'                   =>  ':attribute maksimal :max karakter',
+            'digits_between'        =>  'Jumlah digit pada rekening salah',
+            'mimes'                 =>  'Mohon hanya file extension .jpg, .jpeg, dan .png'
+        ];
+
+        $validator = Validator::make($request->all(), $rules, $messages);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput($request->all);
+        }
 
         $caretaker = Caretaker::create([
             'user_id'                       => Auth::id(),
@@ -103,10 +127,5 @@ class DaftarCaretakerController extends Controller
     public function showTungguVerifikasi()
     {
         return view('user.menunggu-verifikasi');
-    }
-
-    public function showSelamat()
-    {
-        return view('user.selamat');
     }
 }

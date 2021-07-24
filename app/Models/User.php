@@ -58,7 +58,7 @@ class User extends Authenticatable
         return doubleval($total / $count);
     }
 
-    protected $table = "Users";
+    protected $table = "users";
 
     protected $fillable = [
         'nama_depan',

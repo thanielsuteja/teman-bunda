@@ -38,7 +38,6 @@ Route::middleware(['auth', 'pending.caregiver'])->group(function () {
     Route::get('/daftar-caretaker', [DaftarCaretakerController::class, 'showCaretakerRegisterForm'])->name('daftar-caretaker');
     Route::post('/simpan-caretaker', [DaftarCaretakerController::class, 'registerCaretaker']);
     Route::get('/menunggu-verifikasi', [DaftarCaretakerController::class, 'showTungguVerifikasi'])->name('menunggu-verifikasi');
-    Route::get('/mulai-caretaker', [DaftarCaretakerController::class, 'showSelamat'])->name('mulai-caretaker');
     // User Profile
     Route::get('/user/profile/{id}', [ProfilUserController::class, 'showProfile'])->name('user.profile');
     Route::post('/user/ganti-alamat/{id}', [ProfilUserController::class, 'simpanAlamat']);

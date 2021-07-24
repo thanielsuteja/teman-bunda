@@ -18,4 +18,9 @@ class HomeController extends Controller
     {
         return view('caretaker.home');
     }
+
+    public function showSelamat()
+    {
+        return view('caretaker.selamat');
+    }
 }

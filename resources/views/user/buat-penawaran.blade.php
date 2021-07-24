@@ -33,6 +33,15 @@
                     </div>
                 </div>
                 <div class="card-body mx-5" style=" min-height: 532px;">
+                    @if (count($errors) > 0)
+                    <div class="alert alert-primary" role="alert">
+                        <ul>
+                            @foreach ($errors->all() as $error)
+                            <li class="text-danger" style="font-size: 14px;">{{ $error }}</li>
+                            @endforeach
+                        </ul>
+                    </div>
+                    @endif
                     <form action="/user/buat-penawaran/simpan" method="POST">
                         @csrf
                         <input type="hidden" name="user_id" value="{{ Auth::user()->user_id }}">
@@ -87,28 +96,8 @@
                                 </button>
 
                                 <div class="collapse" id="listhari">
-                                    <div class="card card-body d-grip ps-0">
+                                    <div class="card card-body d-grip p-2">
                                         <div class="btn-group-vertical" role="group" aria-label="Basic checkbox toggle button group">
-                                            <input type="checkbox" class="btn-check" value="1" name="wd_1" id="wd_1">
-                                            <label class="btn btn-outline-default text-start" for="wd_1">Senin</label>
-
-                                            <input type="checkbox" class="btn-check" value="1" name="wd_2" id="wd_2">
-                                            <label class="btn btn-outline-default text-start" for="wd_2">Selasa</label>
-
-                                            <input type="checkbox" class="btn-check" value="1" name="wd_3" id="wd_3">
-                                            <label class="btn btn-outline-default text-start" for="wd_3">Rabu</label>
-
-                                            <input type="checkbox" class="btn-check" value="1" name="wd_4" id="wd_4">
-                                            <label class="btn btn-outline-default text-start" for="wd_4">Kamis</label>
-
-                                            <input type="checkbox" class="btn-check" value="1" name="wd_5" id="wd_5">
-                                            <label class="btn btn-outline-default text-start" for="wd_5">Jumat</label>
-
-                                            <input type="checkbox" class="btn-check" value="1" name="wd_6" id="wd_6">
-                                            <label class="btn btn-outline-default text-start" for="wd_6">Sabtu</label>
-
-                                            <input type="checkbox" class="btn-check" value="1" name="wd_7" id="wd_7">
-                                            <label class="btn btn-outline-default text-start" for="wd_7">Minggu</label>
                                         </div>
                                     </div>
                                 </div>
@@ -120,8 +109,6 @@
                             <label for="" class="col-sm-3 text-808080 ps-4">Estimasi biaya</label>
                             <div class="col-sm">
                                 <input type="text" id="estimasi_biaya" name="estimasi_biaya" class="form-control rounded-input" placeholder="Rp." style="height: 58px;">
-                                <!-- JAM_KERJA = jam_berakhir-jam_masuk
-                                UPAH_PER_HARI = JAM_KERJA * cost_per_hour -->
                             </div>
                             <div class="col-sm"></div>
                         </div>
@@ -159,7 +146,7 @@
                         $('#estimasi_biaya').val('');
                         for (const [key, value] of Object.entries(data)) {
                             $('.btn-group-vertical').append(`
-                                <input type="checkbox" class="btn-check days" value="1" name="wd_${key}" id="wd_${key}">
+                                <input type="checkbox" data-value="${key}" class="btn-check days" value="1" name="wd_${key}" id="wd_${key}">
                                 <label class="btn btn-outline-default text-start" for="wd_${key}">${value}</label>
                             `);
                         }
@@ -171,7 +158,7 @@
                             var jam_berakhir = $('#jam_berakhir').val();
                             var days = [];
                             $('input[class="btn-check days"]:checked').each(function() {
-                                days.push(this.value);
+                                days.push($(this).attr('data-value'));
                             });
                             if (tanggal_masuk !== '' && tanggal_berakhir !== '' && jam_masuk !== '' && jam_berakhir !== '') {
                                 $.ajax({

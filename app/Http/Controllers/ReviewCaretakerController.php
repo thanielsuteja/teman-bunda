@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Job_offer;
 use App\Models\Review_caretaker;
 use App\Models\User;
+use Illuminate\Support\Facades\Validator;
 
 class ReviewCaretakerController extends Controller
 {
@@ -18,6 +19,22 @@ class ReviewCaretakerController extends Controller
 
     public function sendReview($id, Request $request)
     {
+        $rules = [
+            'penilaian'             =>  'required',
+            'ulasan'                =>  'string|max:255',
+        ];
+
+        $messages = [
+            'required'              =>  ':attribute wajib diisi',
+            'max'                   =>  ':attribute maksimal :max karakter',
+        ];
+
+        $validator = Validator::make($request->all(), $rules, $messages);
+
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput($request->all);
+        }
+        
         Review_caretaker::create([
             'job_id' => $id,
             'review_rating' => $request->penilaian,

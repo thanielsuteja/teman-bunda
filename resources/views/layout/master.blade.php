@@ -6,6 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+    <link rel="shortcut icon" href="{{ asset('/img/icon/favicon.ico') }}">
     <link rel="stylesheet" href="{{ asset('css/bootstrap.css') }}">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
@@ -35,6 +36,15 @@
         var myModal = document.getElementById('myModal')
         var myInput = document.getElementById('myInput')
 
+        var toastElList = [].slice.call(document.querySelectorAll('.toast'))
+        var toastList = toastElList.map(function(toastEl) {
+            // Creates an array of toasts (it only initializes them)
+            return new bootstrap.Toast(toastEl) // No need for options; use the default options
+        });
+
+        toastList.forEach(toast => toast.show()); // This show them
+
+        console.log(toastList); // Testing to see if it works
         myModal.addEventListener('shown.bs.modal', function() {
             myInput.focus()
         })

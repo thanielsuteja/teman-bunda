@@ -18,7 +18,7 @@ class Notification extends Model
         return $this->belongsTo(User::class, 'user_id', 'user_id');
     }
 
-    protected $table = "Notifications";
+    protected $table = "notifications";
 
     protected $primaryKey = 'notification_id';
 

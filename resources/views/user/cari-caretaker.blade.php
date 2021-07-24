@@ -39,7 +39,7 @@
         });
     });
 </script>
-<script type="text/javascript">
+<!-- <script type="text/javascript">
     $('ul.pagination').hide();
     $(function() {
         $('.scrolling-pagination').jscroll({
@@ -52,7 +52,7 @@
             }
         });
     });
-</script>
+</script> -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jscroll/2.4.1/jquery.jscroll.min.js"></script>
 
@@ -204,7 +204,6 @@
                         @empty
                         MUNCUL APA KEK
                         @endforelse
-                        {{ $caretaker->links() }}
                     </div>
                 </div>
             </div>

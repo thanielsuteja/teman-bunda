@@ -1,8 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\CaretakerController;
-
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\ProfilCaretakerController;
 use App\Http\Controllers\UlasanSayaController;
@@ -11,6 +9,8 @@ use App\Http\Controllers\TransaksiCaretakerController;
 use App\Http\Controllers\ReviewCaretakerController;
 
 Route::middleware(['auth'])->group(function () {
+    Route::get('/mulai-caretaker', [HomeController::class, 'showSelamat'])->name('mulai-caretaker');
+    
     Route::get('/caretaker/home', [HomeController::class, 'showCaretakerHome'])->name('caretaker.home');
 
     Route::get('/caretaker/profile', [ProfilCaretakerController::class, 'showPageProfile'])->name('caretaker.profile');

@@ -50,7 +50,7 @@ class ProfessionController extends Controller
     }
 
     public function Update(Request $request ,$id){
-        $update = Profession::find($id)->update([
+        Profession::find($id)->update([
             'profession_name' => $request->profession_name,
             'profession_desc' => $request->profession_desc,
             'updated_at' => Carbon::now()

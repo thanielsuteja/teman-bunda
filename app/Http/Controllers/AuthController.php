@@ -30,14 +30,14 @@ class AuthController extends Controller
     {
         $rules = [
             'email'                 => 'required|email',
-            'password'              => 'required|string'
+            'password'              => 'required|string|min:8'
         ];
 
         $messages = [
             'email.required'        => 'Email wajib diisi',
             'email.email'           => 'Email tidak valid',
             'password.required'     => 'Password wajib diisi',
-            'password.string'       => 'Password harus berupa string'
+            'min'                   => 'Password minimal 8 karakter'
         ];
 
         $validator = Validator::make($request->all(), $rules, $messages);
@@ -58,10 +58,17 @@ class AuthController extends Controller
             if (Auth::user()->role == 'user') {
                 return redirect()->route('user.home');
             } else {
-                return redirect()->route('caretaker.home');
+                $caretaker = Auth::user()->Caretaker;
+                if ($caretaker->first_login == 1) {
+                    $caretaker->update([
+                        'first_login' => 0
+                    ]);
+                    return redirect()->route('mulai-caretaker');
+                } else {
+                    return redirect()->route('caretaker.home');
+                }
             }
         } else { // false
-
             //Login Fail
             Session::flash('error', 'Email atau password salah');
             return redirect()->route('login');
@@ -103,37 +110,38 @@ class AuthController extends Controller
     {
         $faker = Faker::create();
 
-        // $rules = [
-        //     'nama_depan'            =>  'required|string|max:255',
-        //     'nama_belakang'         =>  'required|string|max:255',
-        //     'email'                 =>  'required|email|unique:users,email',
-        //     'password'              =>  'required|alpha_num|min:8',
-        //     'nomor_telepon'         =>  'required|numeric',
-        //     'tanggal_lahir'         =>  'required|date',
-        //     'jenis_kelamin'         =>  'required|string',
-        //     'dokumen_ktp_path'      =>  'mimes:jpeg,png',
-        //     'profile_img_path'      =>  'mimes:jpeg,png',
-        // ];
+        $rules = [
+            'nama_depan'            =>  'required|string|max:255',
+            'nama_belakang'         =>  'required|string|max:255',
+            'email'                 =>  'required|email|unique:users,email',
+            'password'              =>  'required|min:8|max:20',
+            'nomor_telepon'         =>  'required|numeric|min:10|unique:users,nomor_telepon',
+            'tanggal_lahir'         =>  'required|date',
+            'jenis_kelamin'         =>  'required|string',
+            'alamat'                =>  'required',
+            'provinsi'              =>  'required',
+            'kabupaten'             =>  'required',
+            'kecamatan'             =>  'required',
+            'kelurahan'             =>  'required',
+            'ktp'                   =>  'required|mimes:jpeg,png,jpg',
+            'foto_profil'           =>  'mimes:jpeg,png,jpg',
+        ];
 
-        // $messages = [
-        //     'nama_belakang.required' =>  'Nama Lengkap wajib diisi',
-        //     'name_belakang.max'     =>  'Nama lengkap maksimal 255 karakter',
-        //     'nama_depan.required'   =>  'Nama Lengkap wajib diisi',
-        //     'name_depan.max'        =>  'Nama lengkap maksimal 255 karakter',
-        //     'email.required'        =>  'Email wajib diisi',
-        //     'email.email'           =>  'Email tidak valid',
-        //     'email.unique'          =>  'Email sudah terdaftar',
-        //     'password.required'     =>  'Password wajib diisi',
-        //     'nomor_telepon.required'   =>  'Nomor telepon wajib diisi',
-        //     'tanggal_lahir.required'   =>  'Tanggal lahir wajib diisi',
-        //     'jenis_kelamin.required'   =>  'Jenis kelamin wajib diisi',
-        // ];
+        $messages = [
+            'required'              =>  ':attribute wajib diisi',
+            'min'                   =>  ':attribute minimal :min karakter',
+            'max'                   =>  ':attribute maksimal :max karakter',
+            'unique'                =>  ':attribute sudah digunakan',
+            'email'                 =>  'Email belum benar',
+            'date'                  =>  'Masukkan tanggal dengan benar',
+            'mimes'                 =>  'Mohon hanya file extension .jpg, .jpeg, dan .png'
+        ];
 
-        // $validator = Validator::make($request->all(), $rules, $messages);
+        $validator = Validator::make($request->all(), $rules, $messages);
 
-        // if ($validator->fails()) {
-        //     return redirect()->back()->withErrors($validator)->withInput($request->all);
-        // }
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->withInput($request->all);
+        }
 
         if ($request->hasFile('ktp')) {
 
