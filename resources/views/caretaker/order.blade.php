@@ -15,6 +15,7 @@
         -webkit-box-orient: vertical;
         overflow: hidden;
     }
+
     p {
         margin-bottom: 0.1rem;
     }
@@ -28,7 +29,7 @@
                     <h2 class="m-0 ms-5">Order</h2>
                 </div>
                 <div class="card-body" style="min-height: 532px;">
-                    @foreach ($jobOffers as $jobOffer)
+                    @forelse ($jobOffers as $jobOffer)
                     <a href="{{ route('caretaker.detail-order', $jobOffer->job_id) }}" class="text-decoration-none" style="color: black;">
                         <div class="card border-2 zoom mx-5 my-3" style="background-color: #f3f3f3; border-radius: 10px; overflow: hidden;">
                             <div class="card-header d-flex d-flex align-items-center p-0" style="background: #FFEEA8;">
@@ -82,7 +83,12 @@
                             </div>
                         </div>
                     </a>
-                    @endforeach
+                    @empty
+                    <div class="container row justify-content-center text-center">
+                        <img src="{{ asset('img/happy_astro_404.png') }}" class="" style="width: 550;">
+                        <p class="fw-normal text-808080">Kamu masih belum memiliki order</p>
+                    </div>
+                    @endforelse
                 </div>
             </div>
         </div>

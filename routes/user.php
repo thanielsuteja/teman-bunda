@@ -26,14 +26,15 @@ Route::middleware(['auth', 'pending.caregiver'])->group(function () {
     Route::get('/user/order', [OrderUserController::class, 'showOrder'])->name('order');
     Route::get('/user/order-info/{id}', [OrderUserController::class, 'showOrderInfo'])->name('order-info');
     Route::post('/user/update-gaji/{id}', [OrderUserController::class, 'updateGaji']);
-    Route::get('/user/batalkan/{id}', [OrderUserController::class, 'batalkanOrder']);
-    Route::get('/user/selesai/{id}', [OrderUserController::class, 'selesaikanOrder']);
+    Route::get('/user/tolak-permitaan/{id}', [OrderUserController::class, 'tolakUpdateGaji'])->name('user.tolak-permintaan');
+    Route::get('/user/batalkan/{id}', [OrderUserController::class, 'batalkanOrder'])->name('user.batal');
+    Route::get('/user/selesai/{id}', [OrderUserController::class, 'selesaikanOrder'])->name('user.selesai');
     // Transactions
     Route::get('/user/transaksi', [TransaksiUserController::class, 'showTransaksi'])->name('transaksi');
     Route::get('/user/info-transaksi/{id}', [TransaksiUserController::class, 'showInfoTransaksi'])->name('info-transaksi');
     // Review
     Route::get('/user/review/{id}', [ReviewUserController::class, 'showUserReviewForm'])->name('user.review');
-    Route::post('/user/simpan-review', [ReviewUserController::class, 'reviewCaretaker']);
+    Route::post('/user/simpan-review/{id}', [ReviewUserController::class, 'reviewCaretaker'])->name('user.send-review');
     // Daftar Caregiver
     Route::get('/daftar-caretaker', [DaftarCaretakerController::class, 'showCaretakerRegisterForm'])->name('daftar-caretaker');
     Route::post('/simpan-caretaker', [DaftarCaretakerController::class, 'registerCaretaker']);

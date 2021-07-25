@@ -1,5 +1,5 @@
 <header class="header fixed-top">
-    <nav class="navbar shadow navbar-expand-lg navbar-light bg-white">
+    <nav class="navbar shadow navbar-expand-lg navbar-light bg-white" style="box-shadow: 0 0.1rem 0.8rem rgb(0 0 0 / 15%) !important">
         <div class="container-fluid">
             <a class="navbar-brand ms-3" href="/user/home-page">
                 <img src="/img/logoTemanBunda.png" alt="" width="90px" class="py-2">

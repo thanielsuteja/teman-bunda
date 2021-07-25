@@ -21,7 +21,7 @@
 <div class="container col-xxl-12 px-5">
     <div class="row">
         <div class="col-md-8 offset-md-2">
-            <div class="card shadow" style="border-radius: 20px; overflow: hidden; margin-top: 90px;">
+            <div class="card shadow mb-4" style="border-radius: 20px; overflow: hidden; margin-top: 90px;">
                 <div class="card-header bg-temanbunda d-flex align-items-center p-0" style="height: 107px;">
                     <div class="row">
                         <div class="col-1 d-flex align-items-center">
@@ -201,7 +201,7 @@
                     </div>
                     <div class="d-flex pt-1 justify-content-center">
                         <div class="card card-body py-2 px-4" style="background-color: #f6f6f6; border-radius: 5px;">
-                            @foreach ($care->JobOffers()->has('ReviewUser')->orderBy('job_id', 'desc')->get() as $job)
+                            @forelse ($care->JobOffers()->has('ReviewUser')->orderBy('job_id', 'desc')->get() as $job)
                             <div class="row py-2 border-top border-bottom" style="min-height: 118px;">
                                 <div class="col-md-auto px-3">
                                     @if ($job->User->profile_img_path != null)
@@ -230,7 +230,11 @@
                                     <p>{{ $job->ReviewUser->review_content }}</p>
                                 </div>
                             </div>
-                            @endforeach
+                            @empty
+                            <div class="text-center">
+                                <p class="text-808080 my-3">Caregiver ini belum memiliki ulasan</p>
+                            </div>
+                            @endforelse
                         </div>
                     </div>
                     <div class="row justify-content-end pt-4">

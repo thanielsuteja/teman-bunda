@@ -21,7 +21,7 @@ class ReviewCaretakerController extends Controller
     {
         $rules = [
             'penilaian'             =>  'required',
-            'ulasan'                =>  'string|max:255',
+            'ulasan'                =>  'max:255',
         ];
 
         $messages = [

@@ -15,7 +15,7 @@ class JobOfferSeeder extends Seeder
     public function run()
     {
         Job_offer::create([
-            'job_status' => 'menunggu',
+            'job_status' => 'selesai',
             'user_id' => '1',
             'caretaker_id' => '1',
             'judul_pekerjaan' => 'Mengantar ke Sekolah',

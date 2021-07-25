@@ -27,7 +27,8 @@ class UserSeeder extends Seeder
             'kabupaten'         => 'KOTA JAKARTA PUSAT',
             'kecamatan'         => 'SENEN',
             'kelurahan'         => 'SENEN',
-            'dokumen_ktp_path'  => 'xxduqwLCgfVEtgOi5fiUokRfCUTH0nSc2KcqASzD.png',
+            'profile_img_path'  => '8fVfIVgapsAyrD4m1dcRMuEtzyAlLeMzyWkkbWBS.jpg',
+            'dokumen_ktp_path'  => '4flKFOj0Cw6PsIIJanlCI08INpg5fbwvgEJ9DiPq.png',
             'virtual_account'   => '100000000000000',
         ]);
 
@@ -45,8 +46,8 @@ class UserSeeder extends Seeder
             'kabupaten'         => 'KOTA JAKARTA PUSAT',
             'kecamatan'         => 'GAMBIR',
             'kelurahan'         => 'CIDENG',
-            'dokumen_ktp_path'  => 'jbFRhQY2IOH7EZFwLLggMuAU7U0flu9QKc4fH1hA.png',
             'profile_img_path'  => 'QtZJ52FNKZPij4LmqcFGU8GOON4Vd6VMcLaSUku8.jpg',
+            'dokumen_ktp_path'  => '3STukPOFZEsEPCCswWC98L8lmAa8DP8W5y148RIj.png',
             'virtual_account'   => '110000000000000',
             'created_at'        => '2020-07-11 16:12:05'
         ]);
@@ -65,6 +66,7 @@ class UserSeeder extends Seeder
             'kabupaten'         => 'Kabupaten Semarang',
             'kecamatan'         => 'Alambaka',
             'kelurahan'         => 'Syoerkka',
+            'profile_img_path'  => 'EtkMV9vTyHlM31t2CITXSz3UV354MYblkMZ4og14.jpg',
             'dokumen_ktp_path'  => '3JIBFxDnmueBJQNxEfMes96JHTa01SBzx4brUGCO.png',
             'virtual_account'   => '111000000000000',
             'created_at'        => '2019-06-01 16:12:05'
@@ -84,7 +86,7 @@ class UserSeeder extends Seeder
             'kabupaten'         => 'ADMIN',
             'kecamatan'         => 'ADMIN',
             'kelurahan'         => 'ADMIN',
-            'dokumen_ktp_path'  => '3JIBFxDnmueBJQNxEfMes96JHTa01SBzx4brUGCO.png',
+            'dokumen_ktp_path'  => '2sHz4nbuTjQNGcGRKjkEvOEOVNvhJrLKXc5ui95f.jpg',
             'virtual_account'   => '111100000000000',
         ]);
 

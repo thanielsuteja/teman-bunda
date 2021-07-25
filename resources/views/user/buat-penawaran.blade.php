@@ -49,11 +49,11 @@
                         <div class="row">
                             <p class="text-808080">Membuat tawaran kerja untuk {{ $care->User->nama_depan }} {{ $care->User->nama_belakang }}</p>
                             <div class="form-floating mb-2">
-                                <input type="text" id="judul" name="judul" placeholder="Judul pekerjaan" class="form-control rounded-input">
+                                <input type="text" id="judul" name="judul" placeholder="Judul pekerjaan" class="form-control rounded-input" value="{{ old('judul') }}">
                                 <label class="ps-4" for="judul">Judul pekerjaan</label>
                             </div>
                             <div class="form-floating mb-2">
-                                <textarea name="deskripsi_pekerjaan" id="deskripsi_pekerjaan" placeholder="Deskripsi pekerjaan" class="form-control rounded-input" style="height: 150px !important;"></textarea>
+                                <textarea name="deskripsi_pekerjaan" id="deskripsi_pekerjaan" placeholder="Deskripsi pekerjaan" class="form-control rounded-input" style="height: 150px !important;" value="{{ old('deskripsi_pekerjaan') }}"></textarea>
                                 <label class="ps-4" for="deskripsi_pekerjaan">Deskripsi pekerjaan</label>
                             </div>
                         </div>

@@ -202,7 +202,10 @@
                             </div>
                         </a>
                         @empty
-                        MUNCUL APA KEK
+                        <div class="container row justify-content-center text-center">
+                            <img src="{{ asset('img/happy_astro_404.png') }}" class="" style="width: 550;">
+                            <p class="fw-normal text-808080">Oops! Kami tidak dapat menemukan caregiver yang kamu cari</p>
+                        </div>
                         @endforelse
                     </div>
                 </div>

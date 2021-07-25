@@ -22,7 +22,6 @@
                     <h2 class="m-0 ms-5">Order Saya</h2>
                 </div>
                 <div class="card-body" style="min-height: 532px;">
-                    @foreach ($job_offer as $job)
                     @if (Session::get('success'))
                     <div class="alert alert-success alert-dismissible fade show" role="alert">
                         {{ Session::get('success') }}
@@ -34,6 +33,7 @@
                         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                     </div>
                     @endif
+                    @forelse ($job_offer as $job)
                     <a href="/user/order-info/{{$job->job_id}}" class="text-decoration-none" style="color: black;">
                         <div class="card border-2 mx-5 my-3 zoom" style="background-color: #f3f3f3; border-radius: 10px; overflow: hidden;">
                             <div class="card-header d-flex align-items-center p-0" style="background-color: #ffeea8;">
@@ -103,7 +103,12 @@
                             </div>
                         </div>
                     </a>
-                    @endforeach
+                    @empty
+                    <div class="container row justify-content-center text-center">
+                        <img src="{{ asset('img/happy_astro_404.png') }}" class="" style="width: 550;">
+                        <p class="fw-normal text-808080">Kamu masih belum memiliki order</p>
+                    </div>
+                    @endforelse
                 </div>
             </div>
         </div>

@@ -93,6 +93,7 @@
                 $('#btn_next1').attr('disabled', true);
             }
         });
+
         $('#check_syarat,#jenis_kelamin').on('change', function() {
             var namadpn_value = $("#nama_depan").val();
             var namablkng_value = $("#nama_belakang").val();
@@ -139,19 +140,19 @@
                             <div class="row">
                                 <div class="col">
                                     <div class="form-floating mb-3">
-                                        <input type="text" name="nama_depan" id="nama_depan" placeholder="Nama Depan" class="form-control rounded-input">
+                                        <input type="text" name="nama_depan" id="nama_depan" placeholder="Nama Depan" class="form-control rounded-input" value="{{ old('nama_depan') }}">
                                         <label for="nama_depan"> Nama Depan </label>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-floating mb-3">
-                                        <input type="text" name="nama_belakang" id="nama_belakang" placeholder="Nama Belakang" class="form-control rounded-input">
+                                        <input type="text" name="nama_belakang" id="nama_belakang" placeholder="Nama Belakang" class="form-control rounded-input" value="{{ old('nama_belakang') }}">
                                         <label for="nama_belakang"> Nama Belakang </label>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-floating mb-3">
-                                <input type="email" id="email" name="email" placeholder="example" class="form-control rounded-input">
+                                <input type="email" id="email" name="email" placeholder="example" class="form-control rounded-input" value="{{ old('email') }}">
                                 <label for="email"> Email </label>
                             </div>
                             <div class="form-floating mb-3">
@@ -159,13 +160,13 @@
                                 <label for="password"> Kata sandi </label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input type="number" id="nomor_telepon" name="nomor_telepon" placeholder="012-3456-7890" class="form-control rounded-input">
+                                <input type="number" id="nomor_telepon" name="nomor_telepon" placeholder="012-3456-7890" class="form-control rounded-input" value="{{ old('nomor_telepon') }}">
                                 <label for="nomor_telepon"> Nomor Telepon </label>
                             </div>
                             <div class="row">
                                 <div class="col">
                                     <div class="form-floating mb-3">
-                                        <input type="date" class="form-control rounded-input" id="tanggal_lahir" name="tanggal_lahir">
+                                        <input type="date" class="form-control rounded-input" id="tanggal_lahir" name="tanggal_lahir" value="{{ old('tanggal_lahir') }}">
                                         <label for="tanggal_lahir"> Tanggal lahir </label>
                                     </div>
                                 </div>
@@ -193,7 +194,7 @@
                         </fieldset>
                         <fieldset>
                             <div class="form-floating mb-3">
-                                <input name="alamat" id="alamat" placeholder="Alamat rumah" class="form-control rounded-input" style="height: 60px">
+                                <input name="alamat" id="alamat" placeholder="Alamat rumah" class="form-control rounded-input" style="height: 60px" value="{{ old('alamat') }}">
                                 <label for="alamat"> Alamat </label>
                             </div>
                             <div class="form-floating mb-3">

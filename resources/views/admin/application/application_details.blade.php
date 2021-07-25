@@ -110,19 +110,51 @@
                 </tr>
                 <tr>
                     <td>dokumen_vaksin</td>
-                    <td><img src="{{ asset('storage/vaksin/'.$caretaker->dokumen_vaksin_path) }}" style="height:70px;width:70px"></td>
+                    <td>
+                        @if ($caretaker->dokumen_vaksin_path != null)
+                        <a type="button" class="" data-bs-toggle="modal" href="#lihatVaksinModal">
+                            <img src="{{ asset('storage/vaksin/'.$caretaker->dokumen_vaksin_path) }}" style="height:70px;width:70px">
+                        </a>
+                        @else
+                        <div class="box-placeholder" style="height:70px;width:70px"></div>
+                        @endif
+                    </td>
                 </tr>
                 <tr>
                     <td>dokumen_ijazah</td>
-                    <td><img src="{{ asset('storage/ijazah/'.$caretaker->dokumen_ijazah_path) }}" style="height:70px;width:70px"></td>
+                    <td>
+                        @if ($caretaker->dokumen_ijazah_path != null)
+                        <a type="button" class="" data-bs-toggle="modal" href="#lihatIjazahModal">
+                            <img src="{{ asset('storage/ijazah/'.$caretaker->dokumen_ijazah_path) }}" style="height:70px;width:70px">
+                        </a>
+                        @else
+                        <div class="box-placeholder" style="height:70px;width:70px"></div>
+                        @endif
+                    </td>
                 </tr>
                 <tr>
                     <td>dokumen_psikotes</td>
-                    <td><img src="{{ asset('storage/psikotes/'.$caretaker->dokumen_psikotes_path) }}" style="height:70px;width:70px"></td>
+                    <td>
+                        @if ($caretaker->dokumen_psikotes_path != null)
+                        <a type="button" class="" data-bs-toggle="modal" href="#lihatPsikotesModal">
+                            <img src="{{ asset('storage/psikotes/'.$caretaker->dokumen_psikotes_path) }}" style="height:70px;width:70px">
+                        </a>
+                        @else
+                        <div class="box-placeholder" style="height:70px;width:70px"></div>
+                        @endif
+                    </td>
                 </tr>
                 <tr>
                     <td>dokumen_skck</td>
-                    <td><img src="{{ asset('storage/skck/'.$caretaker->dokumen_skck_path) }}" style="height:70px;width:70px"></td>
+                    <td>
+                        @if ($caretaker->dokumen_skck_path != null)
+                        <a type="button" class="" data-bs-toggle="modal" href="#lihatSkckModal">
+                            <img src="{{ asset('storage/skck/'.$caretaker->dokumen_skck_path) }}" style="height:70px;width:70px">
+                        </a>
+                        @else
+                        <div class="box-placeholder" style="height:70px;width:70px"></div>
+                        @endif
+                    </td>
                 </tr>
                 <tr>
                     <td>created_at</td>
@@ -136,18 +168,7 @@
                     <td>actions</td>
                     <td>
                         @if($caretaker->approved=="pending")
-                        <!-- <form action="{{ url('/admin/applications/deny/'.$caretaker->caretaker_id) }}" method="POST">
-                            @csrf
-                            <input type="text" name="approved" class="form-control invisible" style="height:0px; width:0px;" value="denied">
-                            <button type="submit" class="btn btn-danger" onclick="return confirm('Deny apllication request ?')">Deny</button>
-                        </form> -->
                         <a href="/admin/applications/deny/{{ $caretaker->caretaker_id }}" class="btn btn-danger" onclick="return confirm('Deny apllication request ?')">Tolak</a>
-                        <!-- <form action="{{ url('/admin/applications/accept/'.$caretaker->caretaker_id) }}" method="POST">
-                        @csrf
-                            <input type="text" name="user_id" class="form-control invisible" style="height:0px; width:0px;" value="{{ $caretaker->user_id }}">
-                            <input type="text" name="approved" class="form-control invisible" style="height:0px; width:0px;" value="accepted">
-                            <button type="submit" class="btn btn-success" onclick="return confirm('Accept apllication request ?')">Accept</button>
-                        </form> -->
                         <a href="/admin/applications/accept/{{ $caretaker->caretaker_id }}" class="btn btn-success" onclick="return confirm('Accept apllication request ?')">Izinkan</a>
                         @else
                         <a href="#" class="btn btn-success float-right disabled">No actions available</a>
@@ -162,6 +183,75 @@
     </div>
 
 
+</div>
+
+<div class="modal fade" id="lihatVaksinModal" tabindex="-1" aria-labelledby="lihatVaksinModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="lihatVaksinModalLabel">Preview</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                @if ($caretaker->dokumen_vaksin_path != null)
+                <img src="{{ asset('storage/vaksin/'.$caretaker->dokumen_vaksin_path) }}" class="img-fluid">
+                @else
+                <div class="box-placeholder"></div>
+                @endif
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="lihatPsikotesModal" tabindex="-1" aria-labelledby="lihatPsikotesModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="lihatPsikotesModalLabel">Preview</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                @if ($caretaker->dokumen_psikotes_path != null)
+                <img src="{{ asset('storage/psikotes/'.$caretaker->dokumen_psikotes_path) }}" class="img-fluid">
+                @else
+                <div class="box-placeholder"></div>
+                @endif
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="lihatIjazahModal" tabindex="-1" aria-labelledby="lihatIjazahModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="lihatIjazahModalLabel">Preview</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                @if ($caretaker->dokumen_ijazah_path != null)
+                <img src="{{ asset('storage/ijazah/'.$caretaker->dokumen_ijazah_path) }}" class="img-fluid">
+                @else
+                <div class="box-placeholder"></div>
+                @endif
+            </div>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="lihatSkckModal" tabindex="-1" aria-labelledby="lihatSkckModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="lihatSkckModalLabel">Preview</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                @if ($caretaker->dokumen_skck_path != null)
+                <img src="{{ asset('storage/skck/'.$caretaker->dokumen_skck_path) }}" class="img-fluid">
+                @else
+                <div class="box-placeholder"></div>
+                @endif
+            </div>
+        </div>
+    </div>
 </div>
 
 @endsection

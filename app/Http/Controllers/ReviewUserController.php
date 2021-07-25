@@ -13,17 +13,17 @@ class ReviewUserController extends Controller
 {
     public function showUserReviewForm($id)
     {
-        $job = Job_offer::find($id);
+        $job = Job_offer::where('job_id',$id)->first();
 
         return view('user.review', ['job' => $job]);
     }
 
-    public function reviewCaretaker(Request $request)
+    public function reviewCaretaker(Request $request, $id)
     {
 
         $rules = [
             'penilaian'             =>  'required',
-            'ulasan'                =>  'string|max:255',
+            'ulasan'                =>  'max:255',
         ];
 
         $messages = [
@@ -38,12 +38,12 @@ class ReviewUserController extends Controller
         }
 
         Review_user::create([
-            'job_id'            => $request->job_id,
+            'job_id'            => $id,
             'review_rating'     => $request->penilaian,
             'review_content'    => $request->ulasan,
         ]);
 
-        $job = Job_offer::find($request->job_id);
+        $job = Job_offer::find($id);
         $user = User::find($job->user_id);
 
         Notification::create([

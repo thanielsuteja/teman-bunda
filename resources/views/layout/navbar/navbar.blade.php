@@ -1,13 +1,10 @@
 <header class="header">
-    <nav class="navbar shadow navbar-expand-lg navbar-light bg-white" id="navbar">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white" id="navbar" style="box-shadow: 0 0.1rem 0.8rem rgb(0 0 0 / 15%) !important">
         <div class="container-fluid">
-            <a class="navbar-brand" href="/">
+            <a class="navbar-brand ms-3" href="/">
                 <img src="/img/logoTemanBunda.png" alt="" width="90px" class="py-2">
             </a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse justify-content-end" id="navbarNavDropdown">
+            <div class="justify-content-end me-4">
                 <ul class="navbar-nav">
                     <li class="nav-item extra-margin">
                         <a class="nav-link btn btn-outline-default width100" href="/register">Daftar</a>

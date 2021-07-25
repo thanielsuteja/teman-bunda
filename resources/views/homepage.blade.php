@@ -2,7 +2,11 @@
 @include('layout.navbar.navbar')
 
 @section('content')
-
+<style>
+    .card {
+        z-index: -1;
+    }
+</style>
 <main class="container main col-xxl-12 px-0">
     <section class="row flex-lg-row-reverse align-items-center py-5 mb-5">
         <div class="col-10 col-sm-8 col-lg-6">
@@ -19,7 +23,7 @@
     <section class="px-0 py-5" id="whyus">
         <div class="row w-100 my-md-3 bg-light align-items-center p-5">
             <div class="col-md-5 rounded-rectangle">
-                <img src="{{ asset('img/employee.png') }}" class="" height="395" width="380">
+                <img src="{{ asset('img/employee.png') }}" class="mx-4 mt-4" width="340">
             </div>
             <div class="col-md-7 ms-5">
                 <h1 class="display-5 ">Untuk kamu, orang tua yang bekerja</h1>

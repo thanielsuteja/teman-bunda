@@ -4,7 +4,7 @@
     }
 </style>
 <header class="header fixed-top">
-    <nav class="navbar shadow navbar-expand-lg navbar-light bg-white">
+    <nav class="navbar navbar-expand-lg navbar-light bg-white" style="box-shadow: 0 0.1rem 0.8rem rgb(0 0 0 / 15%) !important">
         <div class="container-fluid">
             <a class="navbar-brand ms-3" href="/user/home-page">
                 <img src="/img/logoTemanBunda.png" alt="" width="90px" class="py-2">
@@ -20,7 +20,7 @@
                         </a>
                         <ul class="dropdown-menu dropdown-menu-text-wrap dropdown-menu-end" aria-labelledby="dropdownNotification">
                             @foreach (Auth::user()->Notifications()->orderBy('created_at', 'DESC')->get() as $notification)
-                            <li>
+                            <li class="border-top border-bottom">
                                 <a class="dropdown-item" href="{{ $notification->url }}">
                                     <strong class="d-block">{{ $notification->notification_type }}</strong>
                                     {{ $notification->content }}

@@ -52,22 +52,21 @@
                             </div>
                             <div class="row">
                                 <div class="col-3 text-center">
-                                    @for ($i = 1; $i < 6; $i++)
-                                        @if ($job->Caretaker->meanRating >= $i)
+                                    @for ($i = 1; $i < 6; $i++) @if ($job->Caretaker->meanRating >= $i)
                                         <i class="bi-star-fill" style="color: #FFDE59; font-size: 12px;"></i>
                                         @elseif (($i - $job->Caretaker->meanRating) >= 1)
                                         <i class="bi-star" style="color: #FFDE59; font-size: 12px;"></i>
                                         @elseif (fmod($job->Caretaker->meanRating, 1) != 0)
                                         <i class="bi-star-half" style="color: #FFDE59; font-size: 12px;"></i>
                                         @endif
-                                    @endfor
-                                    <p style="font-size: 16px;">
-                                        @if ($job->Caretaker->countReviewUser == 0)
+                                        @endfor
+                                        <p style="font-size: 16px;">
+                                            @if ($job->Caretaker->countReviewUser == 0)
                                             0 ulasan
-                                        @else
+                                            @else
                                             {{ $job->Caretaker->countReviewUser }} Rating
-                                        @endif
-                                    </p>
+                                            @endif
+                                        </p>
                                 </div>
                                 <div class="row col-9 d-flex align-items-center">
                                     <div class="col-auto pe-0">
@@ -160,7 +159,7 @@
                         <a href="{{ route('info-transaksi', $transaction->transaction_id) }}" class="btn bg-temanbunda ms-3 fw-bold p-3" style="width: 180px; height: 58px;">Pembayaran</a>
                         @elseif ($job->job_status == "ubah gaji")
                         <button type="button" class="btn fw-bold" data-bs-toggle="modal" data-bs-target="#batal" style="width: 180px; height: 58px; border: 1px solid #ffde59; color: #ffde59;">Batalkan Order</button>
-                        <button type="button" class="btn bg-temanbunda ms-3 fw-bold" data-bs-toggle="modal" data-bs-target="#ganti_gaji_modal" style="width: 180px; height: 58px;">Izinkan</button>
+                        <button type="button" class="btn bg-temanbunda ms-3 fw-bold" data-bs-toggle="modal" data-bs-target="#ganti_gaji_modal" style="width: 180px; height: 58px;">Respon</button>
                         @elseif ($job->job_status == "berlangsung")
                         <button type="button" class="btn bg-temanbunda fw-bold" data-bs-toggle="modal" data-bs-target="#selesai" style="width: 180px; height: 58px;">Selesai</button>
                         @elseif ($job->job_status == "selesai" && $job->ReviewUser == null)
@@ -186,6 +185,7 @@
                                 </div>
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-outline-default" data-bs-dismiss="modal">Kembali</button>
+                                    <a type="button" class="btn btn-outline-default" href="{{ route('user.tolak-permintaan', $job->job_id) }}">Tolak</a>
                                     <input type="submit" class="btn bg-temanbunda" id="btnIzinkan" value="Izinkan" disabled></button>
                                 </div>
                             </form>
@@ -206,7 +206,7 @@
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-outline-default" data-bs-dismiss="modal">Kembali</button>
-                                <a href="/user/batalkan/{{ $job->job_id }}" class="btn bg-temanbunda">Batalkan</a>
+                                <a href="{{ route('user.batal', $job->job_id) }}" class="btn bg-temanbunda">Batalkan</a>
                             </div>
                         </div>
                     </div>
@@ -220,16 +220,13 @@
                                 <h5 class="modal-title" id="exampleModalLabel">Yakin ingin selesaikan order?</h5>
                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                             </div>
-                            <form action="/update-gaji/{{ $job->job_id }}" method="POST">
-                                @csrf
-                                <div class="modal-body">
-                                    <p class="form-text">Sebelum menekan tombol Selesai, pastikan Caregivermu sudah selesai melakukan tugasnya.</p>
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-outline-default" data-bs-dismiss="modal">Kembali</button>
-                                    <a href="/user/selesai/{{ $job->job_id }}" class="btn bg-temanbunda">Selesai</a>
-                                </div>
-                            </form>
+                            <div class="modal-body">
+                                <p class="form-text">Sebelum menekan tombol Selesai, pastikan Caregivermu sudah selesai melakukan tugasnya.</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-outline-default" data-bs-dismiss="modal">Kembali</button>
+                                <a href="{{ route('user.selesai', $job->job_id) }}" class="btn bg-temanbunda">Selesai</a>
+                            </div>
                         </div>
                     </div>
                 </div>

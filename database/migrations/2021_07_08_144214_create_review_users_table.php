@@ -17,7 +17,7 @@ class CreateReviewUsersTable extends Migration
             $table->id('user_review_id');
             $table->foreignId('job_id');
             $table->integer('review_rating');
-            $table->string('review_content');
+            $table->string('review_content')->nullable();
             $table->timestamps();
         });
     }

@@ -31,7 +31,7 @@ class OrderUserController extends Controller
     {
         $temp = Job_offer::find($id)->estimasi_biaya;
 
-        Job_offer::find($id)->update([
+        Job_offer::where('job_id' ,$id)->update([
             'estimasi_biaya' => $request->gaji_baru,
             'permintaan_gaji_baru' => null,
             'job_status' => 'menunggu',
@@ -43,6 +43,27 @@ class OrderUserController extends Controller
         Notification::create([
             'notification_type' => 'Permintaan Perubahan Gaji Diterima',
             'content' => 'Pengguna ' . $user->nama_depan . ' telah mengizinkan perubahan gaji dari Rp' . number_format($temp, 2, ",", ".") . ' menjadi Rp' . number_format($job->estimasi_biaya, 2, ",", ".") . ".",
+            'user_id' => null,
+            'caretaker_id' => $job->caretaker_id,
+            'url' => route('caretaker.detail-order', $job->job_id)
+        ]);
+
+        return redirect("/user/order-info/$id");
+    }
+
+    public function tolakUpdateGaji($id)
+    {
+        Job_offer::where('job_id', $id)->update([
+            'permintaan_gaji_baru' => null,
+            'job_status' => 'menunggu',
+        ]);
+
+        $job = Job_offer::find($id);
+        $user = User::find($job->user_id);
+
+        Notification::create([
+            'notification_type' => 'Permintaan Perubahan Gaji Ditolak',
+            'content' => 'Pengguna ' . $user->nama_depan . ' telah menolak permintaan perubahan gaji. Pastikan pengguna sudah setuju sebelum membuat permintaan.',
             'user_id' => null,
             'caretaker_id' => $job->caretaker_id,
             'url' => route('caretaker.detail-order', $job->job_id)

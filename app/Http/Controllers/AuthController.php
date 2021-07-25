@@ -173,7 +173,7 @@ class AuthController extends Controller
         }
 
         if ($user) {
-            Session::flash('success', 'Register berhasil! Silahkan login untuk mengakses data');
+            Session::flash('success', 'Register berhasil! Silahkan masuk untuk mmengakses Teman Bunda');
             return redirect()->route('login');
         } else {
             Session::flash('errors', ['' => 'Register gagal! Silahkan ulangi beberapa saat lagi']);

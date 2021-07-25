@@ -10,7 +10,7 @@
     </div>
 
     <div class="container rounded bg-white p-3">
-        
+
         <div class="card-header">Displaying data of User: {{ $user->nama }} UID: {{ $user->user_id }}</div>
 
         <table class="table">
@@ -18,12 +18,12 @@
                 <tr>
                     <th scope="col">Field</th>
                     <th scope="col">Value</th>
-                    
+
                 </tr>
             </thead>
 
             <tbody>
-            
+
                 <tr>
                     <td>user_id</td>
                     <td>{{ $user->user_id }}</td>
@@ -42,7 +42,15 @@
                 </tr>
                 <tr>
                     <td>profile_img</td>
-                    <td><img src="{{ asset('storage/foto_profil/'.$user->profile_img_path) }}" style="height:70px;width:70px"></td>
+                    <td>
+                        @if ($user->profile_img_path != null)
+                        <a type="button" class="" data-bs-toggle="modal" href="#lihatFotoModal">
+                            <img src="{{ asset('storage/foto_profil/'.$user->profile_img_path) }}" style="height:70px;width:70px">
+                        </a>
+                        @else
+                        <img src="{{ asset('img/no-profile.png') }}" style="height:70px;width:70px">
+                        @endif
+                    </td>
                 </tr>
                 <tr>
                     <td>tanggal_lahir</td>
@@ -82,7 +90,15 @@
                 </tr>
                 <tr>
                     <td>dokumen_ktp</td>
-                    <td><img src="{{ asset('storage/ktp/'.$user->dokumen_ktp_path) }}" style="height:70px;width:70px"></td>
+                    <td>
+                        @if ($user->dokumen_ktp_path != null)
+                        <a type="button" class="" data-bs-toggle="modal" href="#lihatKtpModal">
+                            <img src="{{ asset('storage/ktp/'.$user->dokumen_ktp_path) }}" style="height:70px;width:70px">
+                        </a>
+                        @else
+                        <div class="box-placeholder"></div>
+                        @endif
+                    </td>
                 </tr>
                 <tr>
                     <td>virtual_account</td>
@@ -100,15 +116,45 @@
                     <td>updated_at</td>
                     <td>{{ $user->updated_at }}</td>
                 </tr>
-                
-                
             </tbody>
         </table>
-
-        <a href="{{ url('admin/users') }}" class="btn btn-primary float-right">Back</a>      
+        <a href="{{ url('admin/users') }}" class="btn btn-primary float-right">Back</a>
     </div>
-
-
 </div>
 
+<div class="modal fade" id="lihatKtpModal" tabindex="-1" aria-labelledby="lihatKtpModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="lihatKtpModalLabel">Preview</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                @if ($user->dokumen_ktp_path != null)
+                <img src="{{ asset('storage/ktp/'.$user->dokumen_ktp_path) }}" class="img-fluid">
+                @else
+                <div class="box-placeholder"></div>
+                @endif
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="lihatFotoModal" tabindex="-1" aria-labelledby="lihatFotoModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="lihatFotoModalLabel">Preview</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                @if ($user->profile_img_path != null)
+                <img src="{{ asset('storage/foto_profil/'.$user->profile_img_path) }}" class="img-fluid">
+                @else
+                <div class="box-placeholder"></div>
+                @endif
+            </div>
+        </div>
+    </div>
+</div>
 @endsection

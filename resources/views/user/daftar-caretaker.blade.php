@@ -168,11 +168,11 @@
                                 <label for="pendidikan">Pendidikan terakhir</label>
                             </div>
                             <div class="form-floating mb-3">
-                                <input type="number" id="NIK" name="NIK" placeholder="nik" class="form-control rounded-input">
-                                <label for="NIK">Nomor Induk KTP</label>
+                                <input type="number" id="NIK" name="NIK" placeholder="nik" class="form-control rounded-input" value="{{ old('NIK') }}">
+                                <label for="NIK">Nomor Induk KTP (16 digit)</label>
                             </div>
                             <div class="input-group mb-3">
-                                <input type="number" class="form-control rounded-input" placeholder="Harapan tarif setiap satu jam" id="tarif" name="tarif" aria-describedby="info_tarif" style="height: 58px;">
+                                <input type="number" class="form-control rounded-input" placeholder="Harapan tarif setiap satu jam" id="tarif" name="tarif" aria-describedby="info_tarif" style="height: 58px;" value="{{ old('tarif') }}">
                                 <a id="info_tarif" role="button" tabindex="0" class="btn bg-white d-flex align-items-center" type="button" data-bs-toggle="popover" data-bs-trigger="focus hover" title="Jumlah tarif yang disarankan" data-bs-content="Rp15.000,00 - Rp20.000,00">
                                     <i class="bi bi-info-circle-fill m-0" style="font-size: 24px;"></i>
                                 </a>
@@ -180,13 +180,13 @@
                             <div class="row">
                                 <div class="col-4">
                                     <div class="form-floating mb-3">
-                                        <input type="number" class="form-control rounded-input" placeholder="a" id="kode_bank" name="kode_bank">
+                                        <input type="number" class="form-control rounded-input" placeholder="a" id="kode_bank" name="kode_bank" value="{{ old('kode_bank') }}">
                                         <label for="kode_bank">Kode bank</label>
                                     </div>
                                 </div>
                                 <div class="col">
                                     <div class="form-floating mb-3">
-                                        <input type="number" class="form-control rounded-input" placeholder="a" id="rekening" name="rekening">
+                                        <input type="number" class="form-control rounded-input" placeholder="a" id="rekening" name="rekening" value="{{ old('rekening') }}">
                                         <label for="rekening">Nomor rekening</label>
                                     </div>
                                 </div>
@@ -223,7 +223,7 @@
                         </fieldset>
                         <fieldset class="mx-3" style="height: 466px;">
                             <div class="form-floating">
-                                <textarea class="form-control rounded-input" placeholder="Saya dapat melakukan ini dan itu" name="perkenalan_diri" id="perkenalan_diri" aria-describedby="info_perkenalan_diri" style="height: 150px !important;"></textarea>
+                                <textarea class="form-control rounded-input" placeholder="Saya dapat melakukan ini dan itu" name="perkenalan_diri" id="perkenalan_diri" aria-describedby="info_perkenalan_diri" style="height: 150px !important;"  value="{{ old('perkenalan_diri') }}"></textarea>
                                 <label for="perkenalan_diri">Perkenalan dirimu secara singkat dan padat</label>
                                 <div id="info_perkenalan_diri" class="form-text ms-3">Perkenalan diri yang baik menaikkan peluang dipekerjakan oleh pengguna</div>
                             </div>
