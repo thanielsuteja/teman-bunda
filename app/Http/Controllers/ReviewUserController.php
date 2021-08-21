@@ -54,6 +54,11 @@ class ReviewUserController extends Controller
             'url' => route('caretaker.ulasan-saya'),
         ]);
 
-        return redirect("/user/home-page");
+        return redirect()->route('user.terima-kasih');
+    }
+
+    public function showTerimaKasih()
+    {
+        return view('user.terima-kasih');
     }
 }

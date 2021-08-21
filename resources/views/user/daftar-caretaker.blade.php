@@ -173,7 +173,7 @@
                             </div>
                             <div class="input-group mb-3">
                                 <input type="number" class="form-control rounded-input" placeholder="Harapan tarif setiap satu jam" id="tarif" name="tarif" aria-describedby="info_tarif" style="height: 58px;" value="{{ old('tarif') }}">
-                                <a id="info_tarif" role="button" tabindex="0" class="btn bg-white d-flex align-items-center" type="button" data-bs-toggle="popover" data-bs-trigger="focus hover" title="Jumlah tarif yang disarankan" data-bs-content="Rp15.000,00 - Rp20.000,00">
+                                <a id="info_tarif" role="button" tabindex="0" class="btn bg-white d-flex align-items-center" type="button" data-bs-toggle="popover" data-bs-trigger="focus hover" title="Jumlah tarif yang disarankan" data-bs-content="Rp15.000,00 - Rp25.000,00">
                                     <i class="bi bi-info-circle-fill m-0" style="font-size: 24px;"></i>
                                 </a>
                             </div>
@@ -181,7 +181,7 @@
                                 <div class="col-4">
                                     <div class="form-floating mb-3">
                                         <input type="number" class="form-control rounded-input" placeholder="a" id="kode_bank" name="kode_bank" value="{{ old('kode_bank') }}">
-                                        <label for="kode_bank">Kode bank</label>
+                                        <label for="kode_bank">Kode bank (3 digit)</label>
                                     </div>
                                 </div>
                                 <div class="col">
@@ -212,7 +212,7 @@
                                 <label for="kabupaten">Kabupaten</label>
                             </div>
                             <div class="mb-3">
-                                <button class="btn bg-temanbunda rounded-input" type="button" data-bs-toggle="collapse" data-bs-target="#kecamatan" aria-expanded="false" aria-controls="collapseExample" style="height: 58px; width: 100%;">
+                                <button class="btn btn-outline-default rounded-input" type="button" data-bs-toggle="collapse" data-bs-target="#kecamatan" aria-expanded="false" aria-controls="collapseExample" style="height: 58px; width: 100%;">
                                     Pilih area kerja
                                 </button>
                             </div>

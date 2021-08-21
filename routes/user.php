@@ -35,6 +35,7 @@ Route::middleware(['auth', 'pending.caregiver'])->group(function () {
     // Review
     Route::get('/user/review/{id}', [ReviewUserController::class, 'showUserReviewForm'])->name('user.review');
     Route::post('/user/simpan-review/{id}', [ReviewUserController::class, 'reviewCaretaker'])->name('user.send-review');
+    Route::get('/terima-kasih', [ReviewUserController::class, 'showTerimaKasih'])->name('user.terima-kasih');
     // Daftar Caregiver
     Route::get('/daftar-caretaker', [DaftarCaretakerController::class, 'showCaretakerRegisterForm'])->name('daftar-caretaker');
     Route::post('/simpan-caretaker', [DaftarCaretakerController::class, 'registerCaretaker']);

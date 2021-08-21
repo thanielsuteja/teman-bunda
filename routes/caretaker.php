@@ -34,4 +34,5 @@ Route::middleware(['auth'])->group(function () {
 
     Route::get('/caretaker/review/{id}', [ReviewCaretakerController::class, 'showPageReview'])->name('caretaker.review');
     Route::post('/caretaker/review/{id}', [ReviewCaretakerController::class, 'sendReview'])->name('caretaker.send-review');
+    Route::get('/caretaker/terima-kasih', [ReviewCaretakerController::class, 'showTerimaKasih'])->name('caretaker.terima-kasih');
 });

@@ -40,7 +40,11 @@
                 </tr>
                 <tr>
                     <td>profile_img</td>
+                    @if (Auth::user()->profile_img_path != null)
                     <td><img src="{{ asset(Auth::user()->profile_img_path) }}" style="height:70px;width:70px"></td>
+                    @else
+                    <td><img src="{{ asset('img/no-profile.png') }}" style="height:70px;width:70px"></td>
+                    @endif
                 </tr>
                 <tr>
                     <td>tanggal_lahir</td>
@@ -64,7 +68,7 @@
                 </tr>
                 <tr>
                     <td>dokumen_ktp</td>
-                    <td><img src="{{ asset(Auth::user()->dokumen_ktp_path) }}" style="height:70px;width:70px"></td>
+                    <td><img src="{{ asset('storage/ktp/'.Auth::user()->dokumen_ktp_path) }}" style="height:70px;width:70px"></td>
                 </tr>
                 <tr>
                     <td>created_at</td>

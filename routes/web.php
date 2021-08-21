@@ -31,6 +31,9 @@ Route::get('/logout', [AuthController::class, 'logout'])
 Route::get('/dashboard', function () {
     return view('home-user');
 })->middleware(['auth'])->name('dashboard');
+Route::get('/test', function() {
+    return view('user.terima-kasih');
+});
 
 Route::post('/getKabupaten', [AuthController::class, 'getKabupaten'])->name('getKabupaten');
 Route::post('/getKecamatan', [AuthController::class, 'getKecamatan'])->name('getKecamatan');

@@ -34,7 +34,7 @@
 
                 <div class="row pt-4">
                     <div class="col">
-                        <h5 class="mb-1">{{ $job->judul_pekerjaan }}</h5>
+                        <h5 class="mb-1 line-clamp">{{ $job->judul_pekerjaan }}</h5>
                         <p><span class="text-808080">Order selesai tanggal </span>{{ $job->updated_at }}</p>
                     </div>
                     <div class="col-4 text-end">

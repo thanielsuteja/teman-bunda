@@ -44,7 +44,7 @@ class DaftarCaretakerController extends Controller
             'tipe'                  =>  'required|string',
             'pendidikan'            =>  'required|string',
             'NIK'                   =>  'required|numeric|digits:16',
-            'tarif'                 =>  'required|numeric|digits:5',
+            'tarif'                 =>  'required|numeric|between:10000,50000',
             'kode_bank'             =>  'required|numeric|digits:3',
             'rekening'              =>  'required|numeric|digits_between:10,16',
             'perkenalan_diri'       =>  'required|string|max:255',
@@ -57,6 +57,7 @@ class DaftarCaretakerController extends Controller
         $messages = [
             'required'              =>  ':attribute wajib diisi',
             'digits'                =>  ':attribute harus diisi sebanyak :digits digit',
+            'between'               =>  'Tarif per jam minimal Rp10.000,00 dan maksimal Rp50.000,00',
             'max'                   =>  ':attribute maksimal :max karakter',
             'digits_between'        =>  'Jumlah digit pada rekening salah',
             'mimes'                 =>  'Mohon hanya file extension .jpg, .jpeg, dan .png'

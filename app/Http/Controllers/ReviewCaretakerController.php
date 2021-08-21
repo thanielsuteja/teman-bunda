@@ -48,6 +48,11 @@ class ReviewCaretakerController extends Controller
             'rating_user' => $user->meanRating
         ]);
 
-        return redirect()->route('caretaker.order');
+        return redirect()->route('caretaker.terima-kasih');
+    }
+
+    public function showTerimaKasih()
+    {
+        return view('caretaker.terima-kasih');
     }
 }

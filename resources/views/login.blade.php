@@ -40,13 +40,13 @@
                             <input type="text" id="login-email" placeholder="Email" name="email" class="form-control rounded-input">
                             <label for="login-email">Email</label>
                         </div>
-                        <div class="form-floating mb-3">
+                        <div class="form-floating mb-5">
                             <input type="password" id="login-password" placeholder="Password" name="password" class="form-control rounded-input">
                             <label for="login-password">Password</label>
                         </div>
-                        <div class="col-md text-end">
+                        <!-- <div class="col-md text-end">
                             <p><a href="/forgot-password" class="text-decoration-none">Lupa kata sandi</a></p>
-                        </div>
+                        </div> -->
                         <input type="submit" value="Log in" id="btn_login" class="btn bg-temanbunda text-white mb-4 w-full" style="width: 100%; height: 60px;" disabled>
                     </div>
                 </div>

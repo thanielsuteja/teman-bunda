@@ -110,7 +110,7 @@ class OrderUserController extends Controller
             'content' => 'Yey! Pekerjaan untuk judul \'' . $job->judul_pekerjaan . '\' telah selesai. Team Teman Bunda akan segera mengirim uang ke rekeningmu',
             'user_id' => null,
             'caretaker_id' => $job->caretaker_id,
-            'url' => route('caretaker.review', $job->job_id)
+            'url' => route('caretaker.detail-order', $job->job_id)
         ]);
 
         return redirect("/user/review/$id");
